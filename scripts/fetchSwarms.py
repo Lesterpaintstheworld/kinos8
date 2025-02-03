@@ -46,6 +46,13 @@ def save_records():
     id_mapping = {record['id']: record['fields'] for record in records}
     with open('data/swarms/by_id.json', 'w') as f:
         json.dump(id_mapping, f, indent=2)
+        
+    # Save individual files for each swarm
+    for record in records:
+        record_id = record['id']
+        filename = f"data/swarms/{record_id}.json"
+        with open(filename, 'w') as f:
+            json.dump(record, f, indent=2)
 
 if __name__ == '__main__':
     save_records()
