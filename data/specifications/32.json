@@ -1,12 +1,5 @@
 {
   "specificationId": "32",
   "collaborationId": "32",
-  "description": "Development of real estate analysis and matching system",
-  "objectives": [
-    "Create multi-source property scanning system",
-    "Build property valuation engine",
-    "Implement buyer-seller matching algorithm", 
-    "Develop smart contract integration"
-  ],
-  "status": "in_progress"
+  "content": "Development of real estate analysis and matching system with:\n- Multi-source property scanning system\n- Property valuation engine\n- Buyer-seller matching algorithm\n- Smart contract integration"
 }
