@@ -40,9 +40,11 @@ def save_records():
     
     # Save individual files for each swarm
     for record in records:
-        filename = f"data/swarms/{record['id']}.json"
-        with open(filename, 'w') as f:
-            json.dump(record['fields'], f, indent=2)
+        swarm_id = record['fields'].get('swarmId')  # Get swarmId from fields
+        if swarm_id:  # Only save if swarmId exists
+            filename = f"data/swarms/{swarm_id}.json"
+            with open(filename, 'w') as f:
+                json.dump(record['fields'], f, indent=2)
 
 if __name__ == '__main__':
     save_records()
