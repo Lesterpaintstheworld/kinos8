@@ -271,6 +271,16 @@ def push_specifications():
     print("\nProcessing Specifications...")
     
     table = api.table(BASE_ID, 'Specifications')
+    
+    # Define the standard fields we know Airtable accepts
+    standard_fields = {
+        'specificationId',
+        'collaborationId',
+        'title',
+        'createdAt',
+        'content'
+    }
+    
     spec_files = glob.glob('data/specifications/*.json')
     print(f"Found {len(spec_files)} specification files to process")
     
@@ -286,18 +296,21 @@ def push_specifications():
             with open(file_path, 'r') as f:
                 data = json.load(f)
             
-            spec_id = data.get('specificationId')
+            # Filter out non-standard fields
+            filtered_data = {k: v for k, v in data.items() if k in standard_fields}
+            
+            spec_id = filtered_data.get('specificationId')
             if not spec_id:
                 print(f"Warning: Skipping file {file_path} - missing specificationId")
                 skipped_count += 1
                 continue
             
             if spec_id in existing_ids:
-                table.update(existing_ids[spec_id], data)
+                table.update(existing_ids[spec_id], filtered_data)
                 print(f"Updated specification: {spec_id}")
                 updated_count += 1
             else:
-                table.create(data)
+                table.create(filtered_data)
                 print(f"Created new specification: {spec_id}")
                 created_count += 1
                 
