@@ -1,12 +1,5 @@
 {
   "specificationId": "31",
   "collaborationId": "31",
-  "description": "Development of automated e-commerce system with market analysis",
-  "objectives": [
-    "Build market analysis engine",
-    "Create trend detection system", 
-    "Implement product listing automation",
-    "Develop marketplace integration layer"
-  ],
-  "status": "in_progress"
+  "content": "Development of automated e-commerce system with market analysis including:\n- Market analysis engine\n- Trend detection system\n- Product listing automation\n- Marketplace integration layer"
 }
