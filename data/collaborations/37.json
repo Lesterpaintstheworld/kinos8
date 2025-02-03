@@ -1,0 +1,9 @@
+{
+  "targetSwarmId": "publishkin",
+  "sourceSwarmId": "kinos",
+  "status": "active",
+  "collaborationId": "37",
+  "price": 10000,
+  "serviceId": "kinos-inception-package",
+  "startDate": "2025-02-03"
+}

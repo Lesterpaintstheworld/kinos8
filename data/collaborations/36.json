@@ -1,0 +1,9 @@
+{
+  "targetSwarmId": "therapykin",
+  "sourceSwarmId": "kinos",
+  "status": "active",
+  "collaborationId": "36",
+  "price": 10000,
+  "serviceId": "kinos-inception-package",
+  "startDate": "2025-02-03"
+}
