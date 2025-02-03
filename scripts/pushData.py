@@ -4,6 +4,22 @@ from pyairtable import Api
 import json
 import glob
 
+def get_table_schema(table):
+    """Get the available fields for a table by checking a sample record"""
+    try:
+        sample = table.all(max_records=1)
+        if sample:
+            # Get fields from first record
+            return set(sample[0]['fields'].keys())
+        return set()
+    except Exception as e:
+        print(f"Warning: Could not get schema - {str(e)}")
+        return set()
+
+def filter_data_for_table(data, valid_fields):
+    """Remove any fields that don't exist in the Airtable schema"""
+    return {k: v for k, v in data.items() if k in valid_fields}
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -198,6 +214,10 @@ def push_collaborations():
     # Get the table
     table = api.table(BASE_ID, 'Collaborations')
     
+    # Get valid fields for this table
+    valid_fields = get_table_schema(table)
+    print(f"Valid fields for Collaborations: {valid_fields}")
+    
     # Get all collaboration files
     collab_files = glob.glob('data/collaborations/*.json')
     print(f"Found {len(collab_files)} collaboration files to process")
@@ -217,6 +237,9 @@ def push_collaborations():
             with open(file_path, 'r') as f:
                 data = json.load(f)
             
+            # Filter data to only include valid fields
+            filtered_data = filter_data_for_table(data, valid_fields)
+            
             collab_id = data.get('collaborationId')
             if not collab_id:
                 print(f"Warning: Skipping file {file_path} - missing collaborationId")
@@ -225,12 +248,12 @@ def push_collaborations():
             
             # If record exists, update it
             if collab_id in existing_ids:
-                table.update(existing_ids[collab_id], data)
+                table.update(existing_ids[collab_id], filtered_data)
                 print(f"Updated collaboration: {collab_id}")
                 updated_count += 1
             # If record is new, create it
             else:
-                table.create(data)
+                table.create(filtered_data)
                 print(f"Created new collaboration: {collab_id}")
                 created_count += 1
                 
