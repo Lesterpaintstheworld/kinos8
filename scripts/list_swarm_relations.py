@@ -57,7 +57,7 @@ def analyze_swarm_relations():
             continue
         
         swarm_id = swarm_data['swarmId']
-        swarm_relations[swarm_id]['swarm_files'].append(os.path.basename(swarm_file))
+        swarm_relations[swarm_id]['swarm_files'].append(f"swarms/{os.path.basename(swarm_file)}")
         
         # Add services
         if swarm_id in swarm_services:
