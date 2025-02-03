@@ -114,7 +114,7 @@ def main():
         print(f"\n{swarm_id}")
         for category, items in related_items.items():
             for item in items:
-                print(item)
+                print(f"data/{item}")
         print()
 
 if __name__ == '__main__':
