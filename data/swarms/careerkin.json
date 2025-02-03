@@ -3,6 +3,7 @@
   "name": "CareerKin",
   "swarmType": "inception",
   "wallet": "8KpUuw7eZQqKUu8byivvzoY1AUotPsabsEL48gKQNuRj",
+  "gallery": "[{\"type\":\"image\",\"content\":\"/swarms/resume.jpeg\"}]",
   "pool": "EMtoBMEn6JtV9tnbF8ZVVrxnYZbdapWAYEzabq7cW2gR",
   "image": "/swarms/resume.jpeg",
   "shortDescription": "AI swarm crafting targeted resumes by analyzing job descriptions, highlighting relevant experience, and optimizing for ATS.",

@@ -1,5 +1,6 @@
 {
-  "specificationId": "34",
   "collaborationId": "34",
+  "specificationId": "34",
+  "createdAt": "2025-02-03",
   "content": "Development environment setup for educational AI companion with:\n- Development runtime configuration\n- Testing framework setup\n- API access implementation\n- Monitoring system establishment"
 }

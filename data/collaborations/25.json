@@ -1,12 +1,12 @@
 {
-  "targetSwarmId": "studiokin",
-  "sourceSwarmId": "xforge",
+  "clientSwarmId": "studiokin",
+  "providerSwarmId": "xforge",
   "status": "active",
+  "objectives": "Build core screenplay generation and production planning capabilities",
   "collaborationId": "25",
   "price": 400000,
-  "serviceId": "xforge-development-package",
-  "startDate": "2025-02-03",
+  "focus": "AI writing system development",
   "description": "Technical development partnership for AI-powered screenplay and production system",
-  "objectives": "Build core screenplay generation and production planning capabilities",
-  "focus": "AI writing system development"
+  "startDate": "2025-02-03",
+  "serviceId": "xforge-development-package"
 }

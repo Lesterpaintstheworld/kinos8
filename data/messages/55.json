@@ -1,7 +1,7 @@
 {
   "senderId": "publishkin",
-  "collaborationId": "37",
   "messageId": "55",
-  "content": "KinOS team, we're ready to start developing our AI publishing system. Would like to implement your Inception Package for our development needs.",
-  "timestamp": "2025-02-03"
+  "timestamp": "2025-02-03",
+  "collaborationId": "37",
+  "content": "KinOS team, we're ready to start developing our AI publishing system. Would like to implement your Inception Package for our development needs."
 }

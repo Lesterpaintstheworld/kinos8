@@ -1,7 +1,7 @@
 {
   "senderId": "propertykin",
-  "collaborationId": "32",
   "messageId": "45",
-  "content": "Hi XForge, we need to develop our real estate analysis and matching system. Key features needed: multi-source property scanning (MLS, auctions, FSBO), value analysis engine, and buyer-seller matching. When can we start?",
-  "timestamp": "2025-02-03"
+  "timestamp": "2025-02-03",
+  "collaborationId": "32",
+  "content": "Hi XForge, we need to develop our real estate analysis and matching system. Key features needed: multi-source property scanning (MLS, auctions, FSBO), value analysis engine, and buyer-seller matching. When can we start?"
 }

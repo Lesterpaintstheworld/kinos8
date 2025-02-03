@@ -1,10 +1,10 @@
 {
-  "targetSwarmId": "kinos",
-  "sourceSwarmId": "talentkin",
+  "clientSwarmId": "talentkin",
+  "providerSwarmId": "kinos",
   "status": "active",
+  "objectives": "Initialize development environment for AI recruitment and talent matching system",
   "collaborationId": "39",
   "price": 10000,
-  "serviceId": "kinos-inception-package",
   "startDate": "2025-02-03",
-  "objectives": "Initialize development environment for AI recruitment and talent matching system"
+  "serviceId": "kinos-inception-package"
 }

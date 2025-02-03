@@ -1,12 +1,12 @@
 {
-  "targetSwarmId": "kinos-partner-id",
-  "sourceSwarmId": "logicatlas-inception-id",
+  "clientSwarmId": "kinos",
+  "providerSwarmId": "xforge",
   "status": "active",
-  "objectives": "[\"Real-time data processing\",\"Supply chain optimization\",\"Automated decision-making\",\"Cross-chain integration\",\"Performance monitoring\"]",
+  "objectives": "-",
   "collaborationId": "24",
-  "price": 10000,
-  "focus": "Building an intelligent supply chain orchestration system that optimizes operations through AI-driven insights and automation.",
-  "description": "Infrastructure support for AI-powered supply chain orchestration system, enabling real-time optimization of manufacturer-distributor relationships.",
-  "startDate": "2024-02-06",
-  "serviceId": "kinos-inception-package"
+  "price": 400000,
+  "focus": "-",
+  "description": "-",
+  "startDate": "2025-02-03",
+  "serviceId": "xforge-development-package"
 }

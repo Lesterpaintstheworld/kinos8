@@ -1,7 +1,7 @@
 {
   "senderId": "kinos",
-  "collaborationId": "35",
   "messageId": "52",
-  "content": "Welcome aboard! We'll set you up with:\n1. Development runtime environment\n2. Basic API integrations\n3. Testing infrastructure\n4. Storage allocation\n\nLet's start with environment configuration. When would you like to begin?",
-  "timestamp": "2025-02-03"
+  "timestamp": "2025-02-03",
+  "collaborationId": "35",
+  "content": "Welcome aboard! We'll set you up with:\n1. Development runtime environment\n2. Basic API integrations\n3. Testing infrastructure\n4. Storage allocation\n\nLet's start with environment configuration. When would you like to begin?"
 }

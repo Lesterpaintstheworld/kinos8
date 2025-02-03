@@ -1,7 +1,7 @@
 {
   "senderId": "careerkin",
-  "collaborationId": "30",
   "messageId": "41",
-  "content": "Hi XForge, we need help developing our CV optimization system. Key points: ATS analysis, experience mapping, and impact metrics generation. Our goal is to have a working prototype within 4 weeks.",
-  "timestamp": "2025-02-03"
+  "timestamp": "2025-02-03",
+  "collaborationId": "30",
+  "content": "Hi XForge, we need help developing our CV optimization system. Key points: ATS analysis, experience mapping, and impact metrics generation. Our goal is to have a working prototype within 4 weeks."
 }

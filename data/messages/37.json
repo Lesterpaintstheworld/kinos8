@@ -1,6 +1,7 @@
 {
   "senderId": "deskmate",
+  "messageId": "37",
+  "timestamp": "2025-02-03",
   "collaborationId": "33",
-  "content": "Hello KinOS, we're ready to start developing our educational AI companion and need your Inception Package. Can you guide us through the setup process?",
-  "messageId": "37"
+  "content": "Hello KinOS, we're ready to start developing our educational AI companion and need your Inception Package. Can you guide us through the setup process?"
 }

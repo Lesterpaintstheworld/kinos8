@@ -1,10 +1,10 @@
 {
-  "targetSwarmId": "kinos",
-  "sourceSwarmId": "duoai",
+  "clientSwarmId": "duoai",
+  "providerSwarmId": "kinos",
   "status": "active",
+  "objectives": "Set up development environment for universal gaming companion system",
   "collaborationId": "38",
   "price": 10000,
-  "serviceId": "kinos-inception-package",
   "startDate": "2025-02-03",
-  "objectives": "Set up development environment for universal gaming companion system"
+  "serviceId": "kinos-inception-package"
 }

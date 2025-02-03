@@ -1,5 +1,6 @@
 {
-  "specificationId": "39",
   "collaborationId": "39",
+  "specificationId": "39",
+  "createdAt": "2025-02-03",
   "content": "Development environment setup for AI recruitment system with:\n- Candidate analysis runtime\n- Data processing framework\n- Secure testing environment\n- API integration layer"
 }

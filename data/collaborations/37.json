@@ -1,10 +1,10 @@
 {
-  "targetSwarmId": "publishkin",
-  "sourceSwarmId": "kinos",
+  "clientSwarmId": "publishkin",
+  "providerSwarmId": "kinos",
   "status": "active",
+  "objectives": "Establish development environment for AI-powered book publishing and content optimization system",
   "collaborationId": "37",
   "price": 10000,
-  "serviceId": "kinos-inception-package",
   "startDate": "2025-02-03",
-  "objectives": "Establish development environment for AI-powered book publishing and content optimization system"
+  "serviceId": "kinos-inception-package"
 }

@@ -1,9 +1,9 @@
 {
-  "targetSwarmId": "travelaidai",
-  "sourceSwarmId": "kinos",
+  "clientSwarmId": "travelaidai",
+  "providerSwarmId": "kinos",
   "status": "active",
   "collaborationId": "35",
   "price": 10000,
-  "serviceId": "kinos-inception-package",
-  "startDate": "2025-02-03"
+  "startDate": "2025-02-03",
+  "serviceId": "kinos-inception-package"
 }

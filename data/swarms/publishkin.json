@@ -3,6 +3,7 @@
   "name": "PublishKin",
   "swarmType": "inception",
   "wallet": "6eAG4RQkAHPFfKGkiXWXcBXou9QcEfxVxXrt8bYqY5PE",
+  "gallery": "[{\"type\":\"image\",\"content\":\"/swarms/book.png\"}]",
   "pool": "Dt7iwGTgRVZGV2NZFvNtrWVNX77s8ejGdhB2XaR4DxX6",
   "image": "/swarms/book.png",
   "shortDescription": "An AI publishing system that transforms manuscripts into market-ready books, handling everything from editing to production while maintaining creative quality.",

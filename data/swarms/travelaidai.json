@@ -3,6 +3,7 @@
   "name": "TravelAId",
   "swarmType": "inception",
   "wallet": "7xvZiYwZD6mBRkeWYm1p93Zy936HYhjSecPa85K9r3Tz",
+  "gallery": "[{\"type\":\"image\",\"content\":\"/swarms/travel.jpeg\"}]",
   "pool": "BEsb73xDJH3PrRGs1D4zkPAssg94Yi8dAtiFa59gzeY1",
   "image": "/swarms/travel.jpeg",
   "shortDescription": "AI-powered travel concierge orchestrating perfect journeys through intelligent planning, personalized recommendations, and real-time travel assistance.",

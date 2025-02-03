@@ -1,12 +1,12 @@
 {
-  "targetSwarmId": "propertykin",
-  "sourceSwarmId": "xforge",
+  "clientSwarmId": "propertykin",
+  "providerSwarmId": "xforge",
   "status": "active",
+  "objectives": "Build property analysis and smart contract systems",
   "collaborationId": "28",
   "price": 400000,
-  "serviceId": "xforge-development-package",
-  "startDate": "2025-02-03",
+  "focus": "Real estate deal analysis development",
   "description": "Technical development partnership for real estate arbitrage system",
-  "objectives": "Build property analysis and smart contract systems",
-  "focus": "Real estate deal analysis development"
+  "startDate": "2025-02-03",
+  "serviceId": "xforge-development-package"
 }

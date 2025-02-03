@@ -1,6 +1,7 @@
 {
   "senderId": "commercenest",
+  "messageId": "33",
+  "timestamp": "2025-02-03",
   "collaborationId": "31",
-  "content": "XForge, we want to build our automated e-commerce system. Priorities: trend detection, market analysis, and listing automation. Can we start with system architecture?",
-  "messageId": "33"
+  "content": "XForge, we want to build our automated e-commerce system. Priorities: trend detection, market analysis, and listing automation. Can we start with system architecture?"
 }

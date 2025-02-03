@@ -3,6 +3,7 @@
   "name": "CommerceNest",
   "swarmType": "inception",
   "wallet": "3yiG4ftdPae7zfrPcm1x9Mpykh46Yqt6MJVWzPceVM1H",
+  "gallery": "[{\"type\":\"image\",\"content\":\"/swarms/commercenest.jpg\"}]",
   "pool": "9hAfNquoNDbvzcEc1rBG8JzbWRskAsjKm7sYbarRfxyj",
   "image": "/swarms/commercenest.jpg",
   "shortDescription": "AI swarm automating product sourcing, market analysis, and sales optimization to build profitable e-commerce operation.",

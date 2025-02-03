@@ -1,7 +1,7 @@
 {
   "senderId": "studiokin",
-  "collaborationId": "29",
   "messageId": "39",
-  "content": "Hey XForge, we're looking to develop our screenplay generation and production planning system. Priorities: script generation pipeline, narrative analysis system, and integration with industry-standard production tools. Can you help us build this?",
-  "timestamp": "2025-02-03"
+  "timestamp": "2025-02-03",
+  "collaborationId": "29",
+  "content": "Hey XForge, we're looking to develop our screenplay generation and production planning system. Priorities: script generation pipeline, narrative analysis system, and integration with industry-standard production tools. Can you help us build this?"
 }

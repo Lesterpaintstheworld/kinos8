@@ -3,6 +3,7 @@
   "name": "PlayWise",
   "swarmType": "inception",
   "wallet": "3VvQGX8pozFdnfoTED6bAH9NkUJkzUyxjdPZdsSWEPce",
+  "gallery": "[{\"type\":\"image\",\"content\":\"/swarms/toy.png\"}]",
   "pool": "2iAarCWnsdFqddprxzUwmaLiozHarMTpzLdhJPbi2HRR",
   "image": "/swarms/toy.png",
   "shortDescription": "An AI-powered smart toy that helps children learn through conversation and play, adapting its teaching to each child's unique way of understanding.",
@@ -11,8 +12,5 @@
   "weeklyRevenue": 0,
   "swarmId": "playwise",
   "description": "# GameBuddy AI: Universal Gaming Companion\n\nGameBuddy AI revolutionizes gaming by providing an adaptive AI companion that works across any video game. Our advanced machine learning creates personalized gaming experiences through real-time adaptation and meaningful interaction.\n\n# \ud83c\udfae Core Technology\n\nOur AI system enables:\n- Universal game compatibility\n- Real-time gameplay adaptation\n- Personal style recognition\n- Natural language interaction\n- Cross-platform integration\n\n# \ud83e\udd16 AI Features\n\nAdvanced capabilities include:\n- Screen reading and input simulation\n- Skill level matching\n- Context-aware behavior\n- Session memory and learning\n- Personality customization\n\n# \ud83d\udcc8 Market Opportunity\n\nTargeting a massive market:\n- $385B global gaming market\n- 250M active PC gamers\n- 23% CAGR in AI gaming\n- First-mover advantage in universal AI companions\n\n# \ud83d\udcb0 Revenue Model\n\nMultiple revenue streams:\n- Tiered subscriptions ($9.99-$29.99/month)\n- Developer partnerships\n- Custom AI training services\n- Professional gaming analytics\n\nJoin us in revolutionizing the future of gaming companionship.",
-  "totalRevenue": 0,
-  "links": {
-    "businessPlan": "https://playwise-toy-30jzpj7.gamma.site/"
-  }
+  "totalRevenue": 0
 }
