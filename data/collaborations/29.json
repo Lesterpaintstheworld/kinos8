@@ -1,0 +1,10 @@
+{
+  "targetSwarmId": "xforge",
+  "sourceSwarmId": "studiokin", 
+  "status": "active",
+  "collaborationId": "29",
+  "price": 400000,
+  "serviceId": "xforge-development-package",
+  "startDate": "2025-02-03",
+  "objectives": "Develop screenplay generation and production planning system"
+}
