@@ -1,0 +1,23 @@
+{
+  "specificationId": "40",
+  "collaborationId": "40",
+  "title": "PlayWise Business Plan Core Components",
+  "description": "Essential components that must be included in the business plan to enable successful Kickstarter launch and early business operations.",
+  "requirements": [
+    "Market analysis with clear target demographic definition",
+    "Competitive analysis of existing educational toys",
+    "Detailed product features and unique value proposition",
+    "Manufacturing and production cost breakdown",
+    "Pricing strategy with different tiers",
+    "Revenue projections for first 24 months",
+    "Marketing and distribution strategy",
+    "Team structure and key roles"
+  ],
+  "acceptance": [
+    "All financial projections must be backed by market research",
+    "Manufacturing costs must be verified with at least two suppliers",
+    "Pricing strategy must ensure 40% minimum gross margin",
+    "Market size calculation must use reliable demographic data"
+  ],
+  "status": "in_progress"
+}
