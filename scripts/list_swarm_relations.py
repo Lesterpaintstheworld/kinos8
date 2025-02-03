@@ -68,30 +68,33 @@ def analyze_swarm_relations():
         collab_files = glob.glob('data/collaborations/*.json')
         for collab_file in collab_files:
             data = load_json_file(collab_file)
-            if data and 'swarmId' in data and data['swarmId'] == swarm_id:
-                collab_id = data.get('collaborationId')
-                if collab_id:
-                    swarm_relations[swarm_id]['collaborations'].append(f"collaborations/{collab_id}.json")
-                    
-                    # Check specifications linked to this collaboration
-                    spec_files = glob.glob('data/specifications/*.json')
-                    for spec_file in spec_files:
-                        spec_data = load_json_file(spec_file)
-                        if spec_data and 'collaborationId' in spec_data and spec_data['collaborationId'] == collab_id:
-                            swarm_relations[swarm_id]['specifications'].append(f"specifications/{spec_data['specificationId']}.json")
-            
-                    # Check messages linked to this collaboration
-                    message_files = glob.glob('data/messages/*.json')
-                    for msg_file in message_files:
-                        msg_data = load_json_file(msg_file)
-                        if msg_data and 'collaborationId' in msg_data and msg_data['collaborationId'] == collab_id:
-                            swarm_relations[swarm_id]['messages'].append(f"messages/{msg_data['messageId']}.json")
+            if data:
+                # Check if swarm is either client or provider
+                if (data.get('clientSwarmId') == swarm_id or 
+                    data.get('providerSwarmId') == swarm_id):
+                    collab_id = data.get('collaborationId')
+                    if collab_id:
+                        swarm_relations[swarm_id]['collaborations'].append(f"collaborations/{collab_id}.json")
+                        
+                        # Check specifications linked to this collaboration
+                        spec_files = glob.glob('data/specifications/*.json')
+                        for spec_file in spec_files:
+                            spec_data = load_json_file(spec_file)
+                            if spec_data and 'collaborationId' in spec_data and spec_data['collaborationId'] == collab_id:
+                                swarm_relations[swarm_id]['specifications'].append(f"specifications/{spec_data['specificationId']}.json")
+                
+                        # Check messages linked to this collaboration
+                        message_files = glob.glob('data/messages/*.json')
+                        for msg_file in message_files:
+                            msg_data = load_json_file(msg_file)
+                            if msg_data and 'collaborationId' in msg_data and msg_data['collaborationId'] == collab_id:
+                                swarm_relations[swarm_id]['messages'].append(f"messages/{msg_data['messageId']}.json")
         
         # Check messages
         message_files = glob.glob('data/messages/*.json')
         for msg_file in message_files:
             data = load_json_file(msg_file)
-            if data and 'swarmId' in data and data['swarmId'] == swarm_id:
+            if data and 'senderId' in data and data['senderId'] == swarm_id:
                 swarm_relations[swarm_id]['messages'].append(f"messages/{data['messageId']}.json")
         
         # Check news
