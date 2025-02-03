@@ -33,20 +33,11 @@ os.makedirs('data/swarms', exist_ok=True)
 
 # Process and save records
 def save_records():
-    # Save full data
-    with open('data/swarms/all.json', 'w') as f:
-        json.dump(records, f, indent=2)
-    
     # Save simplified data (just fields)
     simplified_records = [record['fields'] for record in records]
     with open('data/swarms/simplified.json', 'w') as f:
         json.dump(simplified_records, f, indent=2)
     
-    # Save ID mapping
-    id_mapping = {record['id']: record['fields'] for record in records}
-    with open('data/swarms/by_id.json', 'w') as f:
-        json.dump(id_mapping, f, indent=2)
-        
     # Save individual files for each swarm
     for record in records:
         filename = f"data/swarms/{record['id']}.json"
