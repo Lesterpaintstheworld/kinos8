@@ -330,12 +330,12 @@ def push_deliverables():
     table = api.table(BASE_ID, 'Deliverables')
     
     # Define the standard fields we know Airtable accepts
+    # Removed 'status' since it's not accepted
     standard_fields = {
         'deliverableId',
         'collaborationId',
         'title',
         'content',
-        'status',
         'createdAt'
     }
     
