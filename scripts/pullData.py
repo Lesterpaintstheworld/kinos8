@@ -25,7 +25,10 @@ TABLES = {
     'News': 'newsId',
     'Services': 'serviceId',
     'Collaborations': 'collaborationId',
-    'Messages': 'messageId'
+    'Messages': 'messageId',
+    'Specifications': 'specificationId',
+    'Deliverables': 'deliverableId',
+    'Validations': 'validationId'
 }
 
 def fetch_and_save_table(table_name, id_field):
