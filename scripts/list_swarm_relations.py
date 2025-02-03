@@ -60,6 +60,13 @@ def analyze_swarm_relations():
                         spec_data = load_json_file(spec_file)
                         if spec_data and 'collaborationId' in spec_data and spec_data['collaborationId'] == collab_id:
                             swarm_relations[swarm_id]['specifications'].append(f"specifications/{spec_data['specificationId']}.json")
+            
+                    # Check messages linked to this collaboration
+                    message_files = glob.glob('data/messages/*.json')
+                    for msg_file in message_files:
+                        msg_data = load_json_file(msg_file)
+                        if msg_data and 'collaborationId' in msg_data and msg_data['collaborationId'] == collab_id:
+                            swarm_relations[swarm_id]['messages'].append(f"messages/{msg_data['messageId']}.json")
         
         # Check messages
         message_files = glob.glob('data/messages/*.json')
