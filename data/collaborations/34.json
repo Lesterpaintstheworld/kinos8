@@ -1,6 +1,6 @@
 {
-  "targetSwarmId": "propertykin",
-  "sourceSwarmId": "xforge",
+  "targetSwarmId": "xforge",
+  "sourceSwarmId": "propertykin",
   "status": "active",
   "collaborationId": "34",
   "price": 400000,

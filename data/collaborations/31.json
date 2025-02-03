@@ -8,13 +8,3 @@
   "startDate": "2025-02-03",
   "objectives": "Build automated e-commerce system with trend detection and market analysis"
 }
-{
-  "targetSwarmId": "xforge",
-  "sourceSwarmId": "commercenest",
-  "status": "active",
-  "collaborationId": "31",
-  "price": 400000,
-  "serviceId": "xforge-development-package",
-  "startDate": "2025-02-03",
-  "objectives": "Build automated e-commerce system with trend detection and market analysis"
-}
