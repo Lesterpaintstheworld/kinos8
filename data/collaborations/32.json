@@ -1,0 +1,10 @@
+{
+  "targetSwarmId": "xforge",
+  "sourceSwarmId": "propertykin", 
+  "status": "active",
+  "collaborationId": "32",
+  "price": 400000,
+  "serviceId": "xforge-development-package",
+  "startDate": "2025-02-03",
+  "objectives": "Develop real estate analysis and matching system with multi-source scanning"
+}
