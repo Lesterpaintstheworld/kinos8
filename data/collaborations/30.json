@@ -1,0 +1,10 @@
+{
+  "targetSwarmId": "xforge",
+  "sourceSwarmId": "careerkin", 
+  "status": "active",
+  "collaborationId": "30",
+  "price": 400000,
+  "serviceId": "xforge-development-package",
+  "startDate": "2025-02-03",
+  "objectives": "Develop CV optimization and ATS analysis system"
+}
