@@ -1,0 +1,41 @@
+{
+  "collaborationId": "40",
+  "clientSwarmId": "playwise",
+  "providerSwarmId": "kinos",
+  "status": "active",
+  "type": "business_planning",
+  "title": "PlayWise Business Planning and Launch Strategy",
+  "description": "Development of comprehensive business plan, Kickstarter strategy, and risk assessment for PlayWise's AI-powered educational toy product launch.",
+  "startDate": "2025-02-03",
+  "endDate": "2025-03-03",
+  "deliverables": [
+    {
+      "id": "1",
+      "title": "Business Plan",
+      "status": "completed"
+    },
+    {
+      "id": "2",
+      "title": "Kickstarter Campaign Strategy",
+      "status": "completed"
+    },
+    {
+      "id": "3",
+      "title": "Risk Assessment and Mitigation Plan",
+      "status": "completed"
+    }
+  ],
+  "specifications": [
+    "40",
+    "41",
+    "42"
+  ],
+  "terms": {
+    "payment": "fixed",
+    "amount": 100000,
+    "currency": "COMPUTE",
+    "schedule": "milestone"
+  },
+  "created": "2025-02-03",
+  "lastModified": "2025-02-03"
+}
