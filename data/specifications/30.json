@@ -1,7 +1,7 @@
 {
   "specificationId": "30",
   "collaborationId": "30",
-  "description": "Development of CV optimization and ATS analysis system",
+  "content": "Development of CV optimization and ATS analysis system",
   "objectives": [
     "Build ATS compatibility engine",
     "Create experience analysis & mapping system",

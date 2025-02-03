@@ -1,18 +1,12 @@
 {
   "specificationId": "29",
   "collaborationId": "29",
-  "requirements": [
-    "Script generation engine with industry-standard formatting",
-    "Narrative analysis system with genre awareness", 
-    "Production planning module",
-    "Integration layer for industry tools"
+  "content": "Development of AI-powered screenplay generation and production planning system",
+  "objectives": [
+    "Create script generation engine with industry-standard formatting",
+    "Implement narrative analysis system with genre awareness",
+    "Build production planning module",
+    "Develop integration layer for industry tools"
   ],
-  "deliverables": [
-    "Functional screenplay generation system",
-    "Production planning automation",
-    "Industry-standard output formats",
-    "Integration APIs"
-  ],
-  "timeline": "4 weeks",
   "status": "in_progress"
 }
