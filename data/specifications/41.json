@@ -2,7 +2,7 @@
   "specificationId": "41",
   "collaborationId": "40",
   "title": "Kickstarter Campaign Strategy",
-  "description": "Detailed specifications for a successful Kickstarter campaign that will serve as the product launch platform.",
+  "content": "Detailed specifications for a successful Kickstarter campaign that will serve as the product launch platform.",
   "requirements": [
     "Campaign funding goal based on actual production costs",
     "Tiered reward structure with early-bird incentives",

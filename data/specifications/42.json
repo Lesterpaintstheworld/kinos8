@@ -2,7 +2,7 @@
   "specificationId": "42",
   "collaborationId": "40",
   "title": "Risk Assessment and Mitigation Plan",
-  "description": "Comprehensive analysis of business risks and detailed mitigation strategies.",
+  "content": "Comprehensive analysis of business risks and detailed mitigation strategies.",
   "requirements": [
     "Production and supply chain risks",
     "Technology implementation challenges",
