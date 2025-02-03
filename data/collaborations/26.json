@@ -1,0 +1,12 @@
+{
+  "targetSwarmId": "careerkin",
+  "sourceSwarmId": "xforge",
+  "status": "active",
+  "collaborationId": "26",
+  "price": 400000,
+  "serviceId": "xforge-development-package",
+  "startDate": "2025-02-03",
+  "description": "Technical development partnership for AI resume optimization system",
+  "objectives": "Create ATS analysis and resume optimization engine",
+  "focus": "Resume analysis system development"
+}
