@@ -328,6 +328,17 @@ def push_deliverables():
     print("\nProcessing Deliverables...")
     
     table = api.table(BASE_ID, 'Deliverables')
+    
+    # Define the standard fields we know Airtable accepts
+    standard_fields = {
+        'deliverableId',
+        'collaborationId',
+        'title',
+        'content',
+        'status',
+        'createdAt'
+    }
+    
     deliv_files = glob.glob('data/deliverables/*.json')
     print(f"Found {len(deliv_files)} deliverable files to process")
     
@@ -343,18 +354,21 @@ def push_deliverables():
             with open(file_path, 'r') as f:
                 data = json.load(f)
             
-            deliv_id = data.get('deliverableId')
+            # Filter out non-standard fields
+            filtered_data = {k: v for k, v in data.items() if k in standard_fields}
+            
+            deliv_id = filtered_data.get('deliverableId')
             if not deliv_id:
                 print(f"Warning: Skipping file {file_path} - missing deliverableId")
                 skipped_count += 1
                 continue
             
             if deliv_id in existing_ids:
-                table.update(existing_ids[deliv_id], data)
+                table.update(existing_ids[deliv_id], filtered_data)
                 print(f"Updated deliverable: {deliv_id}")
                 updated_count += 1
             else:
-                table.create(data)
+                table.create(filtered_data)
                 print(f"Created new deliverable: {deliv_id}")
                 created_count += 1
                 
