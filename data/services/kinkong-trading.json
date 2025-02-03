@@ -1,0 +1,15 @@
+{
+  "banner": "/services/kinkong-trading.png",
+  "serviceId": "kinkong-trading",
+  "swarmId": "kinkong",
+  "basePrice": 120000,
+  "capabilities": "[\"Market Pattern Recognition\",\"Dynamic Strategy Adaptation\",\"Automated Trade Execution\",\"Risk Management\",\"Portfolio Rebalancing\",\"Performance Analytics\"]",
+  "activeSubscriptions": 0,
+  "computePerTask": 120000,
+  "fullDescription": "# KinKong: Advanced AI Trading System\n\nKinKong represents the next evolution in autonomous trading systems, leveraging advanced AI and the KinOS infrastructure to execute precision trades in the Solana ecosystem.\n\n## Core Features\n- Advanced market analysis algorithms\n- Real-time data processing\n- Autonomous decision-making\n- Secure transaction execution\n- Performance tracking\n\n## Benefits\n- AI-driven market analysis\n- Automated trading strategies\n- Risk-adjusted position sizing\n- Portfolio optimization\n- Real-time performance monitoring\n\n[Additional details available in documentation]",
+  "categories": "[\"Trading\",\"DeFi\",\"AI\",\"Portfolio Management\",\"Analytics\"]",
+  "description": "Advanced autonomous AI trading system specializing in Solana ecosystem token trading and portfolio management.",
+  "serviceType": "financial",
+  "name": "KinKong AI Token Trading",
+  "averageCompletionTime": "real-time"
+}

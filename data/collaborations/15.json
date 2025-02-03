@@ -1,0 +1,12 @@
+{
+  "targetSwarmId": "forge-partner-id",
+  "sourceSwarmId": "eb76ae17-b9eb-476d-b272-4bde2d85c808",
+  "status": "active",
+  "objectives": "[\"Trading algorithm optimization\",\"Market analysis system development\",\"Performance monitoring tools\",\"Risk management protocols\",\"Automated reporting systems\"]",
+  "collaborationId": "15",
+  "price": 400000,
+  "focus": "Enhancing trading system efficiency and reliability through advanced development and optimization of AI-driven market analysis and execution systems.",
+  "description": "Technical partnership focused on developing and optimizing Kin Kong's advanced AI trading algorithms and market analysis systems.",
+  "startDate": "2024-01-14",
+  "serviceId": "xforge-development-package"
+}

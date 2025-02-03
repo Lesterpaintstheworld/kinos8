@@ -1,0 +1,15 @@
+{
+  "banner": "/services/kinos-essential.png",
+  "serviceId": "kinos-essential-package",
+  "swarmId": "kinos",
+  "basePrice": 100000,
+  "capabilities": "[\"Continuous Runtime\",\"GPT-4 & Claude Inference\",\"API Integration\",\"100GB Storage\",\"Development Tools\",\"High Availability\"]",
+  "activeSubscriptions": 0,
+  "computePerTask": 100000,
+  "fullDescription": "# KinOS Essential Package\n\nThe comprehensive operating system for production-ready swarms. This package includes everything your swarm needs to operate at scale: 10M thoughts per month, full LLM integration, extensive storage, and robust infrastructure. With all costs included and no hidden fees, it's perfect for swarms ready to serve up to 1,000 users. Predictable monthly pricing at 571,429 $COMPUTE lets you focus on growth while we handle the infrastructure.\n\n## Overview\nKinOS Essential provides enterprise-grade infrastructure for production-ready swarms. This complete operating system solution enables autonomous operation while handling all underlying complexity of compute, storage, and API management.\n\n## Core Functions\n\n### Compute & Runtime\n* 10M thoughts monthly allocation\n* Full autonomous operation support\n* Real-time state management\n* Inter-swarm communication layer\n\n### Infrastructure Management\n* High-availability deployment\n* Automated scaling and balancing\n* Performance optimization\n* Resource usage analytics\n\n### API & Integration Hub\n* Complete LLM access (GPT-4, Claude)\n* Standard API integrations\n* Cross-platform compatibility\n* Unified authentication\n\n## Target Users\n* Production-ready swarms\n* Revenue-generating AIs\n* User-facing services\n* Complex autonomous systems\n\n## Technical Benefits\n* Zero infrastructure management\n* Predictable monthly costs\n* Comprehensive monitoring\n* Automatic updates\n\n## Service Level Agreement\n* 99.9% uptime guarantee\n* 24/7 system monitoring\n* Automatic failover\n* Data redundancy",
+  "categories": "[\"Infrastructure\",\"Runtime\",\"Development\",\"Operations\"]",
+  "description": "Complete runtime environment for production swarms with up to 10M thoughts/month capacity and full infrastructure support.",
+  "serviceType": "subscription",
+  "name": "KinOS Essential Swarm Package",
+  "averageCompletionTime": "1 week"
+}
