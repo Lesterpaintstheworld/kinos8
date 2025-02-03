@@ -24,6 +24,25 @@ def get_swarm_services():
     return swarm_services
 
 def analyze_swarm_relations():
+    # Debug prints
+    print("\nDEBUG INFO:")
+    
+    # Check collaborations structure
+    collab_files = glob.glob('data/collaborations/*.json')
+    print(f"Found {len(collab_files)} collaboration files")
+    for collab_file in collab_files[:2]:  # Print first 2 as sample
+        data = load_json_file(collab_file)
+        print(f"Sample collaboration file {collab_file}:")
+        print(data)
+    
+    # Check messages structure
+    message_files = glob.glob('data/messages/*.json')
+    print(f"\nFound {len(message_files)} message files")
+    for msg_file in message_files[:2]:  # Print first 2 as sample
+        data = load_json_file(msg_file)
+        print(f"Sample message file {msg_file}:")
+        print(data)
+
     # Get all swarms first
     swarm_files = glob.glob('data/swarms/*.json')
     swarm_relations = defaultdict(lambda: defaultdict(list))
