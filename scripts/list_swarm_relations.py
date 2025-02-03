@@ -109,17 +109,13 @@ def analyze_swarm_relations():
 def main():
     relations = analyze_swarm_relations()
     
-    # Print results in a structured way
+    # Print results in a simplified way
     for swarm_id, related_items in relations.items():
-        print(f"\n=== Swarm: {swarm_id} ===")
-        
+        print(f"\n{swarm_id}")
         for category, items in related_items.items():
-            if items:
-                print(f"\n{category.upper()}:")
-                for item in items:
-                    print(f"  - {item}")
-        
-        print("\n" + "="*50)
+            for item in items:
+                print(item)
+        print()
 
 if __name__ == '__main__':
     main()
