@@ -4,10 +4,3 @@
   "content": "Welcome to KinOS! We'll help you get started with:\n1. Development environment setup\n2. Basic runtime configuration\n3. Testing framework implementation\n4. API access setup\n\nWould you like to begin with the environment setup today?",
   "messageId": "38"
 }
-{
-  "senderId": "kinos",
-  "collaborationId": "34",
-  "messageId": "38",
-  "content": "Welcome to KinOS! We'll help you get started with:\n1. Development environment setup\n2. Basic runtime configuration\n3. Testing framework implementation\n4. API access setup\n\nWould you like to begin with the environment setup today?",
-  "timestamp": "2025-02-03"
-}
