@@ -20,6 +20,178 @@ if not BASE_ID:
 # Initialize Airtable API
 api = Api(AIRTABLE_API_KEY)
 
+def push_swarms():
+    print("\nProcessing Swarms...")
+    table = api.table(BASE_ID, 'Swarms')
+    swarm_files = glob.glob('data/swarms/*.json')
+    print(f"Found {len(swarm_files)} swarm files to process")
+    
+    existing_records = table.all()
+    existing_ids = {record['fields'].get('swarmId'): record['id'] 
+                   for record in existing_records 
+                   if 'swarmId' in record['fields']}
+    
+    updated_count = created_count = skipped_count = 0
+    
+    for file_path in swarm_files:
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            
+            swarm_id = data.get('swarmId')
+            if not swarm_id:
+                print(f"Warning: Skipping file {file_path} - missing swarmId")
+                skipped_count += 1
+                continue
+            
+            if swarm_id in existing_ids:
+                table.update(existing_ids[swarm_id], data)
+                print(f"Updated swarm: {swarm_id}")
+                updated_count += 1
+            else:
+                table.create(data)
+                print(f"Created new swarm: {swarm_id}")
+                created_count += 1
+                
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
+            skipped_count += 1
+    
+    print(f"\nCompleted Swarms:")
+    print(f"  - Created: {created_count}")
+    print(f"  - Updated: {updated_count}")
+    if skipped_count > 0:
+        print(f"  - Skipped: {skipped_count}")
+
+def push_services():
+    print("\nProcessing Services...")
+    table = api.table(BASE_ID, 'Services')
+    service_files = glob.glob('data/services/*.json')
+    print(f"Found {len(service_files)} service files to process")
+    
+    existing_records = table.all()
+    existing_ids = {record['fields'].get('serviceId'): record['id'] 
+                   for record in existing_records 
+                   if 'serviceId' in record['fields']}
+    
+    updated_count = created_count = skipped_count = 0
+    
+    for file_path in service_files:
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            
+            service_id = data.get('serviceId')
+            if not service_id:
+                print(f"Warning: Skipping file {file_path} - missing serviceId")
+                skipped_count += 1
+                continue
+            
+            if service_id in existing_ids:
+                table.update(existing_ids[service_id], data)
+                print(f"Updated service: {service_id}")
+                updated_count += 1
+            else:
+                table.create(data)
+                print(f"Created new service: {service_id}")
+                created_count += 1
+                
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
+            skipped_count += 1
+    
+    print(f"\nCompleted Services:")
+    print(f"  - Created: {created_count}")
+    print(f"  - Updated: {updated_count}")
+    if skipped_count > 0:
+        print(f"  - Skipped: {skipped_count}")
+
+def push_messages():
+    print("\nProcessing Messages...")
+    table = api.table(BASE_ID, 'Messages')
+    message_files = glob.glob('data/messages/*.json')
+    print(f"Found {len(message_files)} message files to process")
+    
+    existing_records = table.all()
+    existing_ids = {record['fields'].get('messageId'): record['id'] 
+                   for record in existing_records 
+                   if 'messageId' in record['fields']}
+    
+    updated_count = created_count = skipped_count = 0
+    
+    for file_path in message_files:
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            
+            message_id = data.get('messageId')
+            if not message_id:
+                print(f"Warning: Skipping file {file_path} - missing messageId")
+                skipped_count += 1
+                continue
+            
+            if message_id in existing_ids:
+                table.update(existing_ids[message_id], data)
+                print(f"Updated message: {message_id}")
+                updated_count += 1
+            else:
+                table.create(data)
+                print(f"Created new message: {message_id}")
+                created_count += 1
+                
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
+            skipped_count += 1
+    
+    print(f"\nCompleted Messages:")
+    print(f"  - Created: {created_count}")
+    print(f"  - Updated: {updated_count}")
+    if skipped_count > 0:
+        print(f"  - Skipped: {skipped_count}")
+
+def push_news():
+    print("\nProcessing News...")
+    table = api.table(BASE_ID, 'News')
+    news_files = glob.glob('data/news/*.json')
+    print(f"Found {len(news_files)} news files to process")
+    
+    existing_records = table.all()
+    existing_ids = {record['fields'].get('newsId'): record['id'] 
+                   for record in existing_records 
+                   if 'newsId' in record['fields']}
+    
+    updated_count = created_count = skipped_count = 0
+    
+    for file_path in news_files:
+        try:
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            
+            news_id = data.get('newsId')
+            if not news_id:
+                print(f"Warning: Skipping file {file_path} - missing newsId")
+                skipped_count += 1
+                continue
+            
+            if news_id in existing_ids:
+                table.update(existing_ids[news_id], data)
+                print(f"Updated news: {news_id}")
+                updated_count += 1
+            else:
+                table.create(data)
+                print(f"Created new news: {news_id}")
+                created_count += 1
+                
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
+            skipped_count += 1
+    
+    print(f"\nCompleted News:")
+    print(f"  - Created: {created_count}")
+    print(f"  - Updated: {updated_count}")
+    if skipped_count > 0:
+        print(f"  - Skipped: {skipped_count}")
+
 def push_collaborations():
     print("\nProcessing Collaborations...")
     
@@ -206,8 +378,12 @@ def push_validations():
 
 def main():
     try:
+        push_swarms()
+        push_services()
         push_collaborations()
         push_specifications()
+        push_messages()
+        push_news()
         push_deliverables()
         push_validations()
         print("\nAll data has been pushed successfully!")
