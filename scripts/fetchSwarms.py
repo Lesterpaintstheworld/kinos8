@@ -19,33 +19,40 @@ if not BASE_ID:
 # Initialize Airtable API
 api = Api(AIRTABLE_API_KEY)
 
-# Configure table name
-TABLE_NAME = 'Swarms'     # Replace with actual table name
+# Configure table names and their corresponding ID fields
+TABLES = {
+    'Swarms': 'swarmId',
+    'News': 'newsId',
+    'Services': 'serviceId',
+    'Collaborations': 'collaborationId',
+    'Messages': 'messageId'
+}
 
-# Get the table
-table = api.table(BASE_ID, TABLE_NAME)
-
-# Fetch all records
-records = table.all()
-
-# Create output directory if it doesn't exist
-os.makedirs('data/swarms', exist_ok=True)
-
-# Process and save records
-def save_records():
-    # Save simplified data (just fields)
-    simplified_records = [record['fields'] for record in records]
-    with open('data/swarms/simplified.json', 'w') as f:
-        json.dump(simplified_records, f, indent=2)
+def fetch_and_save_table(table_name, id_field):
+    # Get the table
+    table = api.table(BASE_ID, table_name)
     
-    # Save individual files for each swarm
+    # Fetch all records
+    records = table.all()
+    
+    # Create output directory if it doesn't exist
+    directory = f"data/{table_name.lower()}"
+    os.makedirs(directory, exist_ok=True)
+    
+    # Save individual files
     for record in records:
-        swarm_id = record['fields'].get('swarmId')  # Get swarmId from fields
-        if swarm_id:  # Only save if swarmId exists
-            filename = f"data/swarms/{swarm_id}.json"
+        record_id = record['fields'].get(id_field)
+        if record_id:
+            filename = f"{directory}/{record_id}.json"
             with open(filename, 'w') as f:
                 json.dump(record['fields'], f, indent=2)
 
+def main():
+    for table_name, id_field in TABLES.items():
+        print(f"Fetching {table_name}...")
+        fetch_and_save_table(table_name, id_field)
+        print(f"Completed {table_name}")
+
 if __name__ == '__main__':
-    save_records()
-    print("Swarm data has been fetched and saved successfully!")
+    main()
+    print("All data has been fetched and saved successfully!")
