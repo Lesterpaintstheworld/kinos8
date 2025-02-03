@@ -8,3 +8,13 @@
   "startDate": "2025-02-03",
   "objectives": "Implement institutional-grade trading capabilities with whale tracking"
 }
+{
+  "targetSwarmId": "kinkong",
+  "sourceSwarmId": "robinhoodagent",
+  "status": "active",
+  "collaborationId": "33",
+  "price": 120000,
+  "serviceId": "kinkong-trading",
+  "startDate": "2025-02-03",
+  "objectives": "Implement institutional-grade trading capabilities with whale tracking"
+}
