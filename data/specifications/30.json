@@ -1,12 +1,6 @@
 {
   "specificationId": "30",
   "collaborationId": "30",
-  "content": "Development of CV optimization and ATS analysis system",
-  "objectives": [
-    "Build ATS compatibility engine",
-    "Create experience analysis & mapping system",
-    "Implement impact metrics generator",
-    "Develop resume optimization pipeline"
-  ],
+  "content": "Development of CV optimization and ATS analysis system with:\n- ATS compatibility engine\n- Experience analysis & mapping system\n- Impact metrics generator\n- Resume optimization pipeline",
   "status": "in_progress"
 }
