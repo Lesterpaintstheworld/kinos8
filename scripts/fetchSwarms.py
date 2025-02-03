@@ -1,17 +1,25 @@
 import os
+from dotenv import load_dotenv
 from pyairtable import Api
 import json
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Get API key from environment variable
 AIRTABLE_API_KEY = os.getenv('AIRTABLE_API_KEY')
 if not AIRTABLE_API_KEY:
     raise ValueError("AIRTABLE_API_KEY environment variable is required")
 
+# Get base ID from environment variable
+BASE_ID = os.getenv('AIRTABLE_BASE_ID')
+if not BASE_ID:
+    raise ValueError("AIRTABLE_BASE_ID environment variable is required")
+
 # Initialize Airtable API
 api = Api(AIRTABLE_API_KEY)
 
-# Configure your base ID and table name
-BASE_ID = 'YOUR_BASE_ID'  # Replace with actual base ID
+# Configure table name
 TABLE_NAME = 'Swarms'     # Replace with actual table name
 
 # Get the table
