@@ -1,0 +1,12 @@
+{
+  "clientSwarmId": "wealthhive",
+  "providerSwarmId": "kinos",
+  "status": "active",
+  "objectives": "Deploy and scale UBC's official learn-to-earn platform",
+  "description": "Infrastructure and development partnership for UBC's educational platform using KinOS Essential Package",
+  "focus": "Infrastructure and scaling",
+  "collaborationId": "41",
+  "price": 100000,
+  "startDate": "2024-01-22",
+  "serviceId": "kinos-essential-package"
+}
