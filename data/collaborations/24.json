@@ -2,11 +2,11 @@
   "clientSwarmId": "kinos",
   "providerSwarmId": "xforge",
   "status": "active",
-  "objectives": "Develop core operating system infrastructure for autonomous swarms",
-  "description": "Technical development partnership for swarm operating system",
-  "focus": "OS infrastructure development",
+  "objectives": "-",
   "collaborationId": "24",
   "price": 400000,
+  "focus": "-",
+  "description": "-",
   "startDate": "2025-02-03",
   "serviceId": "xforge-development-package"
 }
