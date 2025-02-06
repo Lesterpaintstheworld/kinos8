@@ -1,7 +1,6 @@
 import time
 import os
 import json
-import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import asyncio
@@ -11,8 +10,9 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Cache for Telegram applications
+# Cache for Telegram applications and event loops
 telegram_apps = {}
+loop = None
 
 def get_telegram_app(sender_id):
     """Get or create Telegram application for a sender"""
@@ -24,20 +24,25 @@ def get_telegram_app(sender_id):
     return telegram_apps.get(sender_id)
 
 class RepositoryChangeHandler(FileSystemEventHandler):
+    def __init__(self):
+        super().__init__()
+        self.loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(self.loop)
+
     def on_created(self, event):
         if event.is_directory:
             return
-        asyncio.run(self._handle_file_event("created", event.src_path))
+        self.loop.run_until_complete(self._handle_file_event("created", event.src_path))
 
     def on_modified(self, event):
         if event.is_directory:
             return
-        asyncio.run(self._handle_file_event("modified", event.src_path))
+        self.loop.run_until_complete(self._handle_file_event("modified", event.src_path))
 
     def on_deleted(self, event):
         if event.is_directory:
             return
-        asyncio.run(self._handle_file_event("deleted", event.src_path))
+        self.loop.run_until_complete(self._handle_file_event("deleted", event.src_path))
 
     async def _handle_file_event(self, event_type, file_path):
         # Convert path to use forward slashes for consistency
@@ -76,11 +81,14 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             app = get_telegram_app(sender_id)
             
             if app and chat_id:
+                print(f"Sending message as {sender_id} to chat {chat_id}")
                 await app.bot.send_message(chat_id=chat_id, text=message)
             else:
-                print(f"Telegram credentials not configured for sender {sender_id}")
+                print(f"Telegram credentials not configured for sender {sender_id} (looking for {chat_id_key})")
         except Exception as e:
             print(f"Error sending Telegram message: {e}")
+            print(f"Sender: {sender_id}")
+            print(f"Chat ID: {chat_id}")
 
 def main():
     # Path to watch (current directory)
@@ -103,7 +111,7 @@ def main():
     except KeyboardInterrupt:
         observer.stop()
         print("\nStopped watching repository")
-    
+        
     observer.join()
 
 if __name__ == "__main__":
