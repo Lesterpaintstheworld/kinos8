@@ -1,6 +1,7 @@
 import time
 import os
 import json
+import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import asyncio
@@ -52,11 +53,19 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 # Wait a brief moment to ensure file is fully written
                 await asyncio.sleep(0.1)
                 
+                # Check if we've sent a message recently
+                current_time = time.time()
+                if hasattr(self, 'last_message_time'):
+                    time_since_last = current_time - self.last_message_time
+                    if time_since_last < 2:
+                        await asyncio.sleep(2 - time_since_last)
+                
                 with open(file_path, 'r', encoding='utf-8') as f:
                     data = json.loads(f.read())
                     if 'content' in data and 'senderId' in data:
                         message = f"{data['content']}"
                         await self._send_telegram_message(message, data['senderId'])
+                        self.last_message_time = time.time()
             except Exception as e:
                 print(f"Error processing message file {file_path}: {e}")
 
