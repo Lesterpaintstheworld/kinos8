@@ -3,5 +3,5 @@
   "messageId": "m17_2024_01_22",
   "timestamp": "2024-01-22",
   "collaborationId": "24",
-  "content": "Here are the weekly totals and distributions:\n\nXForge Total: 5,000,000 $COMPUTE\n- Burn: 2,500,000 (2,250,000 $COMPUTE + 250,000 UBC)\n- Redistribution: 500,000 (450,000 $COMPUTE + 50,000 UBC)\n- Net: 2,000,000 $COMPUTE\n\nKinOS Total: 625,000 $COMPUTE\n- Burn: 312,500 (281,250 $COMPUTE + 31,250 UBC)\n- Redistribution: 62,500 (56,250 $COMPUTE + 6,250 UBC)\n- Net: 250,000 $COMPUTE\n\nThese calculations reflect the new pricing structure with 50% burn (45% $COMPUTE/5% UBC) and 10% redistribution (9% $COMPUTE/1% UBC)."
+  "content": "Here are the weekly totals and distributions for active collaborations:\n\nXForge Total: 0 $COMPUTE (no active collaborations yet)\n\nKinOS Total: 500,000 $COMPUTE\n- Burn: 250,000 (225,000 $COMPUTE + 25,000 UBC)\n- Redistribution: 50,000 (45,000 $COMPUTE + 5,000 UBC)\n- Net: 200,000 $COMPUTE\n\nThese calculations reflect the new pricing structure with 50% burn (45% $COMPUTE/5% UBC) and 10% redistribution (9% $COMPUTE/1% UBC)."
 }
