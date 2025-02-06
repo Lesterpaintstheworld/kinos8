@@ -2,3 +2,4 @@ pyairtable
 watchdog
 python-telegram-bot
 python-dotenv
+httpx
