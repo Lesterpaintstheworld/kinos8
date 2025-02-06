@@ -91,6 +91,22 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         print(f"Processed message {data['messageId']}")
             except Exception as e:
                 print(f"Error processing message file {file_path}: {e}")
+                
+        # Handle news files
+        elif 'data/news' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
+            try:
+                # Wait a brief moment to ensure file is fully written
+                await asyncio.sleep(0.1)
+                
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.loads(f.read())
+                    if 'content' in data and 'swarmId' in data:
+                        message = f"News: {data['content']}"
+                        await self._send_telegram_message(message, data['swarmId'])
+                        self.last_message_time = time.time()
+                        print(f"Processed news from {data['swarmId']}")
+            except Exception as e:
+                print(f"Error processing news file {file_path}: {e}")
 
     async def _send_telegram_message(self, message, sender_id):
         try:
