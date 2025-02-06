@@ -1,5 +1,6 @@
 import time
 import os
+import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import telegram
@@ -35,19 +36,39 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         # Convert path to use forward slashes for consistency
         file_path = file_path.replace('\\', '/')
         
-        # Handle messages
-        if 'data/messages' in file_path:
-            message = f"Message file {os.path.basename(file_path)} was {event_type}"
-            self._send_telegram_message(message)
+        # Skip git and temporary files
+        if '.git' in file_path or file_path.endswith('.tmp'):
+            return
             
-        # Handle collaborations
-        elif 'data/collaborations' in file_path:
-            message = f"Collaboration {os.path.basename(file_path)} was {event_type}"
-            self._send_telegram_message(message)
+        # Handle different data directories
+        if 'data/' in file_path:
+            category = file_path.split('data/')[1].split('/')[0]
+            filename = os.path.basename(file_path)
             
-        # Add more handlers for other directories as needed
-        # elif 'data/specifications' in file_path:
-        #     ...
+            message = f"📝 {category.title()}\n"
+            message += f"File: {filename}\n"
+            message += f"Action: {event_type.title()}\n"
+            message += f"Time: {time.strftime('%Y-%m-%d %H:%M:%S')}"
+            
+            # Add specific emojis based on category
+            if category == 'messages':
+                message = "💬 " + message
+            elif category == 'collaborations':
+                message = "🤝 " + message
+            elif category == 'specifications':
+                message = "📋 " + message
+            elif category == 'deliverables':
+                message = "📦 " + message
+            elif category == 'news':
+                message = "📰 " + message
+            elif category == 'services':
+                message = "🛠️ " + message
+            elif category == 'swarms':
+                message = "🐝 " + message
+            elif category == 'validations':
+                message = "✅ " + message
+                
+            self._send_telegram_message(message)
 
     def _send_telegram_message(self, message):
         try:
