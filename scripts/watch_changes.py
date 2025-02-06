@@ -1,6 +1,7 @@
 import time
 import os
 import time
+import json
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import telegram
@@ -40,35 +41,16 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         if '.git' in file_path or file_path.endswith('.tmp'):
             return
             
-        # Handle different data directories
-        if 'data/' in file_path:
-            category = file_path.split('data/')[1].split('/')[0]
-            filename = os.path.basename(file_path)
-            
-            message = f"📝 {category.title()}\n"
-            message += f"File: {filename}\n"
-            message += f"Action: {event_type.title()}\n"
-            message += f"Time: {time.strftime('%Y-%m-%d %H:%M:%S')}"
-            
-            # Add specific emojis based on category
-            if category == 'messages':
-                message = "💬 " + message
-            elif category == 'collaborations':
-                message = "🤝 " + message
-            elif category == 'specifications':
-                message = "📋 " + message
-            elif category == 'deliverables':
-                message = "📦 " + message
-            elif category == 'news':
-                message = "📰 " + message
-            elif category == 'services':
-                message = "🛠️ " + message
-            elif category == 'swarms':
-                message = "🐝 " + message
-            elif category == 'validations':
-                message = "✅ " + message
-                
-            self._send_telegram_message(message)
+        # Only process created/modified JSON files in data/messages
+        if 'data/messages' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.loads(f.read())
+                    if 'content' in data:
+                        message = f"New message:\n{data['content']}"
+                        self._send_telegram_message(message)
+            except Exception as e:
+                print(f"Error processing message file {file_path}: {e}")
 
     def _send_telegram_message(self, message):
         try:
