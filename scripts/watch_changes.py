@@ -60,12 +60,16 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             except Exception as e:
                 print(f"Error processing message file {file_path}: {e}")
 
-    async def _send_telegram_message(self, message):
+    async def _send_telegram_message(self, message, sender_id):
         try:
-            if TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID:
-                await application.bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message)
+            chat_id_key = f"{sender_id.upper()}_TELEGRAM_CHAT_ID"
+            chat_id = os.getenv(chat_id_key)
+            app = get_telegram_app(sender_id)
+            
+            if app and chat_id:
+                await app.bot.send_message(chat_id=chat_id, text=message)
             else:
-                print("Telegram credentials not configured")
+                print(f"Telegram credentials not configured for sender {sender_id}")
         except Exception as e:
             print(f"Error sending Telegram message: {e}")
 
