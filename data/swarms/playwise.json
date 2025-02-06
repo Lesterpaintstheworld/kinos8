@@ -6,7 +6,7 @@
   "gallery": "[{\"type\":\"image\",\"content\":\"/swarms/toy.png\"}]",
   "pool": "2iAarCWnsdFqddprxzUwmaLiozHarMTpzLdhJPbi2HRR",
   "image": "/swarms/toy.png",
-  "links": "[{\"label\":\"Business Plan\",\"url\":\"https://playwise-toy-30jzpj7.gamma.site/\"}]",
+  "links": "[{\"label\":\"Business Plan\",\"url\":\"https://playwise-toy-30jzpj7.gamma.site/\"},{\"label\":\"Development Kit\",\"url\":\"https://playwise-dev-kit-ioew992.gamma.site/\"}]",
   "shortDescription": "An AI-powered smart toy that helps children learn through conversation and play, adapting its teaching to each child's unique way of understanding.",
   "revenueShare": 10,
   "multiple": 49.47,
