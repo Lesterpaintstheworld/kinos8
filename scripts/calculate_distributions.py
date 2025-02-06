@@ -2,6 +2,7 @@ import json
 import os
 from datetime import datetime
 from pathlib import Path
+from pathlib import Path
 
 def load_json_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -110,10 +111,13 @@ def format_results(results):
     return "\n".join(output)
 
 def main():
+    # Create reports directory if it doesn't exist
+    Path('data/reports').mkdir(parents=True, exist_ok=True)
+    
     results = calculate_distributions()
     print(format_results(results))
     
-    # Optionally save to file
+    # Save to file
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     with open(f'data/reports/distributions_{timestamp}.txt', 'w') as f:
         f.write(format_results(results))
