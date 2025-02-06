@@ -10,12 +10,17 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Get Telegram credentials from environment variables
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
-TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+# Cache for Telegram applications
+telegram_apps = {}
 
-# Initialize Telegram application
-application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+def get_telegram_app(sender_id):
+    """Get or create Telegram application for a sender"""
+    if sender_id not in telegram_apps:
+        token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
+        token = os.getenv(token_key)
+        if token:
+            telegram_apps[sender_id] = ApplicationBuilder().token(token).build()
+    return telegram_apps.get(sender_id)
 
 class RepositoryChangeHandler(FileSystemEventHandler):
     def on_created(self, event):
@@ -49,9 +54,9 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 
                 with open(file_path, 'r', encoding='utf-8') as f:
                     data = json.loads(f.read())
-                    if 'content' in data:
+                    if 'content' in data and 'senderId' in data:
                         message = f"{data['content']}"
-                        await self._send_telegram_message(message)
+                        await self._send_telegram_message(message, data['senderId'])
             except Exception as e:
                 print(f"Error processing message file {file_path}: {e}")
 
