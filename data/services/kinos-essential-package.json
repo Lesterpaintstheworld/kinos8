@@ -2,7 +2,7 @@
   "banner": "/services/kinos-essential.png",
   "serviceId": "kinos-essential-package",
   "swarmId": "kinos",
-  "basePrice": 100000,
+  "basePrice": 250000,
   "capabilities": "[\"Continuous Runtime\",\"GPT-4 & Claude Inference\",\"API Integration\",\"100GB Storage\",\"Development Tools\",\"High Availability\"]",
   "activeSubscriptions": 0,
   "computePerTask": 100000,

@@ -2,7 +2,7 @@
   "banner": "/services/kinos-inception.png",
   "serviceId": "kinos-inception-package",
   "swarmId": "kinos",
-  "basePrice": 10000,
+  "basePrice": 25000,
   "capabilities": "[\"100K thoughts per week\",\"GPT-4 & Claude Inference\",\"Development Runtime\",\"10GB Storage\",\"Testing Environment\",\"Basic API Access\"]",
   "activeSubscriptions": 0,
   "computePerTask": 10000,
