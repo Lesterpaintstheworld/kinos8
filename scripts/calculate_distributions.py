@@ -87,6 +87,26 @@ def calculate_distributions():
     
     return results
 
+def calculate_grand_totals(results):
+    totals = {
+        'revenue': 0,
+        'burn_compute': 0,
+        'burn_ubc': 0,
+        'redistribution_compute': 0,
+        'redistribution_ubc': 0,
+        'net': 0
+    }
+    
+    for data in results.values():
+        totals['revenue'] += data['total']
+        totals['burn_compute'] += data['burn']['compute']
+        totals['burn_ubc'] += data['burn']['ubc']
+        totals['redistribution_compute'] += data['redistribution']['compute']
+        totals['redistribution_ubc'] += data['redistribution']['ubc']
+        totals['net'] += data['net']
+    
+    return totals
+
 def format_results(results):
     output = []
     for provider_id, data in results.items():
@@ -107,6 +127,19 @@ def format_results(results):
         
         output.append(f"\nNet Revenue: {data['net']:,.0f} $COMPUTE")
         output.append("-" * 50)
+    
+    # Add grand totals
+    totals = calculate_grand_totals(results)
+    output.append("\nGRAND TOTALS")
+    output.append(f"Total Weekly Revenue: {totals['revenue']:,} $COMPUTE")
+    output.append("\nTotal Burns:")
+    output.append(f"- {totals['burn_compute']:,.0f} $COMPUTE")
+    output.append(f"- {totals['burn_ubc']:,.0f} UBC")
+    output.append("\nTotal Redistributions:")
+    output.append(f"- {totals['redistribution_compute']:,.0f} $COMPUTE")
+    output.append(f"- {totals['redistribution_ubc']:,.0f} UBC")
+    output.append(f"\nTotal Net Revenue: {totals['net']:,.0f} $COMPUTE")
+    output.append("-" * 50)
     
     return "\n".join(output)
 
