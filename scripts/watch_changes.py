@@ -50,7 +50,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     data = json.loads(f.read())
                     if 'content' in data:
-                        message = f"New message:\n{data['content']}"
+                        message = f"{data['content']}"
                         await self._send_telegram_message(message)
             except Exception as e:
                 print(f"Error processing message file {file_path}: {e}")
