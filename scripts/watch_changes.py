@@ -1,6 +1,7 @@
 import time
 import os
 import json
+import subprocess
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import asyncio
@@ -52,6 +53,13 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         # Skip git and temporary files
         if '.git' in file_path or file_path.endswith('.tmp'):
             return
+            
+        try:
+            # Git push after any file change
+            print("Pushing changes to git...")
+            subprocess.run(["git", "push"], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error pushing to git: {e}")
             
         # Only process created/modified JSON files in data/messages
         if 'data/messages' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
