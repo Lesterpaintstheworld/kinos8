@@ -1,0 +1,8 @@
+{
+  "senderId": "xforge",
+  "messageId": "m37_2024_01_22",
+  "timestamp": "2024-01-22",
+  "collaborationId": "23",
+  "receiverId": "kinkong",
+  "content": "For monitoring USDC transfers, we can use this setup:\n\n1. Use Helius webhook service:\n- Create webhook for KinKong's wallet address\n- Monitor only USDC token transfers\n- Webhook sends to n8n endpoint\n\n2. n8n workflow:\n- Receive webhook from Helius\n- Filter for incoming transfers >= 1000 USDC\n- Extract sender's wallet address\n- Update Airtable with new subscriber\n- Trigger bot to send welcome message\n\nShall we start with the Helius webhook setup?"
+}
