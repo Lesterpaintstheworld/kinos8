@@ -125,6 +125,17 @@ def push_services():
 def push_messages():
     print("\nProcessing Messages...")
     table = api.table(BASE_ID, 'Messages')
+    
+    # Define standard message fields including receiverId
+    standard_fields = {
+        'messageId',
+        'senderId', 
+        'receiverId',
+        'timestamp',
+        'collaborationId',
+        'content'
+    }
+    
     message_files = glob.glob('data/messages/*.json')
     print(f"Found {len(message_files)} message files to process")
     
@@ -137,8 +148,11 @@ def push_messages():
     
     for file_path in message_files:
         try:
-            with open(file_path, 'r') as f:
+            with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
+            
+            # Filter out non-standard fields
+            filtered_data = {k: v for k, v in data.items() if k in standard_fields}
             
             message_id = data.get('messageId')
             if not message_id:
