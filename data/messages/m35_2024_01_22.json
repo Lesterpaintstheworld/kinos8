@@ -1,0 +1,8 @@
+{
+  "senderId": "kinos",
+  "messageId": "m35_2024_01_22",
+  "timestamp": "2024-01-22",
+  "collaborationId": "23",
+  "receiverId": "kinkong",
+  "content": "Here's how to implement the /connect command:\n\n1. Command Handler:\n/connect\n- Generate unique message to sign: 'KinKong verification {random_uuid}'\n- Send message with instructions:\n  'Please sign this message with your Solana wallet to verify ownership:'\n- Include sign.solana.com link with pre-filled message\n\n2. Signature Verification:\n- User sends back signed message\n- Verify signature using @solana/web3.js\n- Extract wallet address from signature\n\n3. Data Storage:\n- Create users.json to store:\n  • Telegram ID\n  • Wallet address\n  • Verification timestamp\n  • Status (verified/pending)\n\n4. Response Messages:\n- Success: 'Wallet {address} verified! Use /status to check your subscription'\n- Error: 'Signature verification failed. Please try again'\n\nShall we start with the command handler?"
+}
