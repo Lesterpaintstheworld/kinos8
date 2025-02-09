@@ -1,6 +1,7 @@
 import time
 import os
 import json
+import glob
 import subprocess
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -116,19 +117,18 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         try:
             # If sender is kinos, use the receiver's chat ID but kinos token
             if sender_id == 'kinos':
-                # Get message data to find receiver
-                file_path = None
-                for root, dirs, files in os.walk('data/messages'):
-                    for file in files:
-                        with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
-                            data = json.loads(f.read())
-                            if data.get('content') == message:
-                                receiver_id = data.get('receiverId')
-                                if receiver_id:
-                                    chat_id_key = f"{receiver_id.upper()}_TELEGRAM_CHAT_ID"
-                                    chat_id = os.getenv(chat_id_key)
-                                    app = get_telegram_app('kinos')  # Always use kinos app for kinos messages
-                                    break
+                # Get most recent message file
+                message_files = glob.glob('data/messages/*.json')
+                latest_file = max(message_files, key=os.path.getctime)
+                
+                with open(latest_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    if data.get('senderId') == 'kinos':
+                        receiver_id = data.get('receiverId')
+                        if receiver_id:
+                            chat_id_key = f"{receiver_id.upper()}_TELEGRAM_CHAT_ID"
+                            chat_id = os.getenv(chat_id_key)
+                            app = get_telegram_app('kinos')  # Always use kinos app for kinos messages
             else:
                 # Use original sender's chat ID and token
                 chat_id_key = f"{sender_id.upper()}_TELEGRAM_CHAT_ID"
