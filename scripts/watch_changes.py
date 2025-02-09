@@ -19,11 +19,12 @@ loop = None
 def get_telegram_app(sender_id):
     """Get or create Telegram application for a sender"""
     if sender_id not in telegram_apps:
-        if sender_id == 'kinos':
-            token = os.getenv('KINOS_TELEGRAM_BOT_TOKEN')
+        # Use specific token for kinos or xforge
+        if sender_id in ['kinos', 'xforge']:
+            token = os.getenv(f'{sender_id.upper()}_TELEGRAM_BOT_TOKEN')
             if token:
-                telegram_apps['kinos'] = ApplicationBuilder().token(token).build()
-                return telegram_apps['kinos']
+                telegram_apps[sender_id] = ApplicationBuilder().token(token).build()
+                return telegram_apps[sender_id]
         else:
             token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
             token = os.getenv(token_key)
@@ -117,9 +118,11 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
     async def _send_telegram_message(self, message, sender_id):
         try:
-            if sender_id == 'kinos':
-                # Always use KinOS token for KinOS messages
-                app = get_telegram_app('kinos')
+            # Use KinOS or XForge token based on sender
+            if sender_id in ['kinos', 'xforge']:
+                # Get bot token based on sender
+                token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
+                app = get_telegram_app(sender_id)
                 
                 # Get most recent message file for receiver ID
                 message_files = glob.glob('data/messages/*.json')
@@ -132,6 +135,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         chat_id_key = f"{receiver_id.upper()}_TELEGRAM_CHAT_ID"
                         chat_id = os.getenv(chat_id_key)
             else:
+                # For other senders, use their own chat ID
                 chat_id_key = f"{sender_id.upper()}_TELEGRAM_CHAT_ID"
                 chat_id = os.getenv(chat_id_key)
                 app = get_telegram_app(sender_id)
@@ -140,7 +144,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 print(f"Sending message as {sender_id} to chat {chat_id}")
                 await app.bot.send_message(chat_id=chat_id, text=message)
             else:
-                print(f"Telegram credentials not configured for {'receiver' if sender_id == 'kinos' else 'sender'} {sender_id}")
+                print(f"Telegram credentials not configured for {'receiver' if sender_id in ['kinos', 'xforge'] else 'sender'} {sender_id}")
         except Exception as e:
             print(f"Error sending Telegram message: {e}")
             print(f"Sender: {sender_id}")
