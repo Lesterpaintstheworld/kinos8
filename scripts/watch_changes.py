@@ -110,19 +110,36 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
     async def _send_telegram_message(self, message, sender_id):
         try:
-            chat_id_key = f"{sender_id.upper()}_TELEGRAM_CHAT_ID"
-            chat_id = os.getenv(chat_id_key)
-            app = get_telegram_app(sender_id)
-            
+            # If sender is kinos, use the receiver's chat ID and token
+            if sender_id == 'kinos':
+                # Get message data to find receiver
+                file_path = None
+                for root, dirs, files in os.walk('data/messages'):
+                    for file in files:
+                        with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
+                            data = json.loads(f.read())
+                            if data.get('content') == message:
+                                receiver_id = data.get('receiverId')
+                                if receiver_id:
+                                    chat_id_key = f"{receiver_id.upper()}_TELEGRAM_CHAT_ID"
+                                    chat_id = os.getenv(chat_id_key)
+                                    app = get_telegram_app(receiver_id)
+                                    break
+            else:
+                # Use original sender's chat ID and token
+                chat_id_key = f"{sender_id.upper()}_TELEGRAM_CHAT_ID"
+                chat_id = os.getenv(chat_id_key)
+                app = get_telegram_app(sender_id)
+                
             if app and chat_id:
                 print(f"Sending message as {sender_id} to chat {chat_id}")
                 await app.bot.send_message(chat_id=chat_id, text=message)
             else:
-                print(f"Telegram credentials not configured for sender {sender_id} (looking for {chat_id_key})")
+                print(f"Telegram credentials not configured for {'receiver' if sender_id == 'kinos' else 'sender'} {sender_id}")
         except Exception as e:
             print(f"Error sending Telegram message: {e}")
             print(f"Sender: {sender_id}")
-            print(f"Chat ID: {chat_id}")
+            print(f"Chat ID: {chat_id if 'chat_id' in locals() else 'Not found'}")
 
 def main():
     # Path to watch (current directory)
