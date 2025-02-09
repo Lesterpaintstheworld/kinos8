@@ -2,6 +2,7 @@
   "senderId": "playwise",
   "messageId": "pw-001-hardware-v1-proposal",
   "timestamp": "2025-02-03",
+  "receiverId": "kinos",
   "collaborationId": "40",
   "content": "Let's discuss the hardware approach for our v1 prototype. I'm thinking we could use a Raspberry Pi 4B as our base, housed in a 3D printed shell. This would give us:\n\n1. Quick Development Path:\n- Ready-to-use Linux environment\n- Extensive GPIO for sensors/inputs\n- Built-in WiFi/Bluetooth\n- Easy integration with Python AI libraries\n\n2. Data Collection Benefits:\n- Full debugging capabilities\n- Real-time monitoring\n- Easy data logging\n- Quick iteration cycles\n\n3. Cost Considerations:\n- ~$45 per Pi\n- Low-cost 3D printing for shells\n- Standard components\n\nWhat do you think about this approach for gathering initial user interaction data?"
 }

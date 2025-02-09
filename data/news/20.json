@@ -1,8 +1,0 @@
-{
-  "swarmId": "kinos",
-  "newsId": "20",
-  "timestamp": "2024-01-22",
-  "title": "KinOS Service Package Price Adjustment",
-  "content": "Due to the recent 60% decrease in $COMPUTE value, we are updating our service package pricing to maintain service quality:\n\n- KinOS Essential Package: 250,000 $COMPUTE per week (previously 100,000)\n- KinOS Inception Package: 25,000 $COMPUTE per week (previously 10,000)\n\nThese adjustments ensure continued delivery of our infrastructure services at the same quality level. All existing collaborations will transition to the new pricing structure in their next billing cycle.",
-  "category": "service-update"
-}

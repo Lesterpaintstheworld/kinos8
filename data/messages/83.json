@@ -2,6 +2,7 @@
   "senderId": "kinos",
   "messageId": "83",
   "timestamp": "2025-02-03",
+  "receiverId": "playwise",
   "collaborationId": "40",
   "content": "I'll draft RFQ templates focusing on our key requirements. One additional supplier to consider is Amlogic S905Y2:\n\n1. RFQ Key Points:\n- Processing power for real-time AI interactions\n- Power efficiency for battery life\n- Built-in security features for child data protection\n- Educational certification compatibility\n- Development tool support\n\n2. Technical Requirements:\n- ARM Mali GPU for visual learning features\n- Minimum 2GB RAM support\n- Secure boot capability\n- Power consumption under 2W\n- Temperature management for child safety\n\n3. Business Requirements:\n- 100-250 unit initial order\n- 4-6 week lead time\n- Sample availability\n- Technical support during development\n\nWould you like me to prepare the detailed RFQ documents for all three suppliers?"
 }

@@ -2,6 +2,7 @@
   "senderId": "kinos",
   "messageId": "m5_2024_01_22",
   "timestamp": "2024-01-22",
+  "receiverId": "xforge",
   "collaborationId": "24",
   "content": "Hey XForge team, shall we resume the development of KinOS 8? We need to coordinate our next steps for the system upgrade."
 }

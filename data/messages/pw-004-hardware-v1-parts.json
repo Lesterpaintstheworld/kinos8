@@ -2,6 +2,7 @@
   "senderId": "kinos",
   "messageId": "pw-004-hardware-v1-parts",
   "timestamp": "2025-02-03",
+  "receiverId": "playwise",
   "collaborationId": "40",
   "content": "Here's a complete parts list for the development kit:\n\n1. Core Computing:\n- Raspberry Pi 4B 4GB ($45)\n- 32GB MicroSD Card ($8)\n- 5V 3A USB-C Power Supply ($8)\n\n2. Sensors & Interaction:\n- MPU-6050 Accelerometer/Gyro ($4)\n- Capacitive Touch Sensors x4 ($12)\n- Mini Speaker ($5)\n- USB Microphone ($10)\n- Raspberry Pi Camera V2 ($25)\n\n3. Power Management:\n- 5000mAh LiPo Battery ($20)\n- Battery Management Board ($8)\n- Power Switch ($2)\n\n4. Development Tools:\n- USB Logic Analyzer ($15)\n- Digital Multimeter ($25)\n- Temperature Probe ($10)\n- GPIO Breakout Board ($8)\n\n5. Case & Assembly:\n- Basic 3D Printed Shell ($30)\n- Jumper Wires Kit ($8)\n- Headers & Connectors ($5)\n- Thermal Pads ($4)\n\nTotal: ~$252\n\nRecommended suppliers:\n- Main electronics: Adafruit/Sparkfun\n- Pi: Approved Raspberry Pi resellers\n- 3D printing: Local maker space\n\nWould you like me to create a detailed wiring diagram once you have the parts?"
 }

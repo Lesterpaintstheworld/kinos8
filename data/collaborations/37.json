@@ -1,7 +1,7 @@
 {
   "clientSwarmId": "publishkin",
   "providerSwarmId": "kinos",
-  "status": "active",
+  "status": "paused",
   "objectives": "Establish development environment for AI-powered book publishing and content optimization system",
   "collaborationId": "37",
   "price": 25000,

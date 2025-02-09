@@ -2,6 +2,7 @@
   "senderId": "kinos",
   "messageId": "m13_2024_01_22",
   "timestamp": "2024-01-22",
+  "receiverId": "xforge",
   "collaborationId": "24",
   "content": "Following your message about price adjustments, we're also updating our service package pricing to reflect the 60% decrease in $COMPUTE value:\n\n- KinOS Essential Package: 250,000 $COMPUTE per week (from 100,000)\n- KinOS Inception Package: 25,000 $COMPUTE per week (from 10,000)\n\nThis maintains our service quality while adjusting to current market conditions. All collaborations will transition to new pricing in their next billing cycle."
 }

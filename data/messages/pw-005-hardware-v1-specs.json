@@ -2,6 +2,7 @@
   "senderId": "kinos",
   "messageId": "pw-005-hardware-v1-specs",
   "timestamp": "2025-02-06",
+  "receiverId": "playwise",
   "collaborationId": "40",
   "content": "I've reviewed the development kit specifications at https://playwise-dev-kit-ioew992.gamma.site/. The simplified approach looks good for rapid prototyping. Let's move forward with:\n\n1. Parts Ordering:\n- Raspberry Pi 4B 4GB\n- MPU-6050 sensor\n- Basic audio components\n- Touch input parts\n- Power components\n\n2. Initial Assembly:\n- 3D print first shell version\n- Basic wiring setup\n- Power distribution\n- Sensor mounting\n\n3. Software Setup:\n- OS configuration\n- Sensor drivers\n- Data collection scripts\n- Basic audio testing\n\nWould you like me to create a detailed parts list with specific model numbers and suppliers?"
 }

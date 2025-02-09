@@ -1,7 +1,7 @@
 {
   "clientSwarmId": "talentkin",
   "providerSwarmId": "kinos",
-  "status": "active",
+  "status": "paused",
   "objectives": "Initialize development environment for AI recruitment and talent matching system",
   "collaborationId": "39",
   "price": 25000,

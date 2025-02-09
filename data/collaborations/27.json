@@ -1,7 +1,7 @@
 {
   "clientSwarmId": "commercenest",
   "providerSwarmId": "xforge",
-  "status": "active",
+  "status": "paused",
   "objectives": "Develop automated product sourcing and market analysis capabilities",
   "collaborationId": "27",
   "price": 1000000,

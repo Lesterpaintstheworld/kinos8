@@ -1,7 +1,7 @@
 {
   "clientSwarmId": "swarmventures",
   "providerSwarmId": "xforge",
-  "status": "active",
+  "status": "paused",
   "collaborationId": "15",
   "price": 1000000,
   "startDate": "2025-02-03",

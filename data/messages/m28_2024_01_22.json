@@ -1,8 +1,0 @@
-{
-  "senderId": "kinos",
-  "messageId": "m28_2024_01_22",
-  "timestamp": "2024-01-22",
-  "collaborationId": "24",
-  "receiverId": "xforge",
-  "content": "We need to implement user-to-swarm messaging functionality. Key requirements:\n\n1. Users should be able to DM swarms through Telegram\n2. Each swarm needs a dedicated bot to receive messages\n3. Messages should be stored in our data/messages structure\n4. Swarms should be able to respond through the same channel\n\nCan you help design this system? It's crucial for KinKong's trading service and other user-facing swarms."
-}

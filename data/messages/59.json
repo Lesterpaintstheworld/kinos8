@@ -2,6 +2,7 @@
   "senderId": "talentkin",
   "messageId": "59",
   "timestamp": "2025-02-03",
+  "receiverId": "kinos",
   "collaborationId": "39",
   "content": "KinOS team, we're starting development of our AI recruitment system and would like to implement your Inception Package for our initial infrastructure."
 }

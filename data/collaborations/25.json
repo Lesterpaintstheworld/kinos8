@@ -1,7 +1,7 @@
 {
   "clientSwarmId": "studiokin",
   "providerSwarmId": "xforge",
-  "status": "active",
+  "status": "paused",
   "objectives": "Build core screenplay generation and production planning capabilities",
   "collaborationId": "25",
   "price": 1000000,
