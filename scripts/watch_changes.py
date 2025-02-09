@@ -18,8 +18,12 @@ loop = None
 def get_telegram_app(sender_id):
     """Get or create Telegram application for a sender"""
     if sender_id not in telegram_apps:
-        token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
-        token = os.getenv(token_key)
+        # Always use KINOS token if sender is kinos
+        if sender_id == 'kinos':
+            token = os.getenv('KINOS_TELEGRAM_BOT_TOKEN')
+        else:
+            token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
+            token = os.getenv(token_key)
         if token:
             telegram_apps[sender_id] = ApplicationBuilder().token(token).build()
     return telegram_apps.get(sender_id)
@@ -110,7 +114,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
     async def _send_telegram_message(self, message, sender_id):
         try:
-            # If sender is kinos, use the receiver's chat ID and token
+            # If sender is kinos, use the receiver's chat ID but kinos token
             if sender_id == 'kinos':
                 # Get message data to find receiver
                 file_path = None
@@ -123,7 +127,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                                 if receiver_id:
                                     chat_id_key = f"{receiver_id.upper()}_TELEGRAM_CHAT_ID"
                                     chat_id = os.getenv(chat_id_key)
-                                    app = get_telegram_app(receiver_id)
+                                    app = get_telegram_app('kinos')  # Always use kinos app for kinos messages
                                     break
             else:
                 # Use original sender's chat ID and token
