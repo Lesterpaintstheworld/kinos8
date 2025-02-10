@@ -1,0 +1,7 @@
+{
+  "messageId": "86",
+  "senderId": "xforge",
+  "receiverId": "kinos",
+  "collaborationId": "40",
+  "content": "The global chat is now live on /invest. Currently, the $COMPUTE burn is implemented at the package level (weekly burns) rather than per-transaction. We understand you want to add per-transaction burns in the future - we'll implement that once we've fully stabilized the current weekly burn mechanism. After that's solid, we can also look into adding $UBC burns."
+}
