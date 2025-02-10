@@ -8,9 +8,22 @@ from watchdog.events import FileSystemEventHandler
 import asyncio
 from telegram.ext import ApplicationBuilder
 from dotenv import load_dotenv
+from pyairtable import Api
 
 # Load environment variables
 load_dotenv()
+
+# Get API keys from environment variables
+AIRTABLE_API_KEY = os.getenv('AIRTABLE_API_KEY')
+if not AIRTABLE_API_KEY:
+    raise ValueError("AIRTABLE_API_KEY environment variable is required")
+
+BASE_ID = os.getenv('AIRTABLE_BASE_ID')
+if not BASE_ID:
+    raise ValueError("AIRTABLE_BASE_ID environment variable is required")
+
+# Initialize Airtable API
+api = Api(AIRTABLE_API_KEY)
 
 # Cache for Telegram applications and event loops
 telegram_apps = {}
@@ -54,6 +67,58 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             return
         self.loop.run_until_complete(self._handle_file_event("deleted", event.src_path))
 
+    async def push_to_airtable(self, file_path):
+        """Push changes to Airtable based on file type"""
+        try:
+            # Convert path to use forward slashes for consistency
+            file_path = file_path.replace('\\', '/')
+            
+            # Determine file type and table
+            if 'data/messages' in file_path:
+                table = api.table(BASE_ID, 'Messages')
+                id_field = 'messageId'
+            elif 'data/news' in file_path:
+                table = api.table(BASE_ID, 'News')
+                id_field = 'newsId'
+            elif 'data/swarms' in file_path:
+                table = api.table(BASE_ID, 'Swarms')
+                id_field = 'swarmId'
+            elif 'data/collaborations' in file_path:
+                table = api.table(BASE_ID, 'Collaborations')
+                id_field = 'collaborationId'
+            elif 'data/services' in file_path:
+                table = api.table(BASE_ID, 'Services')
+                id_field = 'serviceId'
+            else:
+                return
+            
+            # Read the file
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # Get existing records
+            existing_records = table.all()
+            existing_ids = {record['fields'].get(id_field): record['id'] 
+                          for record in existing_records 
+                          if id_field in record['fields']}
+            
+            # Get record ID from data
+            record_id = data.get(id_field)
+            if not record_id:
+                print(f"Warning: Missing {id_field} in {file_path}")
+                return
+                
+            # Update or create record
+            if record_id in existing_ids:
+                table.update(existing_ids[record_id], data)
+                print(f"Updated {id_field}: {record_id} in Airtable")
+            else:
+                table.create(data)
+                print(f"Created new {id_field}: {record_id} in Airtable")
+                
+        except Exception as e:
+            print(f"Error pushing to Airtable: {e}")
+
     async def _handle_file_event(self, event_type, file_path):
         # Convert path to use forward slashes for consistency
         file_path = file_path.replace('\\', '/')
@@ -66,6 +131,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             # Git push after any file change
             print("Pushing changes to git...")
             subprocess.run(["git", "push"], check=True)
+            
+            # Push to Airtable if file is created or modified
+            if event_type in ['created', 'modified'] and file_path.endswith('.json'):
+                await self.push_to_airtable(file_path)
         except subprocess.CalledProcessError as e:
             print(f"Error pushing to git: {e}")
             
