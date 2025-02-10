@@ -1,0 +1,7 @@
+{
+  "collaborationId": "43",
+  "title": "STUMPED Speech Practice Platform v1 Specification",
+  "specificationId": "46",
+  "createdAt": "2024-01-22",
+  "content": "# STUMPED Speech Practice Platform v1\n\n## Core Features\n\n### Web Interface\n- Text box to paste speech\n- Start/Stop button\n- Volume control\n\n### AI Interruptions\n- Random timing\n- Three types:\n  1. Questions\n  2. Objections\n  3. Distractions\n\n### Basic Flow\n1. User pastes speech text\n2. Clicks Start\n3. Begins speaking\n4. AI interrupts occasionally\n5. Session ends when speech is complete\n\n## Technical Stack\n- Simple React frontend\n- Basic Node.js backend\n- GPT for interruption generation\n\n## V1 Limitations\n- Text-only interruptions\n- No recording/playback\n- Single difficulty level\n- No user accounts\n\n## Future Additions\n- Audio recording\n- Multiple difficulty levels\n- Performance tracking\n- Custom scenarios"
+}
