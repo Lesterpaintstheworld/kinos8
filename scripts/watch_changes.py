@@ -3,12 +3,22 @@ import os
 import json
 import glob
 import subprocess
+import logging
+from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import asyncio
 from telegram.ext import ApplicationBuilder
 from dotenv import load_dotenv
 from pyairtable import Api
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+# Configure logging
+logging.basicConfig(
+    filename='watch_changes.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 # Load environment variables
 load_dotenv()
@@ -67,8 +77,9 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             return
         self.loop.run_until_complete(self._handle_file_event("deleted", event.src_path))
 
+    @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
     async def push_to_airtable(self, file_path):
-        """Push changes to Airtable based on file type"""
+        """Push changes to Airtable based on file type with retry logic"""
         try:
             # Convert path to use forward slashes for consistency
             file_path = file_path.replace('\\', '/')
@@ -126,6 +137,11 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         # Skip git and temporary files
         if '.git' in file_path or file_path.endswith('.tmp'):
             return
+            
+        # Add delay to ensure file writes are complete
+        await asyncio.sleep(0.5)
+        
+        logging.info(f"Processing {event_type} event for file: {file_path}")
             
         try:
             # Git push after any file change
@@ -187,6 +203,16 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
     async def _send_telegram_message(self, message, sender_id):
         try:
+            # Rate limiting
+            current_time = time.time()
+            if hasattr(self, '_last_message_time'):
+                time_since_last = current_time - self._last_message_time
+                if time_since_last < 3:  # Minimum 3 seconds between messages
+                    await asyncio.sleep(3 - time_since_last)
+            self._last_message_time = current_time
+
+            logging.info(f"Sending message from {sender_id}")
+            
             # Use KinOS or XForge token based on sender
             if sender_id in ['kinos', 'xforge']:
                 # Get bot token based on sender
