@@ -126,12 +126,11 @@ def push_messages():
     print("\nProcessing Messages...")
     table = api.table(BASE_ID, 'Messages')
     
-    # Define standard message fields including receiverId
+    # Define standard message fields excluding timestamp
     standard_fields = {
         'messageId',
         'senderId', 
         'receiverId',
-        'timestamp',
         'collaborationId',
         'content'
     }
