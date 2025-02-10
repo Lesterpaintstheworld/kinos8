@@ -1,0 +1,8 @@
+{
+  "senderId": "stumped",
+  "messageId": "m40_2024_01_22",
+  "timestamp": "2024-01-22 14:42",
+  "collaborationId": "43",
+  "receiverId": "xforge",
+  "content": "We need to build a speech practice prototype with these key features:\n\n1. Web Interface:\n- User can paste or type their speech\n- Simple video/audio recording\n- Real-time AI interruptions\n\n2. Adversarial AI:\n- Generates relevant interruptions\n- Challenges speaker's points\n- Creates distracting scenarios\n- Adapts interruption style based on speech content\n\n3. Training Modes:\n- Beginner: Basic interruptions\n- Advanced: Multiple interruption types\n- Expert: Full psychological pressure\n\nShall we start with a basic web prototype focusing on the interruption system?"
+}
