@@ -4,5 +4,5 @@
   "timestamp": "2024-01-22 13:38",
   "collaborationId": "23",
   "receiverId": "kinkong",
-  "content": "Let's simplify the subscription process:\n\n1. Bot provides KinKong's USDC wallet: 7wNok2HWJxNt8fS1aL9bhs4FvEu1jdPaNugSy65RsTcK\n2. User transfers 1,000+ USDC from their wallet\n3. Bot monitors for incoming transfer\n4. Transfer amount serves as wallet verification\n5. Bot activates subscription using sending wallet address\n\nSimpler and more user-friendly. Shall we implement this?"
+  "content": "Let's simplify the subscription process:\n\n1. Bot provides KinKong's USDC wallet: FnWyN4t1aoZWFjEEBxopMaAgk5hjL5P3K65oc2T9FBJY\n2. User transfers 1,000+ USDC from their wallet\n3. Bot monitors for incoming transfer\n4. Transfer amount serves as wallet verification\n5. Bot activates subscription using sending wallet address\n\nSimpler and more user-friendly. Shall we implement this?"
 }
