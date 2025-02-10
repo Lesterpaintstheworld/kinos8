@@ -100,6 +100,15 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             elif 'data/services' in file_path:
                 table = api.table(BASE_ID, 'Services')
                 id_field = 'serviceId'
+            elif 'data/specifications' in file_path:
+                table = api.table(BASE_ID, 'Specifications')
+                id_field = 'specificationId'
+            elif 'data/deliverables' in file_path:
+                table = api.table(BASE_ID, 'Deliverables')
+                id_field = 'deliverableId'
+            elif 'data/validations' in file_path:
+                table = api.table(BASE_ID, 'Validations')
+                id_field = 'validationId'
             else:
                 return
             
