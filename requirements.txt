@@ -9,3 +9,5 @@ requests==2.31.0
 solders
 cryptography
 base58
+solana
+spl-token
