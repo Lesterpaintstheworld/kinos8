@@ -73,22 +73,16 @@ def send_to_nlr_and_telegram(specification, collab):
         
         if not token or not chat_id:
             print(f"Warning: Telegram credentials not found for client swarm {client_swarm}")
-            print(f"Chat ID key: {chat_id_key}")
-            print(f"Chat ID value: {chat_id}")
-            return  # Return without raising an error
+            return
         
         telegram_url = f"https://api.telegram.org/bot{token}/sendMessage"
         
-        # Create message with specification URL, escape special characters
-        message = (f"📋 New Specification\n\n"
-                  f"Title: {specification['title']}\n"
-                  f"View at: https://swarms.universalbasiccompute.ai/specifications/{specification['specificationId']}")
+        # Simple message without any formatting
+        message = f"New specification: {specification['title']}\nID: {specification['specificationId']}"
         
-        # Send message without HTML parsing
         data = {
             'chat_id': chat_id,
-            'text': message,
-            'parse_mode': None  # Remove HTML parsing
+            'text': message
         }
         
         print(f"Sending notification to {client_swarm}'s Telegram channel...")
@@ -96,14 +90,12 @@ def send_to_nlr_and_telegram(specification, collab):
         
         if response.status_code != 200:
             print(f"Warning: Failed to send Telegram notification (status {response.status_code})")
-            print(f"Response: {response.text}")
-            return  # Return without raising an error
+            return
         
         print("Specification notification sent successfully!")
         
     except Exception as e:
         print(f"Warning: Error sending specification notification: {str(e)}")
-        # Don't raise the error, just log it
 
 def git_operations(spec_id):
     """Add, commit and push the new specification file"""
@@ -174,8 +166,7 @@ Recent Messages:
                 "specificationId": spec_id,
                 "collaborationId": collab_id,
                 "title": topic,
-                "content": spec_content,
-                "createdAt": timestamp
+                "content": spec_content
             }
             
             # Save specification with UTF-8 encoding
