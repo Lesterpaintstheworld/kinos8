@@ -124,11 +124,19 @@ def fund_hot_wallets():
                     )
                 )
                 
-                # Create transaction with proper parameters
+                # Create Message from instruction
+                print("Creating message...")
+                message = Message.new_with_blockhash(
+                    [transfer_ix],
+                    treasury.pubkey(),  # payer
+                    recent_blockhash
+                )
+                
+                # Create transaction
                 print("Creating transaction...")
                 tx = Transaction(
                     from_keypairs=[treasury],
-                    message=transfer_ix,
+                    message=message,
                     recent_blockhash=recent_blockhash
                 )
                 
