@@ -6,6 +6,8 @@ import sys
 import queue
 import os
 from datetime import datetime
+from threading import Thread
+import signal
 
 class RedirectText:
     def __init__(self, text_widget, queue):
@@ -26,6 +28,9 @@ class ScriptGUI:
         
         # Create queue for handling output
         self.queue = queue.Queue()
+        
+        self.watch_process = None
+        self.watching = False
         
         self.setup_gui()
         self.setup_output_handling()
@@ -48,6 +53,14 @@ class ScriptGUI:
         # Clear and Save buttons
         ttk.Button(buttons_frame, text="Clear Output", command=self.clear_output).grid(row=0, column=4, padx=5, pady=2)
         ttk.Button(buttons_frame, text="Save Output", command=self.save_output).grid(row=0, column=5, padx=5, pady=2)
+        
+        # Add Watch Changes toggle button
+        self.watch_button = ttk.Button(
+            buttons_frame, 
+            text="Start Watching", 
+            command=self.toggle_watch
+        )
+        self.watch_button.grid(row=0, column=6, padx=5, pady=2)
         
         # Output area
         output_frame = ttk.LabelFrame(main_frame, text="Output", padding="5")
@@ -126,6 +139,66 @@ class ScriptGUI:
         with open(filename, "w") as f:
             f.write(self.output_text.get(1.0, tk.END))
         self.status_var.set(f"Output saved to {filename}")
+
+    def toggle_watch(self):
+        """Toggle the watch_changes script on/off"""
+        if not self.watching:
+            # Start watching
+            self.watching = True
+            self.watch_button.configure(text="Stop Watching")
+            self.status_var.set("Started watching for changes...")
+            self.output_text.insert(tk.END, "\n=== Started watching for changes ===\n")
+            
+            def watch_runner():
+                try:
+                    process = subprocess.Popen(
+                        ["python", "scripts/watch_changes.py"],
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        universal_newlines=True
+                    )
+                    self.watch_process = process
+                    
+                    while self.watching:
+                        output = process.stdout.readline()
+                        if output == '' and process.poll() is not None:
+                            break
+                        if output:
+                            self.queue.put(output)
+                            
+                    if self.watching:  # If we didn't manually stop
+                        self.queue.put("\nWatch process ended unexpectedly\n")
+                        self.watching = False
+                        self.root.after(0, self._update_watch_button)
+                except Exception as e:
+                    self.queue.put(f"\nError in watch process: {str(e)}\n")
+                    self.watching = False
+                    self.root.after(0, self._update_watch_button)
+
+            Thread(target=watch_runner, daemon=True).start()
+            
+        else:
+            # Stop watching
+            self.watching = False
+            self.watch_button.configure(text="Start Watching")
+            self.status_var.set("Stopped watching for changes")
+            self.output_text.insert(tk.END, "\n=== Stopped watching for changes ===\n")
+            
+            if self.watch_process:
+                try:
+                    # Send SIGTERM to the process group
+                    if os.name == 'nt':  # Windows
+                        self.watch_process.terminate()
+                    else:  # Unix/Linux/Mac
+                        os.killpg(os.getpgid(self.watch_process.pid), signal.SIGTERM)
+                except Exception as e:
+                    print(f"Error stopping watch process: {e}")
+                self.watch_process = None
+
+    def _update_watch_button(self):
+        """Update watch button state - called from non-main thread"""
+        self.watch_button.configure(text="Start Watching")
+        self.status_var.set("Watch process ended")
 
 def main():
     root = tk.Tk()
