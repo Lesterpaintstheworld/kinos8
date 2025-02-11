@@ -164,6 +164,7 @@ class ScriptGUI:
         create_metallic_button(buttons_frame, "Clear Output", self.clear_output, 1, 1)
         create_metallic_button(buttons_frame, "Save Output", self.save_output, 1, 2)
         create_metallic_button(buttons_frame, "Fund Hot Wallets", lambda: self.run_script("fund_hot_wallets.py"), 1, 3)
+        create_metallic_button(buttons_frame, "Create Treasury", lambda: self.run_script("create_treasury_wallet.py"), 1, 4)
         
         # Watch toggle button with metallic effect
         self.watch_button = ttk.Button(
