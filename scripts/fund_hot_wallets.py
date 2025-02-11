@@ -8,7 +8,7 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from solders.keypair import Keypair
-from solders.rpc.client import Client
+from solders.rpc import Client
 from solders.transaction import Transaction
 from solders.system_program import transfer, TransferParams
 from solders.pubkey import Pubkey
