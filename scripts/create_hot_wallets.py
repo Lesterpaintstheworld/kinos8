@@ -42,8 +42,8 @@ class WalletManager:
             keypair = Keypair()
             
             # Get keys - using correct Solders Keypair properties
-            public_key = str(keypair.pubkey())  # Changed from public_key to pubkey()
-            private_key = base58.b58encode(keypair.to_bytes()).decode('ascii')  # Changed from seed to to_bytes()
+            public_key = str(keypair.pubkey())
+            private_key = base58.b58encode(bytes(keypair)).decode('ascii')  # Changed to bytes(keypair)
             print(f"Generated public key: {public_key}")
             
             # Encrypt private key
