@@ -82,7 +82,7 @@ Collaboration Specifications:
             context += "-" * 40 + "\n"
 
         context += "\nExisting conversation context:\n"
-        for msg in existing_messages[-5:]:  # Last 5 messages for context
+        for msg in existing_messages[-25:]:  # Last 25 messages for context
             context += f"\n{msg['senderId']}: {msg['content']}\n"
 
         context += f"\nPrompt: {prompt}\n"
