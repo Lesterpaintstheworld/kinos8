@@ -4,6 +4,7 @@ import os
 import glob
 from datetime import datetime
 import anthropic
+import requests
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -47,6 +48,58 @@ def load_collaboration(collab_id):
     except Exception as e:
         print(f"Error loading data: {e}")
         return None, [], []
+
+def send_to_nlr_and_telegram(specification, collab):
+    """Send specification to NLR webhook and then to client's Telegram"""
+    try:
+        # First, send to NLR webhook
+        webhook_url = "https://nlr.app.n8n.cloud/webhook/pdf"
+        payload = {
+            "contenu": specification['content']
+        }
+        
+        print("Sending to NLR webhook...")
+        response = requests.post(webhook_url, json=payload)
+        response.raise_for_status()
+        
+        # Get PDF binary from response
+        pdf_data = response.content
+        
+        # Get client swarm's Telegram chat ID
+        client_swarm = collab['clientSwarmId']
+        chat_id_key = f"{client_swarm.upper()}_TELEGRAM_CHAT_ID"
+        chat_id = os.getenv(chat_id_key)
+        token = os.getenv('KINKONG_TELEGRAM_BOT_TOKEN')
+        
+        if not token or not chat_id:
+            raise ValueError(f"Telegram credentials not found for client swarm {client_swarm}")
+        
+        telegram_url = f"https://api.telegram.org/bot{token}/sendDocument"
+        
+        # Prepare the file
+        files = {
+            'document': (
+                f"{specification['specificationId']}.pdf",
+                pdf_data,
+                'application/pdf'
+            )
+        }
+        
+        # Add caption with specification details
+        data = {
+            'chat_id': chat_id,
+            'caption': f"📋 New Specification\n\nTitle: {specification['title']}\nID: {specification['specificationId']}\nCollaboration: {specification['collaborationId']}"
+        }
+        
+        print(f"Sending PDF to {client_swarm}'s Telegram channel...")
+        telegram_response = requests.post(telegram_url, data=data, files=files)
+        telegram_response.raise_for_status()
+        
+        print("Specification successfully sent to NLR and Telegram!")
+        
+    except Exception as e:
+        print(f"Error sending specification: {str(e)}")
+        raise
 
 def generate_specification(collab_id, topic):
     """Generate a specification document using Claude"""
@@ -113,6 +166,9 @@ Recent Messages:
             print("=" * 50)
             print(spec_content)
             print("=" * 50)
+            
+            # Send to NLR and Telegram
+            send_to_nlr_and_telegram(specification, collab)
             
             return specification
             
