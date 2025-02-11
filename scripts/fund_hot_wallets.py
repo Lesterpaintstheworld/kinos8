@@ -124,14 +124,12 @@ def fund_hot_wallets():
                     )
                 )
             
-                # Create transaction with proper parameters
+                # Create and sign transaction
                 print("Creating transaction...")
-                tx = Transaction.new_signed_with_payer(
-                    instructions=[transfer_ix],
-                    payer=treasury.pubkey(),
-                    signers=[treasury],
-                    recent_blockhash=recent_blockhash
-                )
+                tx = Transaction()
+                tx.add(transfer_ix)
+                tx.recent_blockhash = recent_blockhash
+                tx.sign(treasury)  # Sign with treasury keypair
                 
                 print("Sending 0.01 SOL...")
                 # Send transaction
