@@ -86,6 +86,20 @@ class ScriptGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("UBC Scripts Manager")
+        self.root.geometry("1000x600")
+        self.root.configure(bg="#1a1a1a")  # Dark background
+        
+        # Configure styles
+        configure_styles()
+        
+        # Create queue for handling output
+        self.queue = queue.Queue()
+        
+        self.watch_process = None
+        self.watching = False
+        
+        self.setup_gui()
+        self.setup_output_handling()
         
     def cleanup(self):
         """Clean up resources before exit"""
