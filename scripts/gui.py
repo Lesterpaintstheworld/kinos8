@@ -37,9 +37,15 @@ def configure_styles():
         padding=(15, 5),
         font=("Segoe UI", 9, "bold")
     )
+    style.configure("MetallicToggle.TButton.selected",
+        background="#404da1",
+        foreground="#ffffff",
+        padding=(15, 5),
+        font=("Segoe UI", 9, "bold")
+    )
     style.map("MetallicToggle.TButton",
-        background=[("selected", "#404da1"), ("active", "#3d3d3d"), ("pressed", "#1d1d1d")],
-        foreground=[("selected", "#ffffff")]
+        background=[("active", "#3d3d3d"), ("pressed", "#1d1d1d")],
+        foreground=[("active", "#ffffff")]
     )
     
     # Frame style
@@ -261,7 +267,10 @@ class ScriptGUI:
         if not self.watching:
             # Start watching
             self.watching = True
-            self.watch_button.configure(text="⚫ Watching...", style="Toggle.TButton selected")
+            self.watch_button.configure(
+                text="⚫ Watching...", 
+                style="MetallicToggle.TButton.selected"
+            )
             self.status_var.set("Started watching for changes...")
             self.output_text.insert(tk.END, "\n=== Started watching for changes ===\n")
             
@@ -296,7 +305,10 @@ class ScriptGUI:
         else:
             # Stop watching
             self.watching = False
-            self.watch_button.configure(text="⚪ Watch Changes", style="Toggle.TButton")
+            self.watch_button.configure(
+                text="⚪ Watch Changes", 
+                style="MetallicToggle.TButton"
+            )
             self.status_var.set("Stopped watching for changes")
             self.output_text.insert(tk.END, "\n=== Stopped watching for changes ===\n")
             
@@ -313,7 +325,10 @@ class ScriptGUI:
 
     def _update_watch_button(self):
         """Update watch button state - called from non-main thread"""
-        self.watch_button.configure(text="⚪ Watch Changes", style="Toggle.TButton")
+        self.watch_button.configure(
+            text="⚪ Watch Changes", 
+            style="MetallicToggle.TButton"
+        )
         self.status_var.set("Watch process ended")
 
 def main():
