@@ -126,15 +126,12 @@ def fund_hot_wallets():
             
                 # Create transaction with proper parameters
                 print("Creating transaction...")
-                tx = Transaction.new_signed_with_payer(
-                    instructions=[transfer_ix],
-                    payer=treasury.pubkey(),
-                    keypair=treasury,
-                    recent_blockhash=recent_blockhash
-                )
-            
+                tx = Transaction()
+                tx.add(transfer_ix)
+                tx.sign([treasury])  # Sign with treasury keypair
+                
                 print("Sending 0.01 SOL...")
-                # Send transaction
+                # Send signed transaction
                 result = client.send_transaction(tx)
                 print(f"SOL transfer signature: {result['result']}")
                 print(f"Successfully funded {swarm_id} hot wallet")
