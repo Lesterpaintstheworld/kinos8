@@ -194,7 +194,6 @@ class ScriptGUI:
             state="readonly"
         )
         self.collab_selector.grid(row=0, column=1, padx=4, pady=4, sticky=tk.W)
-        self.load_collaborations()
 
         # Prompt Text Box
         prompt_label = ttk.Label(
@@ -303,6 +302,9 @@ class ScriptGUI:
             style="Metallic.TButton"
         )
         spec_button.grid(row=2, column=1, padx=4, pady=4, sticky=tk.E)
+
+        # Load collaborations for both selectors after they're created
+        self.load_collaborations()
 
         # Output area with better contrast
         output_frame = ttk.LabelFrame(
