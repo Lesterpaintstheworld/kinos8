@@ -110,7 +110,7 @@ def calculate_grand_totals(results):
     return totals
 
 def update_swarm_revenues(results):
-    """Update swarm weekly revenues based on distribution results"""
+    """Update swarm weekly revenues based on distribution results and push to Airtable"""
     print("\nUpdating swarm revenues...")
     
     try:
@@ -127,16 +127,17 @@ def update_swarm_revenues(results):
             if swarm_id in swarms:
                 # Update weekly revenue with net amount
                 swarms[swarm_id]['weeklyRevenue'] = int(data['net'])
+                swarms[swarm_id]['totalRevenue'] = swarms[swarm_id].get('totalRevenue', 0) + int(data['net'])
                 
                 # Save updated swarm data
                 with open(f'data/swarms/{swarm_id}.json', 'w', encoding='utf-8') as f:
                     json.dump(swarms[swarm_id], f, indent=2, ensure_ascii=False)
                 print(f"Updated {swarm_id} weekly revenue to {data['net']:,} $COMPUTE")
         
-        # Push updates to Airtable
-        print("\nPushing updates to Airtable...")
-        subprocess.run(["python", "scripts/pushData.py"], check=True)
-        print("Revenue updates pushed to Airtable successfully")
+        # Push only swarms to Airtable
+        print("\nPushing swarm updates to Airtable...")
+        subprocess.run(["python", "scripts/pushData.py", "--table", "Swarms"], check=True)
+        print("Swarm updates pushed to Airtable successfully")
         
     except Exception as e:
         print(f"Error updating swarm revenues: {str(e)}")
