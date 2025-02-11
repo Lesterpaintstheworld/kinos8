@@ -69,7 +69,7 @@ def load_swarms_with_hot_wallets():
     return swarms
 
 def fund_hot_wallets():
-    """Fund hot wallets with initial SOL and COMPUTE"""
+    """Fund hot wallets with initial SOL"""
     # Load treasury wallet
     treasury = load_treasury_wallet()
     if not treasury:
@@ -84,7 +84,6 @@ def fund_hot_wallets():
     
     # Initialize Solana client
     client = Client(os.getenv('SOLANA_RPC_URL'))
-    # compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')  # Commented for now
     
     for swarm_id, swarm in swarms.items():
         hot_wallet = swarm['hotWallet']
@@ -92,34 +91,27 @@ def fund_hot_wallets():
         print(f"Hot wallet: {hot_wallet}")
         
         try:
-            # Send SOL
-            sol_tx = Transaction()
-            # Convert string to Pubkey for hot wallet
-            hot_wallet_pubkey = Pubkey.from_string(hot_wallet)
+            # Get recent blockhash
+            recent_blockhash = client.get_recent_blockhash()['result']['value']['blockhash']
             
-            sol_tx.add(transfer(
-                from_pubkey=treasury.pubkey(),
-                to_pubkey=hot_wallet_pubkey,
-                lamports=10000000  # 0.01 SOL
-            ))
+            # Create transfer instruction
+            transfer_ix = transfer(
+                TransferParams(
+                    from_pubkey=treasury.pubkey(),
+                    to_pubkey=Pubkey.from_string(hot_wallet),
+                    lamports=10000000  # 0.01 SOL
+                )
+            )
+            
+            # Create transaction
+            tx = Transaction()
+            tx.recent_blockhash = recent_blockhash
+            tx.add(transfer_ix)
             
             print("Sending 0.01 SOL...")
-            sol_result = client.send_transaction(sol_tx, treasury)
-            print(f"SOL transfer signature: {sol_result['result']}")
-            
-            # # Send COMPUTE - Commented for now
-            # compute_tx = Transaction()
-            # compute_tx.add(spl_transfer(
-            #     treasury.pubkey(),
-            #     hot_wallet,
-            #     1000000,  # 1M COMPUTE
-            #     compute_token_mint
-            # ))
-            # 
-            # print("Sending 1M COMPUTE...")
-            # compute_result = client.send_transaction(compute_tx, treasury)
-            # print(f"COMPUTE transfer signature: {compute_result['result']}")
-            
+            # Sign and send transaction
+            result = client.send_transaction(tx, treasury)
+            print(f"SOL transfer signature: {result['result']}")
             print(f"Successfully funded {swarm_id} hot wallet")
             
         except Exception as e:
