@@ -243,9 +243,14 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                                     break
                         
                         if client_swarm_id:
+                            # Create a more detailed message including content preview
+                            content_preview = data.get('content', '')[:200] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
                             message = (f"📋 New Specification\n\n"
                                      f"Title: {data.get('title')}\n"
-                                     f"View at: https://swarms.universalbasiccompute.ai/specifications/{data['specificationId']}")
+                                     f"Created: {data.get('createdAt')}\n\n"
+                                     f"Preview:\n{content_preview}\n\n"
+                                     f"View full specification at:\n"
+                                     f"https://swarms.universalbasiccompute.ai/specifications/{data['specificationId']}")
                             await self._send_telegram_message(message, client_swarm_id)
                             print(f"Sent specification notification to {client_swarm_id}")
                             
