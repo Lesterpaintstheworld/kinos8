@@ -155,6 +155,7 @@ class ScriptGUI:
         create_metallic_button(buttons_frame, "List Relations", lambda: self.run_script("list_swarm_relations.py"), 0, 3)
         create_metallic_button(buttons_frame, "Phantom Pay", lambda: self.show_payment_dialog(), 0, 4)
         create_metallic_button(buttons_frame, "Create Hot Wallets", lambda: self.run_script("create_hot_wallets.py"), 0, 5)
+        create_metallic_button(buttons_frame, "Generate Specifications", lambda: self.show_specification_dialog(), 0, 6)
 
         # Second row of buttons
         create_metallic_button(buttons_frame, "Send Recap", lambda: self.run_script("send_recap.py"), 1, 0)
@@ -541,6 +542,50 @@ class ScriptGUI:
             
         self.status_var.set("Generating specification...")
         self.run_script(f"generate_specification.py {collab_id} \"{topic}\"")
+
+    def show_specification_dialog(self):
+        """Show dialog to generate specifications"""
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Generate Specification")
+        dialog.geometry("600x300")
+        dialog.configure(bg="#1e1e1e")
+        
+        # Collaboration Selector
+        ttk.Label(dialog, text="Select Collaboration:", style="Metallic.TLabel").grid(row=0, column=0, padx=5, pady=5)
+        collab_var = tk.StringVar()
+        collab_selector = ttk.Combobox(dialog, textvariable=collab_var, width=40, state="readonly")
+        collab_selector.grid(row=0, column=1, padx=5, pady=5)
+        
+        # Load collaborations
+        collab_files = glob.glob('data/collaborations/*.json')
+        collabs = []
+        for file in collab_files:
+            with open(file, 'r') as f:
+                data = json.load(f)
+                desc = f"{data.get('collaborationId')} - {data.get('clientSwarmId')} with {data.get('providerSwarmId')}"
+                collabs.append(desc)
+        collab_selector['values'] = sorted(collabs)
+        if collabs:
+            collab_selector.set(collabs[0])
+        
+        # Topic Entry
+        ttk.Label(dialog, text="Topic:", style="Metallic.TLabel").grid(row=1, column=0, padx=5, pady=5)
+        topic_entry = ttk.Entry(dialog, width=50)
+        topic_entry.grid(row=1, column=1, padx=5, pady=5)
+        
+        # Generate button
+        def generate():
+            if collab_var.get() and topic_entry.get():
+                collab_id = collab_var.get().split(' - ')[0]
+                dialog.destroy()
+                self.run_script(f"generate_specification.py {collab_id} \"{topic_entry.get()}\"")
+        
+        ttk.Button(
+            dialog,
+            text="Generate",
+            command=generate,
+            style="Metallic.TButton"
+        ).grid(row=2, column=0, columnspan=2, pady=20)
 
     def show_payment_dialog(self):
         """Show dialog to enter payment details"""
