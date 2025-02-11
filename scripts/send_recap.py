@@ -54,13 +54,15 @@ def build_system_prompt():
 
 def generate_recap():
     """Generate recap using Anthropic's Claude"""
-    client = anthropic.Client(api_key=os.getenv('ANTHROPIC_API_KEY'))
+    client = anthropic.Client(
+        api_key=os.getenv('ANTHROPIC_API_KEY')
+    )
     
     system_prompt = build_system_prompt()
     
     try:
         response = client.messages.create(
-            model="claude-3-5-sonnet-20241022", # don't change this value!!!!!
+            model="claude-3-5-sonnet-20241022",  # don't change this value!!!!!
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": """Create a concise but informative recap of recent activities in the UBC ecosystem. 
