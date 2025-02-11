@@ -7,49 +7,14 @@ import time
 def configure_styles():
     style = ttk.Style()
     
-    # Configure dark theme base
+    # Configure dark theme base with better contrast
     style.configure(".",
         background="#1e1e1e",
         foreground="#ffffff",
-        fieldbackground="#1e1e1e",
-        troughcolor="#2d2d2d",
-        selectbackground="#404040",
-        selectforeground="#ffffff"
+        fieldbackground="#1e1e1e"
     )
     
-    # Button style with proper text visibility
-    style.configure("Metallic.TButton",
-        padding=(10, 5),
-        background="#2d2d2d",
-        foreground="#ffffff",
-        relief="raised",
-        font=("Segoe UI", 9)
-    )
-    style.map("Metallic.TButton",
-        background=[("active", "#404040"), ("pressed", "#202020")],
-        relief=[("pressed", "sunken")]
-    )
-    
-    # Toggle button style
-    style.configure("MetallicToggle.TButton",
-        padding=(15, 5),
-        background="#2d2d2d",
-        foreground="#ffffff",
-        relief="raised",
-        font=("Segoe UI", 9)
-    )
-    style.map("MetallicToggle.TButton",
-        background=[("selected", "#404da1"), ("active", "#404040"), ("pressed", "#202020")],
-        relief=[("pressed", "sunken")]
-    )
-    
-    # Frame style
-    style.configure("Metallic.TFrame",
-        background="#1e1e1e",
-        relief="flat"
-    )
-    
-    # LabelFrame style
+    # LabelFrame style with visible text
     style.configure("Metallic.TLabelframe",
         background="#1e1e1e",
         foreground="#ffffff",
@@ -58,8 +23,46 @@ def configure_styles():
     )
     style.configure("Metallic.TLabelframe.Label",
         background="#1e1e1e",
-        foreground="#a0a0a0",
+        foreground="#ffffff",  # Make label text white
         font=("Segoe UI", 9, "bold")
+    )
+    
+    # Button style with proper contrast
+    style.configure("Metallic.TButton",
+        padding=(10, 5),
+        background="#404040",  # Darker background
+        foreground="#ffffff",  # White text
+        relief="raised",
+        font=("Segoe UI", 9, "bold")  # Bold text for better visibility
+    )
+    style.map("Metallic.TButton",
+        background=[("active", "#505050"), ("pressed", "#303030")],
+        foreground=[("active", "#ffffff"), ("pressed", "#ffffff")],
+        relief=[("pressed", "sunken")]
+    )
+    
+    # Toggle button style
+    style.configure("MetallicToggle.TButton",
+        padding=(15, 5),
+        background="#404040",
+        foreground="#ffffff",
+        relief="raised",
+        font=("Segoe UI", 9, "bold")
+    )
+    style.map("MetallicToggle.TButton",
+        background=[
+            ("selected", "#404da1"),
+            ("active", "#505050"),
+            ("pressed", "#303030")
+        ],
+        foreground=[("selected", "#ffffff")],
+        relief=[("pressed", "sunken")]
+    )
+    
+    # Frame style
+    style.configure("Metallic.TFrame",
+        background="#1e1e1e",
+        relief="flat"
     )
 import sys
 import queue
