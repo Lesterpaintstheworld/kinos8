@@ -37,15 +37,14 @@ def configure_styles():
         padding=(15, 5),
         font=("Segoe UI", 9, "bold")
     )
-    style.configure("MetallicToggle.TButton.selected",
-        background="#404da1",
-        foreground="#ffffff",
-        padding=(15, 5),
-        font=("Segoe UI", 9, "bold")
-    )
     style.map("MetallicToggle.TButton",
-        background=[("active", "#3d3d3d"), ("pressed", "#1d1d1d")],
-        foreground=[("active", "#ffffff")]
+        background=[
+            ("pressed", "#1d1d1d"),
+            ("active", "#3d3d3d"),
+            ("!disabled", "#2d2d2d"),
+            ("selected", "#404da1")
+        ],
+        foreground=[("pressed", "#ffffff"), ("active", "#ffffff")]
     )
     
     # Frame style
@@ -269,7 +268,7 @@ class ScriptGUI:
             self.watching = True
             self.watch_button.configure(
                 text="⚫ Watching...", 
-                style="MetallicToggle.TButton.selected"
+                style="MetallicToggle.TButton"
             )
             self.status_var.set("Started watching for changes...")
             self.output_text.insert(tk.END, "\n=== Started watching for changes ===\n")
