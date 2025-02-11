@@ -3,6 +3,8 @@ from tkinter import ttk, scrolledtext, font, Canvas
 import subprocess
 import threading
 import time
+import glob
+import json
 
 def configure_styles():
     style = ttk.Style()
