@@ -6,6 +6,6 @@ python-dotenv
 httpx
 tenacity
 requests==2.31.0
-solana
+solana-sdk
 cryptography
 base58
