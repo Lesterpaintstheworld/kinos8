@@ -40,8 +40,8 @@ def save_message(message_data):
     message_id = message_data['messageId']
     filename = f"data/messages/{message_id}.json"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
-    with open(filename, 'w') as f:
-        json.dump(message_data, f, indent=2)
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(message_data, f, indent=2, ensure_ascii=False)
 
 def generate_conversation(collab_id, prompt, message_count=1):
     """Generate a conversation using Claude"""

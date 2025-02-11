@@ -139,11 +139,11 @@ Recent Messages:
                 "createdAt": timestamp
             }
             
-            # Save specification
+            # Save specification with UTF-8 encoding
             filename = f"data/specifications/{spec_id}.json"
             os.makedirs(os.path.dirname(filename), exist_ok=True)
-            with open(filename, 'w') as f:
-                json.dump(specification, f, indent=2)
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(specification, f, indent=2, ensure_ascii=False)
             
             print(f"\nSpecification generated and saved as {filename}")
             print("\nSpecification content:")
