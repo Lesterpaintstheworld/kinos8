@@ -54,7 +54,7 @@ def build_system_prompt():
 
 def generate_recap():
     """Generate recap using Anthropic's Claude"""
-    client = anthropic.Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+    client = anthropic.Client(api_key=os.getenv('ANTHROPIC_API_KEY'))
     
     system_prompt = build_system_prompt()
     
