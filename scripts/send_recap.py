@@ -54,14 +54,15 @@ def build_system_prompt():
 
 def generate_recap():
     """Generate recap using Anthropic's Claude"""
-    client = anthropic.Client(api_key=os.getenv('ANTHROPIC_API_KEY'))
+    client = anthropic.Client(
+        api_key=os.getenv('ANTHROPIC_API_KEY')
+    )
     
     system_prompt = build_system_prompt()
     
     try:
         response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=1024,
+            model="claude-3-5-sonnet-20241022",  # don't change this value!!!!!
             messages=[
                 {
                     "role": "system", 
@@ -78,8 +79,11 @@ def generate_recap():
             ]
         )
         
-        return response.content[0].text
-        
+        if hasattr(response, 'content') and len(response.content) > 0:
+            return response.content[0].text
+        else:
+            raise Exception("No content in response")
+            
     except Exception as e:
         print(f"Error generating recap with Claude: {str(e)}")
         raise
