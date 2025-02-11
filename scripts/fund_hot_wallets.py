@@ -83,7 +83,7 @@ def fund_hot_wallets():
     
     # Initialize Solana client
     client = Client(os.getenv('SOLANA_RPC_URL'))
-    compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
+    # compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')  # Commented for now
     
     for swarm_id, swarm in swarms.items():
         hot_wallet = swarm['hotWallet']
@@ -105,18 +105,18 @@ def fund_hot_wallets():
             sol_result = client.send_transaction(sol_tx, treasury)
             print(f"SOL transfer signature: {sol_result['result']}")
             
-            # Send COMPUTE
-            compute_tx = Transaction()
-            compute_tx.add(spl_transfer(
-                treasury.pubkey(),
-                hot_wallet,
-                1000000,  # 1M COMPUTE
-                compute_token_mint
-            ))
-            
-            print("Sending 1M COMPUTE...")
-            compute_result = client.send_transaction(compute_tx, treasury)
-            print(f"COMPUTE transfer signature: {compute_result['result']}")
+            # # Send COMPUTE - Commented for now
+            # compute_tx = Transaction()
+            # compute_tx.add(spl_transfer(
+            #     treasury.pubkey(),
+            #     hot_wallet,
+            #     1000000,  # 1M COMPUTE
+            #     compute_token_mint
+            # ))
+            # 
+            # print("Sending 1M COMPUTE...")
+            # compute_result = client.send_transaction(compute_tx, treasury)
+            # print(f"COMPUTE transfer signature: {compute_result['result']}")
             
             print(f"Successfully funded {swarm_id} hot wallet")
             
