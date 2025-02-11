@@ -27,21 +27,19 @@ def load_json_files(pattern, limit):
     return results
 
 def build_system_prompt():
-    """Build system prompt from recent data focused on kinos and xforge"""
+    """Build system prompt from recent data"""
     # Load swarm data
     with open('data/swarms/kinos.json', 'r') as f:
         kinos_data = json.load(f)
     with open('data/swarms/xforge.json', 'r') as f:
         xforge_data = json.load(f)
     
-    # Load services
+    # Load all services
     services = []
     service_files = glob.glob('data/services/*.json')
     for file in service_files:
         with open(file, 'r') as f:
-            data = json.load(f)
-            if data.get('swarmId') in ['kinos', 'xforge']:
-                services.append(data)
+            services.append(json.load(f))
     
     # Load messages between kinos and xforge
     messages = []
@@ -53,18 +51,15 @@ def build_system_prompt():
                 (data.get('senderId') == 'xforge' and data.get('receiverId') == 'kinos')):
                 messages.append(data)
     
-    # Load news for both swarms
+    # Load all news
     news = []
     news_files = glob.glob('data/news/*.json')
     for file in news_files:
         with open(file, 'r') as f:
-            data = json.load(f)
-            if data.get('swarmId') in ['kinos', 'xforge']:
-                news.append(data)
+            news.append(json.load(f))
     
     # Build prompt
-    prompt = "You are a helpful AI assistant tasked with creating a recap of recent UBC ecosystem activities. "
-    prompt += "Focus on the interaction between KinOS and XForge swarms. Here's the relevant data:\n\n"
+    prompt = "You are a helpful AI assistant tasked with creating a recap of recent UBC ecosystem activities. Here's the relevant data:\n\n"
     
     # Add swarm information
     prompt += "KinOS Swarm:\n"
@@ -75,7 +70,7 @@ def build_system_prompt():
     prompt += f"Description: {xforge_data.get('shortDescription')}\n"
     prompt += f"Weekly Revenue: {xforge_data.get('weeklyRevenue')} $COMPUTE\n\n"
     
-    # Add services
+    # Add all services
     prompt += "Available Services:\n"
     for service in services:
         prompt += f"- {service.get('name')}: {service.get('description')}\n"
@@ -85,7 +80,7 @@ def build_system_prompt():
     for msg in sorted(messages, key=lambda x: x.get('timestamp', ''), reverse=True):
         prompt += f"- From {msg.get('senderId')} to {msg.get('receiverId')}: {msg.get('content')}\n"
     
-    # Add news
+    # Add all news
     prompt += "\nRecent News:\n"
     for news_item in sorted(news, key=lambda x: x.get('timestamp', ''), reverse=True):
         prompt += f"- {news_item.get('title', 'Untitled')}: {news_item.get('content')}\n"
