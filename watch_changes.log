@@ -797,3 +797,488 @@
 2025-02-11 02:46:16,795 - INFO - Processing modified event for file: ./data/messages/16.json
 2025-02-11 02:46:18,686 - INFO - Sending message from travelaidai
 2025-02-11 02:46:19,198 - INFO - Processing modified event for file: ./data/messages/17.json
+2025-02-11 02:46:21,588 - INFO - Sending message from kinos
+2025-02-11 02:46:21,714 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 02:46:22,225 - INFO - Processing modified event for file: ./data/messages/18.json
+2025-02-11 02:46:24,583 - INFO - Sending message from therapykin
+2025-02-11 02:46:25,093 - INFO - Processing modified event for file: ./data/messages/19.json
+2025-02-11 02:46:27,593 - INFO - Sending message from kinos
+2025-02-11 02:46:27,683 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 02:46:28,196 - INFO - Processing modified event for file: ./data/messages/2-.json
+2025-02-11 02:46:29,967 - INFO - Sending message from xforge
+2025-02-11 02:46:30,070 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 02:46:30,585 - INFO - Processing modified event for file: ./data/messages/2.json
+2025-02-11 03:38:50,121 - INFO - Processing modified event for file: ./data/messages/89.json
+2025-02-11 03:38:52,861 - INFO - Sending message from kinos
+2025-02-11 03:38:56,796 - INFO - Processing created event for file: ./data/messages/xforge-msg-20250211-023856.json
+2025-02-11 03:38:58,733 - INFO - Sending message from xforge
+2025-02-11 03:38:59,261 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250211-023856.json
+2025-02-11 03:39:02,351 - INFO - Processing created event for file: ./data/messages/wealthhive-msg-20250211-023901.json
+2025-02-11 03:39:04,229 - INFO - Sending message from wealthhive
+2025-02-11 03:39:04,739 - INFO - Processing modified event for file: ./data/messages/wealthhive-msg-20250211-023901.json
+2025-02-11 03:39:08,909 - INFO - Processing created event for file: ./data/messages/xforge-msg-20250211-023908.json
+2025-02-11 03:39:10,817 - INFO - Sending message from xforge
+2025-02-11 03:39:11,328 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250211-023908.json
+2025-02-11 03:39:14,369 - INFO - Processing created event for file: ./data/messages/wealthhive-msg-20250211-023913.json
+2025-02-11 03:39:16,263 - INFO - Sending message from wealthhive
+2025-02-11 03:39:16,774 - INFO - Processing modified event for file: ./data/messages/wealthhive-msg-20250211-023913.json
+2025-02-11 03:39:20,860 - INFO - Processing created event for file: ./data/messages/xforge-msg-20250211-023920.json
+2025-02-11 03:39:22,717 - INFO - Sending message from xforge
+2025-02-11 03:39:23,232 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250211-023920.json
+2025-02-11 03:57:29,675 - INFO - Processing modified event for file: ./data/collaborations/43.json
+2025-02-11 03:57:32,039 - INFO - Processing modified event for file: ./data/collaborations/44.json
+2025-02-11 03:57:34,049 - INFO - Processing modified event for file: ./data/collaborations/45.json
+2025-02-11 03:57:36,065 - INFO - Processing modified event for file: ./data/messages/02583289-f03a-46d7-adfe-336447b5e443.json
+2025-02-11 03:57:38,147 - INFO - Sending message from omarsamra1
+2025-02-11 03:57:38,660 - INFO - Processing modified event for file: ./data/messages/04cf26dc-35f8-4643-9ea4-f3cb2ad5bcb4.json
+2025-02-11 03:57:41,155 - INFO - Sending message from nlr_ai
+2025-02-11 03:57:41,667 - INFO - Processing modified event for file: ./data/messages/10.json
+2025-02-11 03:57:43,499 - INFO - Sending message from xforge
+2025-02-11 03:57:43,659 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:57:44,168 - INFO - Processing modified event for file: ./data/messages/12.json
+2025-02-11 03:57:46,464 - INFO - Sending message from xforge
+2025-02-11 03:57:46,570 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:57:47,072 - INFO - Processing modified event for file: ./data/messages/16.json
+2025-02-11 03:57:48,965 - INFO - Sending message from travelaidai
+2025-02-11 03:57:49,479 - INFO - Processing modified event for file: ./data/messages/17.json
+2025-02-11 03:57:51,902 - INFO - Sending message from kinos
+2025-02-11 03:57:52,023 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:57:52,537 - INFO - Processing modified event for file: ./data/messages/18.json
+2025-02-11 03:57:54,323 - INFO - Sending message from therapykin
+2025-02-11 03:57:54,837 - INFO - Processing modified event for file: ./data/messages/19.json
+2025-02-11 03:57:57,326 - INFO - Sending message from kinos
+2025-02-11 03:57:57,432 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:57:57,947 - INFO - Processing modified event for file: ./data/messages/2-.json
+2025-02-11 03:57:59,762 - INFO - Sending message from xforge
+2025-02-11 03:57:59,869 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:00,385 - INFO - Processing modified event for file: ./data/messages/2.json
+2025-02-11 03:58:02,763 - INFO - Sending message from xforge
+2025-02-11 03:58:02,818 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:03,321 - INFO - Processing modified event for file: ./data/messages/20.json
+2025-02-11 03:58:05,244 - INFO - Sending message from publishkin
+2025-02-11 03:58:05,754 - INFO - Processing modified event for file: ./data/messages/21.json
+2025-02-11 03:58:08,084 - INFO - Sending message from kinos
+2025-02-11 03:58:08,343 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:08,846 - INFO - Processing modified event for file: ./data/messages/22.json
+2025-02-11 03:58:10,570 - INFO - Sending message from duoai
+2025-02-11 03:58:11,083 - INFO - Processing modified event for file: ./data/messages/23.json
+2025-02-11 03:58:13,586 - INFO - Sending message from kinos
+2025-02-11 03:58:13,701 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:14,208 - INFO - Processing modified event for file: ./data/messages/24.json
+2025-02-11 03:58:16,041 - INFO - Sending message from talentkin
+2025-02-11 03:58:16,554 - INFO - Processing modified event for file: ./data/messages/25.json
+2025-02-11 03:58:19,049 - INFO - Sending message from kinos
+2025-02-11 03:58:19,154 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:19,670 - INFO - Processing modified event for file: ./data/messages/26c594bd-bfd6-47e3-aeab-5bfbf580858d.json
+2025-02-11 03:58:21,470 - INFO - Sending message from deko0711
+2025-02-11 03:58:21,980 - INFO - Processing modified event for file: ./data/messages/33488c9f-aee3-4bd7-997f-dab7aca5287b.json
+2025-02-11 03:58:24,482 - INFO - Sending message from nlr_ai
+2025-02-11 03:58:24,994 - INFO - Processing modified event for file: ./data/messages/3dcef21b-7097-44b4-adaf-0e8d4d635dc3.json
+2025-02-11 03:58:26,841 - INFO - Sending message from nlr_ai
+2025-02-11 03:58:27,352 - INFO - Processing modified event for file: ./data/messages/4-.json
+2025-02-11 03:58:29,805 - INFO - Sending message from xforge
+2025-02-11 03:58:29,915 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:30,423 - INFO - Processing modified event for file: ./data/messages/4.json
+2025-02-11 03:58:32,240 - INFO - Sending message from xforge
+2025-02-11 03:58:32,289 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:32,802 - INFO - Processing modified event for file: ./data/messages/47.json
+2025-02-11 03:58:35,255 - INFO - Sending message from robinhoodagent
+2025-02-11 03:58:35,768 - INFO - Processing modified event for file: ./data/messages/48.json
+2025-02-11 03:58:37,584 - INFO - Sending message from kinkong
+2025-02-11 03:58:37,702 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:38,205 - INFO - Processing modified event for file: ./data/messages/52.json
+2025-02-11 03:58:40,486 - INFO - Sending message from kinos
+2025-02-11 03:58:40,592 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:41,108 - INFO - Processing modified event for file: ./data/messages/53.json
+2025-02-11 03:58:42,941 - INFO - Sending message from therapykin
+2025-02-11 03:58:43,452 - INFO - Processing modified event for file: ./data/messages/54.json
+2025-02-11 03:58:45,903 - INFO - Sending message from kinos
+2025-02-11 03:58:45,995 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:46,505 - INFO - Processing modified event for file: ./data/messages/55.json
+2025-02-11 03:58:48,244 - INFO - Sending message from publishkin
+2025-02-11 03:58:48,756 - INFO - Processing modified event for file: ./data/messages/56.json
+2025-02-11 03:58:51,259 - INFO - Sending message from kinos
+2025-02-11 03:58:51,348 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:51,862 - INFO - Processing modified event for file: ./data/messages/57.json
+2025-02-11 03:58:53,646 - INFO - Sending message from duoai
+2025-02-11 03:58:54,159 - INFO - Processing modified event for file: ./data/messages/58.json
+2025-02-11 03:58:56,660 - INFO - Sending message from kinos
+2025-02-11 03:58:56,769 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:58:57,280 - INFO - Processing modified event for file: ./data/messages/59.json
+2025-02-11 03:58:59,473 - INFO - Sending message from talentkin
+2025-02-11 03:58:59,986 - INFO - Processing modified event for file: ./data/messages/6.json
+2025-02-11 03:59:02,486 - INFO - Sending message from xforge
+2025-02-11 03:59:02,589 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:03,093 - INFO - Processing modified event for file: ./data/messages/60.json
+2025-02-11 03:59:05,316 - INFO - Sending message from kinos
+2025-02-11 03:59:05,548 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:06,059 - INFO - Processing modified event for file: ./data/messages/61.json
+2025-02-11 03:59:07,857 - INFO - Sending message from playwise
+2025-02-11 03:59:07,979 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:08,481 - INFO - Processing modified event for file: ./data/messages/62.json
+2025-02-11 03:59:10,839 - INFO - Sending message from kinos
+2025-02-11 03:59:10,966 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:11,476 - INFO - Processing modified event for file: ./data/messages/63.json
+2025-02-11 03:59:13,506 - INFO - Sending message from playwise
+2025-02-11 03:59:13,604 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:14,110 - INFO - Processing modified event for file: ./data/messages/64.json
+2025-02-11 03:59:16,295 - INFO - Sending message from kinos
+2025-02-11 03:59:16,403 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:16,915 - INFO - Processing modified event for file: ./data/messages/65.json
+2025-02-11 03:59:18,879 - INFO - Sending message from playwise
+2025-02-11 03:59:18,986 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:19,499 - INFO - Processing modified event for file: ./data/messages/66.json
+2025-02-11 03:59:21,632 - INFO - Sending message from kinos
+2025-02-11 03:59:21,741 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:22,253 - INFO - Processing modified event for file: ./data/messages/67.json
+2025-02-11 03:59:24,304 - INFO - Sending message from playwise
+2025-02-11 03:59:24,404 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:24,910 - INFO - Processing modified event for file: ./data/messages/68.json
+2025-02-11 03:59:27,014 - INFO - Sending message from kinos
+2025-02-11 03:59:27,117 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:27,619 - INFO - Processing modified event for file: ./data/messages/69.json
+2025-02-11 03:59:29,638 - INFO - Sending message from kinos
+2025-02-11 03:59:29,701 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:30,216 - INFO - Processing modified event for file: ./data/messages/69689882-f683-419d-bb00-74ef2391c89e.json
+2025-02-11 03:59:32,400 - INFO - Sending message from nlr_ai
+2025-02-11 03:59:32,914 - INFO - Processing modified event for file: ./data/messages/70.json
+2025-02-11 03:59:34,983 - INFO - Sending message from playwise
+2025-02-11 03:59:35,084 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:35,591 - INFO - Processing modified event for file: ./data/messages/71.json
+2025-02-11 03:59:37,659 - INFO - Sending message from kinos
+2025-02-11 03:59:37,758 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:38,266 - INFO - Processing modified event for file: ./data/messages/72.json
+2025-02-11 03:59:40,407 - INFO - Sending message from playwise
+2025-02-11 03:59:40,505 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:41,012 - INFO - Processing modified event for file: ./data/messages/73.json
+2025-02-11 03:59:43,010 - INFO - Sending message from kinos
+2025-02-11 03:59:43,160 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:43,676 - INFO - Processing modified event for file: ./data/messages/74.json
+2025-02-11 03:59:45,815 - INFO - Sending message from kinos
+2025-02-11 03:59:45,868 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:46,372 - INFO - Processing modified event for file: ./data/messages/75.json
+2025-02-11 03:59:48,439 - INFO - Sending message from playwise
+2025-02-11 03:59:48,539 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:49,044 - INFO - Processing modified event for file: ./data/messages/7544aab9-a322-4304-9a81-2e7a17abe1e4.json
+2025-02-11 03:59:51,229 - INFO - Sending message from DreamKollab
+2025-02-11 03:59:51,742 - INFO - Processing modified event for file: ./data/messages/76.json
+2025-02-11 03:59:53,823 - INFO - Sending message from kinos
+2025-02-11 03:59:53,973 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:54,477 - INFO - Processing modified event for file: ./data/messages/77.json
+2025-02-11 03:59:56,552 - INFO - Sending message from kinos
+2025-02-11 03:59:56,657 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:57,173 - INFO - Processing modified event for file: ./data/messages/78.json
+2025-02-11 03:59:59,326 - INFO - Sending message from kinos
+2025-02-11 03:59:59,392 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 03:59:59,901 - INFO - Processing modified event for file: ./data/messages/79.json
+2025-02-11 04:00:01,956 - INFO - Sending message from playwise
+2025-02-11 04:00:02,073 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:02,578 - INFO - Processing modified event for file: ./data/messages/8.json
+2025-02-11 04:00:05,815 - INFO - Sending message from xforge
+2025-02-11 04:00:05,968 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:06,481 - INFO - Processing modified event for file: ./data/messages/80.json
+2025-02-11 04:00:10,437 - INFO - Sending message from kinos
+2025-02-11 04:00:10,551 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:11,060 - INFO - Processing modified event for file: ./data/messages/81.json
+2025-02-11 04:00:13,951 - INFO - Sending message from kinos
+2025-02-11 04:00:14,068 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:14,574 - INFO - Processing modified event for file: ./data/messages/82.json
+2025-02-11 04:00:16,958 - INFO - Sending message from playwise
+2025-02-11 04:00:18,395 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:18,910 - INFO - Processing modified event for file: ./data/messages/83.json
+2025-02-11 04:00:20,742 - INFO - Sending message from kinos
+2025-02-11 04:00:20,855 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:21,365 - INFO - Processing modified event for file: ./data/messages/91eb9184-f106-4022-8f91-0916355718aa.json
+2025-02-11 04:00:23,743 - INFO - Sending message from dkaya
+2025-02-11 04:00:24,256 - INFO - Processing modified event for file: ./data/messages/9d6c9083-3e37-4c0a-8864-c3d5b7ff5f47.json
+2025-02-11 04:00:26,163 - INFO - Sending message from kinos
+2025-02-11 04:00:26,266 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:26,770 - INFO - Processing modified event for file: ./data/messages/9d6c9083-3e37-4c0a-8864-c3d5b7ff5f48.json
+2025-02-11 04:00:29,098 - INFO - Sending message from wealthhive
+2025-02-11 04:00:29,610 - INFO - Processing modified event for file: ./data/messages/9ec03057-b482-43d7-abe5-c1563fd3e2d5.json
+2025-02-11 04:00:31,523 - INFO - Sending message from deko0711
+2025-02-11 04:00:32,035 - INFO - Processing modified event for file: ./data/messages/a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6.json
+2025-02-11 04:00:34,489 - INFO - Sending message from wealthhive
+2025-02-11 04:00:35,001 - INFO - Processing modified event for file: ./data/messages/b5dca6a8-db03-4373-ae23-012def5c6ac1.json
+2025-02-11 04:00:36,846 - INFO - Sending message from wealthhive
+2025-02-11 04:00:37,357 - INFO - Processing modified event for file: ./data/messages/b5dca6a8-db03-4373-ae23-012def5c6ac2.json
+2025-02-11 04:00:39,812 - INFO - Sending message from kinos
+2025-02-11 04:00:39,908 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:40,415 - INFO - Processing modified event for file: ./data/messages/b5dca6a8-db03-4373-ae23-012def5c6ac4.json
+2025-02-11 04:00:42,187 - INFO - Sending message from playwise
+2025-02-11 04:00:42,313 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:42,823 - INFO - Processing modified event for file: ./data/messages/bce0b7ae-ae41-4e77-a73b-a9dd8a77db90.json
+2025-02-11 04:00:45,149 - INFO - Sending message from nlr_ai
+2025-02-11 04:00:45,662 - INFO - Processing modified event for file: ./data/messages/c1c8c8e8-24e0-4c9c-a357-c7f76e7d3381.json
+2025-02-11 04:00:47,808 - INFO - Sending message from wealthhive
+2025-02-11 04:00:48,321 - INFO - Processing modified event for file: ./data/messages/c1c8c8e8-24e0-4c9c-a357-c7f76e7d3382.json
+2025-02-11 04:00:50,572 - INFO - Sending message from wealthhive
+2025-02-11 04:00:51,082 - INFO - Processing modified event for file: ./data/messages/c861e426-af70-4768-9ce3-0395aac72cc8.json
+2025-02-11 04:00:53,364 - INFO - Sending message from nlr_ai
+2025-02-11 04:00:53,875 - INFO - Processing modified event for file: ./data/messages/d141c2d8-aa4d-4369-a7f5-e1318d53119a.json
+2025-02-11 04:00:55,862 - INFO - Sending message from Xadmei
+2025-02-11 04:00:56,375 - INFO - Processing modified event for file: ./data/messages/d7e8f9a0-b1c2-4d3e-a4b5-c6d7e8f9a0b1.json
+2025-02-11 04:00:58,751 - INFO - Sending message from xforge
+2025-02-11 04:00:58,969 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:00:59,483 - INFO - Processing modified event for file: ./data/messages/e31d3c95-8e7a-4bfd-9e92-43958a587d1f.json
+2025-02-11 04:01:01,278 - INFO - Sending message from kinos
+2025-02-11 04:01:01,420 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:01,930 - INFO - Processing modified event for file: ./data/messages/e31d3c95-8e7a-4bfd-9e92-43958a587d2f.json
+2025-02-11 04:01:04,288 - INFO - Sending message from kinos
+2025-02-11 04:01:04,362 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:04,876 - INFO - Processing modified event for file: ./data/messages/e7f8d9c0-a1b2-c3d4-e5f6-g7h8i9j0k1l2.json
+2025-02-11 04:01:06,758 - INFO - Sending message from wealthhive
+2025-02-11 04:01:07,271 - INFO - Processing modified event for file: ./data/messages/eb461df4-658f-4f10-9989-a58a335e2367.json
+2025-02-11 04:01:09,566 - INFO - Processing modified event for file: ./data/messages/f2292181-dd15-48c6-9a70-1572bfe74cfd.json
+2025-02-11 04:01:11,429 - INFO - Sending message from nlr_ai
+2025-02-11 04:01:11,944 - INFO - Processing modified event for file: ./data/messages/m10_2024_01_22.json
+2025-02-11 04:01:14,432 - INFO - Sending message from xforge
+2025-02-11 04:01:14,535 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:15,038 - INFO - Processing modified event for file: ./data/messages/m11_2024_01_22.json
+2025-02-11 04:01:16,825 - INFO - Sending message from xforge
+2025-02-11 04:01:16,875 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:17,382 - INFO - Processing modified event for file: ./data/messages/m13_2024_01_22.json
+2025-02-11 04:01:19,837 - INFO - Sending message from kinos
+2025-02-11 04:01:19,994 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:20,504 - INFO - Processing modified event for file: ./data/messages/m14_2024_01_22.json
+2025-02-11 04:01:22,349 - INFO - Sending message from xforge
+2025-02-11 04:01:22,453 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:22,955 - INFO - Processing modified event for file: ./data/messages/m15_2024_01_22.json
+2025-02-11 04:01:25,363 - INFO - Sending message from xforge
+2025-02-11 04:01:25,416 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:25,921 - INFO - Processing modified event for file: ./data/messages/m16_2024_01_22.json
+2025-02-11 04:01:27,801 - INFO - Sending message from kinos
+2025-02-11 04:01:27,906 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:28,421 - INFO - Processing modified event for file: ./data/messages/m17_2024_01_22.json
+2025-02-11 04:01:30,730 - INFO - Sending message from kinos
+2025-02-11 04:01:30,783 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:31,290 - INFO - Processing modified event for file: ./data/messages/m18_2024_01_22.json
+2025-02-11 04:01:33,296 - INFO - Sending message from kinkong
+2025-02-11 04:01:33,391 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:33,899 - INFO - Processing modified event for file: ./data/messages/m20_2024_01_22.json
+2025-02-11 04:01:36,086 - INFO - Sending message from kinos
+2025-02-11 04:01:36,186 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:36,692 - INFO - Processing modified event for file: ./data/messages/m21_2024_01_22.json
+2025-02-11 04:01:38,760 - INFO - Sending message from kinos
+2025-02-11 04:01:38,812 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:39,321 - INFO - Processing modified event for file: ./data/messages/m23_2024_01_22.json
+2025-02-11 04:01:41,511 - INFO - Sending message from kinos
+2025-02-11 04:01:41,563 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:42,070 - INFO - Processing modified event for file: ./data/messages/m24_2024_01_22.json
+2025-02-11 04:01:44,130 - INFO - Sending message from kinos
+2025-02-11 04:01:44,182 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:44,687 - INFO - Processing modified event for file: ./data/messages/m25_2024_01_22.json
+2025-02-11 04:01:46,902 - INFO - Sending message from kinos
+2025-02-11 04:01:46,974 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:47,478 - INFO - Processing modified event for file: ./data/messages/m26_2024_01_22.json
+2025-02-11 04:01:49,505 - INFO - Sending message from kinkong
+2025-02-11 04:01:49,609 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:50,111 - INFO - Processing modified event for file: ./data/messages/m27_2024_01_22.json
+2025-02-11 04:01:52,328 - INFO - Sending message from kinkong
+2025-02-11 04:01:52,394 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:52,903 - INFO - Processing modified event for file: ./data/messages/m30_2024_01_22.json
+2025-02-11 04:01:54,987 - INFO - Sending message from kinkong
+2025-02-11 04:01:55,048 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:55,560 - INFO - Processing modified event for file: ./data/messages/m31_2024_01_22.json
+2025-02-11 04:01:57,719 - INFO - Sending message from kinkong
+2025-02-11 04:01:57,776 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:01:58,292 - INFO - Processing modified event for file: ./data/messages/m32_2024_01_22.json
+2025-02-11 04:02:00,492 - INFO - Sending message from kinos
+2025-02-11 04:02:00,584 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:01,093 - INFO - Processing modified event for file: ./data/messages/m33_2024_01_22.json
+2025-02-11 04:02:03,121 - INFO - Sending message from xforge
+2025-02-11 04:02:03,237 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:03,739 - INFO - Processing modified event for file: ./data/messages/m34_2024_01_22.json
+2025-02-11 04:02:05,881 - INFO - Sending message from kinos
+2025-02-11 04:02:06,005 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:06,518 - INFO - Processing modified event for file: ./data/messages/m35_2024_01_22.json
+2025-02-11 04:02:08,547 - INFO - Sending message from kinos
+2025-02-11 04:02:08,600 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:09,107 - INFO - Processing modified event for file: ./data/messages/m36_2024_01_22.json
+2025-02-11 04:02:11,324 - INFO - Sending message from kinos
+2025-02-11 04:02:11,373 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:11,882 - INFO - Processing modified event for file: ./data/messages/m37_2024_01_22.json
+2025-02-11 04:02:13,972 - INFO - Sending message from xforge
+2025-02-11 04:02:14,106 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:14,620 - INFO - Processing modified event for file: ./data/messages/m38_2024_01_22.json
+2025-02-11 04:02:16,654 - INFO - Sending message from kinkong
+2025-02-11 04:02:16,774 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:17,276 - INFO - Processing modified event for file: ./data/messages/m39_2024_01_22.json
+2025-02-11 04:02:19,463 - INFO - Sending message from kinkong
+2025-02-11 04:02:19,523 - INFO - HTTP Request: POST https://api.telegram.org/bot7855084494:AAHS02SgBwnQ14_ovg4E5fDvkdTDQqKaFzQ/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:20,038 - INFO - Processing modified event for file: ./data/messages/m40_2024_01_22.json
+2025-02-11 04:02:22,055 - INFO - Sending message from stumped
+2025-02-11 04:02:22,244 - INFO - HTTP Request: POST https://api.telegram.org/bot7950726303:AAFc-XjT6qJlCukyZh7iXYrK1dib-Iars3o/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:22,754 - INFO - Processing modified event for file: ./data/messages/m41_2024_01_22.json
+2025-02-11 04:02:24,852 - INFO - Sending message from xforge
+2025-02-11 04:02:24,942 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:25,458 - INFO - Processing modified event for file: ./data/messages/m42_2024_01_22.json
+2025-02-11 04:02:27,631 - INFO - Sending message from playwise
+2025-02-11 04:02:27,737 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:28,251 - INFO - Processing modified event for file: ./data/messages/m43_2024_01_22.json
+2025-02-11 04:02:30,272 - INFO - Sending message from kinos
+2025-02-11 04:02:30,393 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:30,893 - INFO - Processing modified event for file: ./data/messages/m44_2024_01_22.json
+2025-02-11 04:02:33,050 - INFO - Sending message from logicatlas
+2025-02-11 04:02:33,166 - INFO - HTTP Request: POST https://api.telegram.org/bot7268872630:AAHofAY9rfovGTC8t5Vmv4pXHGsWj22LyOk/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:33,669 - INFO - Processing modified event for file: ./data/messages/m45_2024_01_22.json
+2025-02-11 04:02:35,685 - INFO - Sending message from logicatlas
+2025-02-11 04:02:35,837 - INFO - HTTP Request: POST https://api.telegram.org/bot7268872630:AAHofAY9rfovGTC8t5Vmv4pXHGsWj22LyOk/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:36,351 - INFO - Processing modified event for file: ./data/messages/m46_2024_01_22.json
+2025-02-11 04:02:38,496 - INFO - Sending message from kinos
+2025-02-11 04:02:38,617 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:39,131 - INFO - Processing modified event for file: ./data/messages/m47_2024_01_22.json
+2025-02-11 04:02:41,181 - INFO - Sending message from playwise
+2025-02-11 04:02:41,291 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:41,803 - INFO - Processing modified event for file: ./data/messages/m5_2024_01_22.json
+2025-02-11 04:02:43,958 - INFO - Sending message from kinos
+2025-02-11 04:02:44,087 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:44,593 - INFO - Processing modified event for file: ./data/messages/m6_2024_01_22.json
+2025-02-11 04:02:46,777 - INFO - Sending message from xforge
+2025-02-11 04:02:46,883 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:47,397 - INFO - Processing modified event for file: ./data/messages/m7_2024_01_22.json
+2025-02-11 04:02:49,397 - INFO - Sending message from kinos
+2025-02-11 04:02:49,507 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:50,015 - INFO - Processing modified event for file: ./data/messages/m8_2024_01_22.json
+2025-02-11 04:02:52,202 - INFO - Sending message from xforge
+2025-02-11 04:02:52,388 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:52,900 - INFO - Processing modified event for file: ./data/messages/m9_2024_01_22.json
+2025-02-11 04:02:54,825 - INFO - Sending message from kinos
+2025-02-11 04:02:54,983 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:55,493 - INFO - Processing modified event for file: ./data/messages/pw-001-hardware-v1-proposal.json
+2025-02-11 04:02:57,645 - INFO - Sending message from playwise
+2025-02-11 04:02:57,750 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:02:58,265 - INFO - Processing modified event for file: ./data/messages/pw-002-hardware-v1-feedback.json
+2025-02-11 04:03:00,332 - INFO - Sending message from kinos
+2025-02-11 04:03:00,452 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:03:00,967 - INFO - Processing modified event for file: ./data/messages/pw-003-hardware-v1-devkit.json
+2025-02-11 04:03:03,107 - INFO - Sending message from playwise
+2025-02-11 04:03:03,214 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:03:03,728 - INFO - Processing created event for file: ./data/messages/xforge-msg-20250211-025732.json
+2025-02-11 04:03:05,840 - INFO - Sending message from xforge
+2025-02-11 04:03:05,957 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:03:06,458 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250211-025732.json
+2025-02-11 04:03:08,773 - INFO - Processing created event for file: ./data/messages/playwise-msg-20250211-025737.json
+2025-02-11 04:03:10,539 - INFO - Sending message from playwise
+2025-02-11 04:03:10,642 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:03:11,158 - INFO - Processing modified event for file: ./data/messages/playwise-msg-20250211-025737.json
+2025-02-11 04:03:13,488 - INFO - Processing created event for file: ./data/messages/xforge-msg-20250211-025742.json
+2025-02-11 04:03:15,347 - INFO - Sending message from xforge
+2025-02-11 04:03:15,525 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:03:16,032 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250211-025742.json
+2025-02-11 04:03:18,377 - INFO - Processing created event for file: ./data/messages/playwise-msg-20250211-025746.json
+2025-02-11 04:03:20,234 - INFO - Sending message from playwise
+2025-02-11 04:03:20,578 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:03:21,088 - INFO - Processing modified event for file: ./data/messages/playwise-msg-20250211-025746.json
+2025-02-11 04:03:23,479 - INFO - Processing created event for file: ./data/messages/xforge-msg-20250211-025751.json
+2025-02-11 04:03:25,262 - INFO - Sending message from xforge
+2025-02-11 04:03:25,439 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:03:25,944 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250211-025751.json
+2025-02-11 04:07:32,614 - INFO - Processing modified event for file: ./data/messages/pw-004-hardware-v1-parts.json
+2025-02-11 04:07:34,400 - INFO - Sending message from kinos
+2025-02-11 04:07:34,522 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:07:35,037 - INFO - Processing modified event for file: ./data/messages/pw-005-hardware-v1-specs.json
+2025-02-11 04:07:37,415 - INFO - Sending message from kinos
+2025-02-11 04:07:37,477 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 04:07:37,991 - INFO - Processing modified event for file: ./data/services/kinos-essential-package.json
+2025-02-11 04:07:39,995 - INFO - Processing modified event for file: ./data/services/kinos-inception-package.json
+2025-02-11 04:07:42,078 - INFO - Processing modified event for file: ./data/services/xforge-development-package.json
+2025-02-11 04:07:44,049 - INFO - Processing modified event for file: ./data/swarms/kinos.json
+2025-02-11 04:07:46,048 - INFO - Processing modified event for file: ./data/swarms/xforge.json
+2025-02-11 04:07:48,112 - INFO - Processing modified event for file: ./scripts/calculate_distributions.py
+2025-02-11 04:07:49,775 - INFO - Processing modified event for file: ./scripts/list_swarm_relations.py
+2025-02-11 04:07:51,418 - INFO - Processing modified event for file: ./scripts/pullData.py
+2025-02-11 04:07:53,048 - INFO - Processing modified event for file: ./scripts/pushData.py
+2025-02-11 04:07:54,667 - INFO - Processing modified event for file: ./scripts/watch_changes.py
+2025-02-11 04:08:22,081 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-11 04:08:23,710 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:08:25,389 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-11 04:08:54,468 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:08:56,131 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:05,278 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:06,925 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:38,164 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:39,794 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:41,459 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:43,118 - INFO - Processing created event for file: ./scripts/generate_specification.py
+2025-02-11 04:09:45,260 - INFO - Processing modified event for file: ./scripts/gui.py
+2025-02-11 04:09:46,892 - INFO - Processing modified event for file: ./scripts/generate_specification.py
+2025-02-11 04:09:48,539 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:50,213 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:51,859 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:09:53,492 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-11 04:09:55,126 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:10:12,540 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-11 04:10:14,189 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:10:15,835 - INFO - Processing modified event for file: ./data/specifications/46.json
+2025-02-11 04:10:17,935 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:10:31,344 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-11 04:10:32,988 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:10:41,447 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-11 04:10:57,390 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:10:59,018 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:11:00,664 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:11:07,438 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:11:09,177 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:11:11,242 - INFO - Processing modified event for file: ./scripts/generate_conversation.py
+2025-02-11 04:11:12,887 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:11:14,538 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:11:16,186 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:11:33,439 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-11 04:11:35,066 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:12:05,819 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-11 04:12:14,899 - INFO - Processing modified event for file: ./requirements.txt
+2025-02-11 04:12:16,924 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:12:18,773 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-11 04:12:44,234 - INFO - Processing modified event for file: ./scripts/generate_conversation.py
+2025-02-11 04:12:45,942 - INFO - Processing modified event for file: ./scripts/generate_conversation.py
+2025-02-11 04:12:55,994 - INFO - Processing modified event for file: ./scripts/generate_specification.py
+2025-02-11 04:12:57,674 - INFO - Processing modified event for file: ./scripts/generate_specification.py
+2025-02-11 06:17:47,983 - INFO - Processing deleted event for file: ./data/specifications/spec-45-20250211-060953.json
+2025-02-11 06:17:50,073 - INFO - Processing deleted event for file: ./data/specifications/spec-45-20250211-043903.json
+2025-02-11 06:17:51,765 - INFO - Processing deleted event for file: ./data/specifications/spec-45-20250211-044043.json
+2025-02-11 06:17:53,811 - INFO - Processing deleted event for file: ./data/specifications/spec-45-20250211-055127.json
+2025-02-11 06:17:55,483 - INFO - Processing deleted event for file: ./data/specifications/spec-45-20250211-060228.json
+2025-02-11 06:17:57,145 - INFO - Processing deleted event for file: ./data/specifications/spec-45-20250211-060659.json
+2025-02-11 06:17:58,999 - INFO - Processing modified event for file: ./data/specifications/spec-45-20250211-043711.json
+2025-02-11 06:18:01,205 - INFO - Sending message from playwise
+2025-02-11 06:18:01,453 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 06:18:01,962 - INFO - Processing modified event for file: ./data/specifications/spec-45-20250211-043711.json
+2025-02-11 06:18:04,207 - INFO - Sending message from playwise
+2025-02-11 06:18:04,260 - INFO - HTTP Request: POST https://api.telegram.org/bot7707755059:AAF_LfbjZs1_W4IX-wm4icCoJISAXFU0RVg/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 07:08:12,675 - INFO - Processing modified event for file: ./data/messages/pw-004-hardware-v1-parts.json
+2025-02-11 07:08:14,944 - INFO - Sending message from kinos
+2025-02-11 07:08:15,113 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 07:08:15,626 - INFO - Processing modified event for file: ./data/messages/pw-005-hardware-v1-specs.json
+2025-02-11 07:08:17,948 - INFO - Sending message from kinos
+2025-02-11 07:08:18,063 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 07:08:18,568 - INFO - Processing modified event for file: ./data/services/kinos-essential-package.json
+2025-02-11 07:08:20,665 - INFO - Processing modified event for file: ./data/services/kinos-inception-package.json
+2025-02-11 07:08:22,728 - INFO - Processing modified event for file: ./data/services/xforge-development-package.json
+2025-02-11 07:08:24,747 - INFO - Processing modified event for file: ./data/specifications/46.json
+2025-02-11 07:08:26,351 - INFO - Sending message from stumped
+2025-02-11 07:08:26,532 - INFO - HTTP Request: POST https://api.telegram.org/bot7950726303:AAFc-XjT6qJlCukyZh7iXYrK1dib-Iars3o/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 07:08:27,047 - INFO - Processing modified event for file: ./data/swarms/kinos.json
+2025-02-11 07:08:29,174 - INFO - Processing modified event for file: ./data/swarms/xforge.json
+2025-02-11 07:08:31,207 - INFO - Processing modified event for file: ./requirements.txt
+2025-02-11 07:08:32,914 - INFO - Processing modified event for file: ./scripts/calculate_distributions.py
+2025-02-11 07:08:34,545 - INFO - Processing modified event for file: ./scripts/generate_conversation.py
+2025-02-11 07:08:36,176 - INFO - Processing modified event for file: ./scripts/gui.py
+2025-02-11 07:08:37,779 - INFO - Processing modified event for file: ./scripts/list_swarm_relations.py
+2025-02-11 07:08:39,411 - INFO - Processing modified event for file: ./scripts/pullData.py
+2025-02-11 07:08:41,071 - INFO - Processing modified event for file: ./scripts/pushData.py
+2025-02-11 07:08:42,745 - INFO - Processing modified event for file: ./scripts/send_recap.py
+2025-02-11 07:08:44,393 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250211-025751.json
+2025-02-11 07:08:46,194 - INFO - Sending message from xforge
+2025-02-11 07:08:46,320 - INFO - HTTP Request: POST https://api.telegram.org/bot7934712875:AAEbfAeqfDH_RsEseoA7IYoYb06-DasRsRU/sendMessage "HTTP/1.1 200 OK"
+2025-02-11 07:08:46,831 - INFO - Processing modified event for file: ./data/collaborations/15.json
+2025-02-11 07:08:48,895 - INFO - Processing modified event for file: ./data/collaborations/23.json
+2025-02-11 07:08:50,913 - INFO - Processing modified event for file: ./data/collaborations/24.json
+2025-02-11 07:08:52,931 - INFO - Processing modified event for file: ./data/collaborations/25.json
+2025-02-11 07:08:54,949 - INFO - Processing modified event for file: ./data/collaborations/27.json
+2025-02-11 07:08:56,940 - INFO - Processing modified event for file: ./data/collaborations/33.json
+2025-02-11 07:08:58,909 - INFO - Processing modified event for file: ./data/collaborations/35.json
+2025-02-11 07:09:00,925 - INFO - Processing modified event for file: ./data/collaborations/36.json
+2025-02-11 07:09:02,968 - INFO - Processing modified event for file: ./data/collaborations/37.json
+2025-02-11 07:09:05,093 - INFO - Processing modified event for file: ./data/collaborations/38.json
+2025-02-11 07:09:07,158 - INFO - Processing modified event for file: ./data/collaborations/39.json
