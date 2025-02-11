@@ -10,10 +10,9 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from solders.keypair import Keypair
 from solana.rpc.api import Client
-from solders.transaction import Transaction
+from solana.transaction import Transaction
 from solders.system_program import transfer, TransferParams
 from solders.pubkey import Pubkey
-from solders.message import Message
 from spl.token.instructions import transfer as spl_transfer
 import base58
 from dotenv import load_dotenv
@@ -125,25 +124,15 @@ def fund_hot_wallets():
                     )
                 )
                 
-                # Create Message from instruction
-                print("Creating message...")
-                message = Message.new_with_blockhash(
-                    [transfer_ix],
-                    treasury.pubkey(),  # payer
-                    recent_blockhash
-                )
-                
                 # Create transaction
                 print("Creating transaction...")
-                tx = Transaction(
-                    from_keypairs=[treasury],
-                    message=message,
-                    recent_blockhash=recent_blockhash
-                )
+                tx = Transaction()
+                tx.add(transfer_ix)
+                tx.recent_blockhash = recent_blockhash
                 
                 print("Sending 0.01 SOL...")
                 # Send transaction
-                result = client.send_transaction(tx)
+                result = client.send_transaction(tx, [treasury])  # Pass signers as list
                 print(f"SOL transfer signature: {result['result']}")
                 print(f"Successfully funded {swarm_id} hot wallet")
                 
