@@ -13,6 +13,7 @@ from solana.rpc.api import Client
 from solders.transaction import Transaction
 from solders.system_program import transfer, TransferParams
 from solders.pubkey import Pubkey
+from solders.message import Message
 from spl.token.instructions import transfer as spl_transfer
 import base58
 from dotenv import load_dotenv
