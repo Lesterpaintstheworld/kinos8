@@ -63,6 +63,7 @@ def generate_recap():
     try:
         response = client.messages.create(
             model="claude-3-5-sonnet-20241022",  # don't change this value!!!!!
+            max_tokens=2000,  # Added this required parameter
             messages=[
                 {
                     "role": "system", 
