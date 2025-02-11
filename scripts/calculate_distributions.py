@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 from datetime import datetime
 from pathlib import Path
 from pathlib import Path
@@ -107,6 +108,38 @@ def calculate_grand_totals(results):
     
     return totals
 
+def update_swarm_revenues(results):
+    """Update swarm weekly revenues based on distribution results"""
+    print("\nUpdating swarm revenues...")
+    
+    try:
+        # Load all swarms first
+        swarms = {}
+        swarm_files = glob.glob('data/swarms/*.json')
+        for file in swarm_files:
+            with open(file, 'r', encoding='utf-8') as f:
+                swarm_data = json.load(f)
+                swarms[swarm_data['swarmId']] = swarm_data
+        
+        # Update revenues based on distribution results
+        for swarm_id, data in results.items():
+            if swarm_id in swarms:
+                # Update weekly revenue with net amount
+                swarms[swarm_id]['weeklyRevenue'] = int(data['net'])
+                
+                # Save updated swarm data
+                with open(f'data/swarms/{swarm_id}.json', 'w', encoding='utf-8') as f:
+                    json.dump(swarms[swarm_id], f, indent=2, ensure_ascii=False)
+                print(f"Updated {swarm_id} weekly revenue to {data['net']:,} $COMPUTE")
+        
+        # Push updates to Airtable
+        print("\nPushing updates to Airtable...")
+        subprocess.run(["python", "scripts/pushData.py"], check=True)
+        print("Revenue updates pushed to Airtable successfully")
+        
+    except Exception as e:
+        print(f"Error updating swarm revenues: {str(e)}")
+
 def format_results(results):
     output = []
     for provider_id, data in results.items():
@@ -154,6 +187,9 @@ def main():
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     with open(f'data/reports/distributions_{timestamp}.txt', 'w') as f:
         f.write(format_results(results))
+    
+    # Update swarm revenues and push to Airtable
+    update_swarm_revenues(results)
 
 if __name__ == "__main__":
     main()
