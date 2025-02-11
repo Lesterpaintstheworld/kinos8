@@ -246,6 +246,56 @@ class ScriptGUI:
         )
         generate_button.grid(row=3, column=1, padx=4, pady=4, sticky=tk.E)
 
+        # Specification Generator Frame
+        spec_frame = ttk.LabelFrame(
+            main_frame,
+            text="Specification Generator",
+            padding="8",
+            style="Metallic.TLabelframe"
+        )
+        spec_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
+
+        # Collaboration Selector (reuse the same one from conversation generator)
+        spec_collab_label = ttk.Label(
+            spec_frame,
+            text="Select Collaboration:",
+            style="Metallic.TLabel"
+        )
+        spec_collab_label.grid(row=0, column=0, padx=4, pady=4, sticky=tk.W)
+
+        # Reuse the same collaboration selector
+        self.collab_selector.grid(row=0, column=1, padx=4, pady=4, sticky=tk.W)
+
+        # Topic Text Box
+        topic_label = ttk.Label(
+            spec_frame,
+            text="Enter Topic:",
+            style="Metallic.TLabel"
+        )
+        topic_label.grid(row=1, column=0, padx=4, pady=4, sticky=tk.W)
+
+        self.topic_text = tk.Text(
+            spec_frame,
+            height=3,
+            width=60,
+            bg="#202020",
+            fg="#e0e0e0",
+            insertbackground="#ffffff",
+            relief="flat",
+            borderwidth=1,
+            font=("Consolas", 10)
+        )
+        self.topic_text.grid(row=1, column=1, padx=4, pady=4, sticky=tk.W)
+
+        # Generate Specification Button
+        spec_button = ttk.Button(
+            spec_frame,
+            text="Generate Specification",
+            command=self.generate_specification,
+            style="Metallic.TButton"
+        )
+        spec_button.grid(row=2, column=1, padx=4, pady=4, sticky=tk.E)
+
         # Output area with better contrast
         output_frame = ttk.LabelFrame(
             main_frame,
@@ -457,6 +507,18 @@ class ScriptGUI:
             
         self.status_var.set("Generating conversation...")
         self.run_script(f"generate_conversation.py {collab_id} \"{prompt}\" {message_count}")
+
+    def generate_specification(self):
+        """Generate specification based on selected collaboration and topic"""
+        collab_id = self.collab_var.get().split(' - ')[0]
+        topic = self.topic_text.get("1.0", tk.END).strip()
+        
+        if not topic:
+            self.status_var.set("Please enter a topic")
+            return
+            
+        self.status_var.set("Generating specification...")
+        self.run_script(f"generate_specification.py {collab_id} \"{topic}\"")
 
 def main():
     root = tk.Tk()
