@@ -3,6 +3,16 @@ import json
 import glob
 import codecs
 import sys
+import base64
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from solders.keypair import Keypair
+from solana.rpc.client import Client
+from solana.transaction import Transaction
+from solana.system_program import transfer, TransferParams
+from spl.token.instructions import transfer as spl_transfer
+import base58
 from dotenv import load_dotenv
 
 # Force UTF-8 encoding
@@ -11,6 +21,37 @@ if sys.stdout.encoding != 'utf-8':
     sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 load_dotenv()
+
+def load_treasury_wallet():
+    """Load encrypted treasury wallet"""
+    try:
+        # Load encrypted key
+        with open('secure/treasury_wallet.enc', 'r') as f:
+            encrypted_key = f.read()
+            
+        # Create encryption key from environment variables
+        salt = os.getenv('WALLET_SALT').encode()
+        password = (
+            os.getenv('WALLET_SECRET_1') + 
+            os.getenv('WALLET_SECRET_2')
+        ).encode()
+        
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=480000,
+        )
+        key = base64.urlsafe_b64encode(kdf.derive(password))
+        
+        # Decrypt private key
+        f = Fernet(key)
+        private_key = f.decrypt(encrypted_key.encode()).decode()
+        
+        return Keypair.from_bytes(base58.b58decode(private_key))
+    except Exception as e:
+        print(f"Error loading treasury wallet: {e}")
+        return None
 
 def load_swarms_with_hot_wallets():
     """Load all swarms that have hot wallets"""
@@ -27,48 +68,60 @@ def load_swarms_with_hot_wallets():
     return swarms
 
 def fund_hot_wallets():
-    """Generate Phantom URLs to fund hot wallets with initial SOL and COMPUTE"""
-    treasury_wallet = os.getenv('TREASURY_WALLET')  # Public key only
-    compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
+    """Fund hot wallets with initial SOL and COMPUTE"""
+    # Load treasury wallet
+    treasury = load_treasury_wallet()
+    if not treasury:
+        print("Failed to load treasury wallet")
+        return
+        
+    print(f"Loaded treasury wallet: {treasury.pubkey()}")
     
+    # Load all swarms with hot wallets
     swarms = load_swarms_with_hot_wallets()
     print(f"\nFound {len(swarms)} hot wallets to fund")
     
-    # Create URLs for each wallet
-    try:
-        for batch_num, (swarm_id, swarm) in enumerate(swarms.items(), 1):
-            hot_wallet = swarm['hotWallet']
-            print(f"\nGenerating funding URLs for {swarm_id}")
-            print(f"Hot wallet: {hot_wallet}")
-            
-            # Generate SOL transfer URL (correct format)
-            sol_url = (f"https://phantom.app/transfer?"
-                      f"from={treasury_wallet}&"
-                      f"to={hot_wallet}&"
-                      f"amount=10000000&"  # 0.01 SOL
-                      f"memo=Initial+SOL+funding+for+{swarm_id}")
-            
-            # Generate COMPUTE transfer URL
-            compute_url = (f"https://phantom.app/transfer?"
-                         f"from={treasury_wallet}&"
-                         f"to={hot_wallet}&"
-                         f"amount=1000000&"  # 1M COMPUTE
-                         f"splToken={compute_token_mint}&"
-                         f"memo=Initial+COMPUTE+funding+for+{swarm_id}")
-            
-            print("\nSOL funding URL:")
-            print(sol_url)
-            print("\nCOMPUTE funding URL:")
-            print(compute_url)
-            
-            if batch_num < len(swarms):
-                print("\nProcess these URLs, then press Enter for next wallet...")
-                input()
+    # Initialize Solana client
+    client = Client(os.getenv('SOLANA_RPC_URL'))
+    compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
+    
+    for swarm_id, swarm in swarms.items():
+        hot_wallet = swarm['hotWallet']
+        print(f"\nProcessing {swarm_id}")
+        print(f"Hot wallet: {hot_wallet}")
         
-        print("\nAll funding URLs generated!")
-        
-    except Exception as e:
-        print(f"Error generating URLs: {str(e)}")
+        try:
+            # Send SOL
+            sol_tx = Transaction()
+            sol_tx.add(transfer(
+                TransferParams(
+                    from_pubkey=treasury.pubkey(),
+                    to_pubkey=hot_wallet,
+                    lamports=10000000  # 0.01 SOL
+                )
+            ))
+            
+            print("Sending 0.01 SOL...")
+            sol_result = client.send_transaction(sol_tx, treasury)
+            print(f"SOL transfer signature: {sol_result['result']}")
+            
+            # Send COMPUTE
+            compute_tx = Transaction()
+            compute_tx.add(spl_transfer(
+                treasury.pubkey(),
+                hot_wallet,
+                1000000,  # 1M COMPUTE
+                compute_token_mint
+            ))
+            
+            print("Sending 1M COMPUTE...")
+            compute_result = client.send_transaction(compute_tx, treasury)
+            print(f"COMPUTE transfer signature: {compute_result['result']}")
+            
+            print(f"Successfully funded {swarm_id} hot wallet")
+            
+        except Exception as e:
+            print(f"Error funding {swarm_id}: {e}")
 
 def main():
     print("Starting hot wallet funding process...")
