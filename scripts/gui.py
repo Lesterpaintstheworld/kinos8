@@ -153,6 +153,7 @@ class ScriptGUI:
         create_metallic_button(buttons_frame, "Push Data", lambda: self.run_script("pushData.py"), 0, 1)
         create_metallic_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 0, 2)
         create_metallic_button(buttons_frame, "List Relations", lambda: self.run_script("list_swarm_relations.py"), 0, 3)
+        create_metallic_button(buttons_frame, "Phantom Pay", lambda: self.show_payment_dialog(), 0, 4)
 
         # Second row of buttons
         create_metallic_button(buttons_frame, "Send Recap", lambda: self.run_script("send_recap.py"), 1, 0)
@@ -538,6 +539,36 @@ class ScriptGUI:
             
         self.status_var.set("Generating specification...")
         self.run_script(f"generate_specification.py {collab_id} \"{topic}\"")
+
+    def show_payment_dialog(self):
+        """Show dialog to enter payment details"""
+        dialog = tk.Toplevel(self.root)
+        dialog.title("Phantom Payment")
+        dialog.geometry("400x200")
+        dialog.configure(bg="#1e1e1e")
+        
+        # Client Swarm ID
+        ttk.Label(dialog, text="Client Swarm ID:", style="Metallic.TLabel").grid(row=0, column=0, padx=5, pady=5)
+        client_id = ttk.Entry(dialog, width=30)
+        client_id.grid(row=0, column=1, padx=5, pady=5)
+        
+        # Collaboration ID
+        ttk.Label(dialog, text="Collaboration ID:", style="Metallic.TLabel").grid(row=1, column=0, padx=5, pady=5)
+        collab_id = ttk.Entry(dialog, width=30)
+        collab_id.grid(row=1, column=1, padx=5, pady=5)
+        
+        # Pay button
+        def process():
+            if client_id.get() and collab_id.get():
+                dialog.destroy()
+                self.run_script(f"phantom_pay.py {client_id.get()} {collab_id.get()}")
+        
+        ttk.Button(
+            dialog,
+            text="Pay",
+            command=process,
+            style="Metallic.TButton"
+        ).grid(row=2, column=0, columnspan=2, pady=20)
 
 def main():
     root = tk.Tk()
