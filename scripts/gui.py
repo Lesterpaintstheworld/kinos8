@@ -8,67 +8,54 @@ def configure_styles():
     style = ttk.Style()
     
     # Configure dark theme base
+    style.theme_use('clam')  # Use clam theme as base
+    
+    # Configure colors
     style.configure(".",
         background="#1e1e1e",
-        foreground="#ffffff"
+        foreground="#ffffff",
+        fieldbackground="#1e1e1e",
+        troughcolor="#2d2d2d"
     )
     
-    # LabelFrame style with visible text and border
-    style.configure("Metallic.TLabelframe",
-        background="#1e1e1e",
-        foreground="#ffffff",
-        relief="groove",
-        borderwidth=1
-    )
-    style.configure("Metallic.TLabelframe.Label",
-        background="#1e1e1e",
-        foreground="#ffffff",
-        font=("Segoe UI", 9, "bold"),
-        padding=(5, 5)  # Add some padding around the label
-    )
-    
-    # Button style with dark background and white text
+    # Button style
     style.configure("Metallic.TButton",
-        padding=(10, 5),
         background="#2d2d2d",
         foreground="#ffffff",
-        relief="raised",
+        padding=(10, 5),
         font=("Segoe UI", 9, "bold")
     )
     style.map("Metallic.TButton",
         background=[("active", "#3d3d3d"), ("pressed", "#1d1d1d")],
-        foreground=[("active", "#ffffff"), ("pressed", "#ffffff")],
-        relief=[("pressed", "sunken")]
+        foreground=[("active", "#ffffff"), ("pressed", "#ffffff")]
     )
     
     # Toggle button style
     style.configure("MetallicToggle.TButton",
-        padding=(15, 5),
         background="#2d2d2d",
         foreground="#ffffff",
-        relief="raised",
+        padding=(15, 5),
         font=("Segoe UI", 9, "bold")
     )
     style.map("MetallicToggle.TButton",
-        background=[
-            ("selected", "#404da1"),
-            ("active", "#3d3d3d"),
-            ("pressed", "#1d1d1d")
-        ],
-        foreground=[("selected", "#ffffff")],
-        relief=[("pressed", "sunken")]
+        background=[("selected", "#404da1"), ("active", "#3d3d3d"), ("pressed", "#1d1d1d")],
+        foreground=[("selected", "#ffffff")]
     )
-
+    
     # Frame style
     style.configure("Metallic.TFrame",
         background="#1e1e1e"
     )
-
-    # Label style for status bar
-    style.configure("Metallic.TLabel",
+    
+    # LabelFrame style
+    style.configure("Metallic.TLabelframe",
+        background="#1e1e1e",
+        foreground="#ffffff"
+    )
+    style.configure("Metallic.TLabelframe.Label",
         background="#1e1e1e",
         foreground="#ffffff",
-        font=("Segoe UI", 9)
+        font=("Segoe UI", 9, "bold")
     )
 import sys
 import queue
@@ -120,16 +107,19 @@ class ScriptGUI:
             self.root.destroy()
 
     def setup_gui(self):
-        # Main container
-        main_frame = ttk.Frame(self.root, padding="10")
+        # Configure root
+        self.root.configure(bg="#1e1e1e")
+        
+        # Main container with metallic frame
+        main_frame = ttk.Frame(self.root, padding="10", style="Metallic.TFrame")
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
-        # Buttons frame
+        # Buttons frame with metallic effect
         buttons_frame = ttk.LabelFrame(
             main_frame,
             text="Available Scripts",
-            padding="5",
-            style="Metallic.TLabelframe"  # Make sure this style is specified
+            padding="8",
+            style="Metallic.TLabelframe"
         )
         buttons_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
         
@@ -139,7 +129,7 @@ class ScriptGUI:
                 text=text,
                 command=command,
                 style="Metallic.TButton",
-                width=20  # Fixed width for consistency
+                width=20
             )
             btn.grid(row=0, column=column, padx=4, pady=4)
             return btn
@@ -166,7 +156,7 @@ class ScriptGUI:
             main_frame,
             text="Output",
             padding="8",
-            style="Metallic.TFrame"
+            style="Metallic.TLabelframe"
         )
         output_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=6, pady=6)
         
