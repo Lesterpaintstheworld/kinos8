@@ -63,12 +63,9 @@ def generate_recap():
     try:
         response = client.messages.create(
             model="claude-3-5-sonnet-20241022",  # don't change this value!!!!!
-            max_tokens=2000,  # Added this required parameter
+            max_tokens=2000,
+            system=system_prompt,  # System prompt goes here as a parameter
             messages=[
-                {
-                    "role": "system", 
-                    "content": system_prompt
-                },
                 {
                     "role": "user", 
                     "content": """Create a concise but informative recap of recent activities in the UBC ecosystem. 
