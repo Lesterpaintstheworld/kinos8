@@ -222,6 +222,35 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         print(f"Processed news from {data['swarmId']}")
             except Exception as e:
                 print(f"Error processing news file {file_path}: {e}")
+                
+        # Handle specification files
+        elif 'data/specifications' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
+            try:
+                # Wait a brief moment to ensure file is fully written
+                await asyncio.sleep(0.1)
+                
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.loads(f.read())
+                    if 'specificationId' in data and 'collaborationId' in data:
+                        # Load collaboration to get client swarm
+                        collab_files = glob.glob('data/collaborations/*.json')
+                        client_swarm_id = None
+                        for collab_file in collab_files:
+                            with open(collab_file, 'r', encoding='utf-8') as cf:
+                                collab_data = json.load(cf)
+                                if collab_data.get('collaborationId') == data['collaborationId']:
+                                    client_swarm_id = collab_data.get('clientSwarmId')
+                                    break
+                        
+                        if client_swarm_id:
+                            message = (f"📋 New Specification\n\n"
+                                     f"Title: {data.get('title')}\n"
+                                     f"View at: https://swarms.universalbasiccompute.ai/specifications/{data['specificationId']}")
+                            await self._send_telegram_message(message, client_swarm_id)
+                            print(f"Sent specification notification to {client_swarm_id}")
+                            
+            except Exception as e:
+                print(f"Error processing specification file {file_path}: {e}")
 
     async def _send_telegram_message(self, message, sender_id):
         try:
