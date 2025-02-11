@@ -31,6 +31,7 @@ def build_system_prompt():
     messages = load_json_files('data/messages/*.json', 100)
     collaborations = load_json_files('data/collaborations/*.json', 50)
     swarms = load_json_files('data/swarms/*.json', 50)
+    news = load_json_files('data/news/*.json', 20)  # Added news loading
     
     prompt = "You are a helpful AI assistant tasked with creating a recap of recent UBC ecosystem activities. "
     prompt += "Use the following data to create a concise, engaging summary:\n\n"
@@ -49,6 +50,11 @@ def build_system_prompt():
     prompt += "\nSwarm Information:\n"
     for swarm in swarms:
         prompt += f"- {swarm.get('name')}: {swarm.get('shortDescription')}\n"
+    
+    # Add news context
+    prompt += "\nRecent News:\n"
+    for news_item in news:
+        prompt += f"- {news_item.get('title', 'Untitled')}: {news_item.get('content')}\n"
     
     return prompt
 
