@@ -130,11 +130,14 @@ def fund_hot_wallets():
                 tx.add(transfer_ix)
                 tx.recent_blockhash = recent_blockhash
                 tx.fee_payer = treasury.pubkey()  # Add fee payer
-                tx.sign(treasury)  # Sign with treasury keypair
+                
+                # Serialize transaction
+                print("Signing and serializing transaction...")
+                signed_tx = tx.serialize()  # This will include the signature
                 
                 print("Sending 0.01 SOL...")
-                # Send signed transaction
-                result = client.send_transaction(tx.serialize())  # Send serialized transaction
+                # Send serialized transaction
+                result = client.send_raw_transaction(signed_tx)
                 print(f"SOL transfer signature: {result['result']}")
                 print(f"Successfully funded {swarm_id} hot wallet")
                 
