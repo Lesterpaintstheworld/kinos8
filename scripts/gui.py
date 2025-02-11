@@ -90,6 +90,18 @@ class ScriptGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("UBC Scripts Manager")
+        
+    def cleanup(self):
+        """Clean up resources before exit"""
+        if self.watching and self.watch_process:
+            self.toggle_watch()  # Stop watching process
+        
+        # Restore original stdout
+        sys.stdout = sys.__stdout__
+        
+        # Destroy the root window
+        if self.root:
+            self.root.destroy()
         self.root.geometry("1000x600")
         self.root.configure(bg="#1e1e1e")  # Dark background
         
@@ -295,7 +307,15 @@ class ScriptGUI:
 def main():
     root = tk.Tk()
     app = ScriptGUI(root)
-    root.mainloop()
+    
+    try:
+        root.mainloop()
+    except KeyboardInterrupt:
+        print("\nReceived keyboard interrupt, shutting down gracefully...")
+        app.cleanup()
+    finally:
+        # Ensure cleanup happens even if other exceptions occur
+        app.cleanup()
 
 if __name__ == "__main__":
     main()
