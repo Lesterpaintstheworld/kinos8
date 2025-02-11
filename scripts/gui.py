@@ -10,6 +10,14 @@ def configure_styles():
     # Configure dark theme base
     style.theme_use('clam')  # Use clam theme as base
     
+    # Slider style
+    style.configure("Metallic.Horizontal.TScale",
+        background="#1e1e1e",
+        troughcolor="#2d2d2d",
+        lightcolor="#404040",
+        darkcolor="#404040"
+    )
+    
     # Configure colors
     style.configure(".",
         background="#1e1e1e",
@@ -209,6 +217,26 @@ class ScriptGUI:
         )
         self.prompt_text.grid(row=1, column=1, padx=4, pady=4, sticky=tk.W)
 
+        # Message Count Slider
+        slider_label = ttk.Label(
+            conv_frame,
+            text="Messages to Generate:",
+            style="Metallic.TLabel"
+        )
+        slider_label.grid(row=2, column=0, padx=4, pady=4, sticky=tk.W)
+
+        self.message_count = tk.IntVar(value=1)
+        self.message_slider = ttk.Scale(
+            conv_frame,
+            from_=1,
+            to=10,
+            orient=tk.HORIZONTAL,
+            variable=self.message_count,
+            style="Metallic.Horizontal.TScale",
+            length=200
+        )
+        self.message_slider.grid(row=2, column=1, padx=4, pady=4, sticky=tk.W)
+        
         # Generate Button
         generate_button = ttk.Button(
             conv_frame,
@@ -216,7 +244,7 @@ class ScriptGUI:
             command=self.generate_conversation,
             style="Metallic.TButton"
         )
-        generate_button.grid(row=2, column=1, padx=4, pady=4, sticky=tk.E)
+        generate_button.grid(row=3, column=1, padx=4, pady=4, sticky=tk.E)
 
         # Output area with better contrast
         output_frame = ttk.LabelFrame(
@@ -421,13 +449,14 @@ class ScriptGUI:
         """Generate conversation based on selected collaboration and prompt"""
         collab_id = self.collab_var.get().split(' - ')[0]
         prompt = self.prompt_text.get("1.0", tk.END).strip()
+        message_count = self.message_count.get()
         
         if not prompt:
             self.status_var.set("Please enter a prompt")
             return
             
         self.status_var.set("Generating conversation...")
-        self.run_script(f"generate_conversation.py {collab_id} \"{prompt}\"")
+        self.run_script(f"generate_conversation.py {collab_id} \"{prompt}\" {message_count}")
 
 def main():
     root = tk.Tk()
