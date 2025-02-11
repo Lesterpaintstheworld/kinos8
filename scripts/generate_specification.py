@@ -6,7 +6,6 @@ import codecs
 import subprocess
 from datetime import datetime
 import anthropic
-import requests
 from dotenv import load_dotenv
 
 # Force UTF-8 encoding for stdin/stdout/stderr
@@ -62,40 +61,6 @@ def load_collaboration(collab_id):
         print(f"Error loading data: {e}")
         return None, [], []
 
-def send_to_nlr_and_telegram(specification, collab):
-    """Send specification URL to client's Telegram"""
-    try:
-        # Get client swarm's Telegram chat ID
-        client_swarm = collab['clientSwarmId']
-        chat_id_key = f"{client_swarm.upper()}_TELEGRAM_CHAT_ID"
-        chat_id = os.getenv(chat_id_key)
-        token = os.getenv('KINKONG_TELEGRAM_BOT_TOKEN')
-        
-        if not token or not chat_id:
-            print(f"Warning: Telegram credentials not found for client swarm {client_swarm}")
-            return
-        
-        telegram_url = f"https://api.telegram.org/bot{token}/sendMessage"
-        
-        # Simple message without any formatting
-        message = f"New specification: {specification['title']}\nID: {specification['specificationId']}"
-        
-        data = {
-            'chat_id': chat_id,
-            'text': message
-        }
-        
-        print(f"Sending notification to {client_swarm}'s Telegram channel...")
-        response = requests.post(telegram_url, json=data)
-        
-        if response.status_code != 200:
-            print(f"Warning: Failed to send Telegram notification (status {response.status_code})")
-            return
-        
-        print("Specification notification sent successfully!")
-        
-    except Exception as e:
-        print(f"Warning: Error sending specification notification: {str(e)}")
 
 def git_operations(spec_id):
     """Add, commit and push the new specification file"""
@@ -185,16 +150,8 @@ Recent Messages:
                 print(spec_content.encode('ascii', 'replace').decode('ascii'))
             print("=" * 50)
             
-            # Push specification to Airtable
-            print("\nPushing specification to Airtable...")
-            subprocess.run(["python", "scripts/pushData.py", "--table", "Specifications"], check=True)
-            print("Specification pushed to Airtable successfully")
-            
             # Git operations
             git_operations(spec_id)
-            
-            # Send to NLR and Telegram
-            send_to_nlr_and_telegram(specification, collab)
             
             return specification
             
