@@ -129,7 +129,7 @@ def fund_hot_wallets():
                 tx = Transaction.new_signed_with_payer(
                     instructions=[transfer_ix],
                     payer=treasury.pubkey(),
-                    signers=[treasury],
+                    keypair=treasury,
                     recent_blockhash=recent_blockhash
                 )
             
