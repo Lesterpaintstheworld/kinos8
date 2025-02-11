@@ -97,6 +97,25 @@ def send_to_nlr_and_telegram(specification, collab):
         print(f"Error sending specification notification: {str(e)}")
         raise
 
+def git_operations(spec_id):
+    """Add, commit and push the new specification file"""
+    try:
+        # Git add
+        subprocess.run(["git", "add", f"data/specifications/{spec_id}.json"], check=True)
+        
+        # Git commit
+        commit_message = f"Added specification {spec_id}"
+        subprocess.run(["git", "commit", "-m", commit_message], check=True)
+        
+        # Git push
+        subprocess.run(["git", "push"], check=True)
+        
+        print("\nSpecification file committed and pushed to repository")
+        
+    except subprocess.CalledProcessError as e:
+        print(f"Error in git operations: {e}")
+        raise
+
 def generate_specification(collab_id, topic):
     """Generate a specification document using Claude"""
     collab, messages, existing_specs = load_collaboration(collab_id)
