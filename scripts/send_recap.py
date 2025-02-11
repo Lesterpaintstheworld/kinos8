@@ -77,7 +77,6 @@ def generate_recap():
                     "content": """Create a concise but informative recap of recent activities in the UBC ecosystem. 
                     Focus on key developments, collaborations, and important messages.
                     Format it in a clear, engaging way suitable for a Telegram announcement.
-                    Include relevant numbers and metrics where available.
                     Keep it under 2000 characters."""
                 }
             ]
