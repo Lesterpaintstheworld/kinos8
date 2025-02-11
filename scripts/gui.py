@@ -160,6 +160,64 @@ class ScriptGUI:
         )
         self.watch_button.grid(row=1, column=3, padx=6, pady=3)
         
+        # Conversation Generator Frame
+        conv_frame = ttk.LabelFrame(
+            main_frame,
+            text="Conversation Generator",
+            padding="8",
+            style="Metallic.TLabelframe"
+        )
+        conv_frame.grid(row=1, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
+
+        # Collaboration Selector
+        collab_label = ttk.Label(
+            conv_frame,
+            text="Select Collaboration:",
+            style="Metallic.TLabel"
+        )
+        collab_label.grid(row=0, column=0, padx=4, pady=4, sticky=tk.W)
+
+        self.collab_var = tk.StringVar()
+        self.collab_selector = ttk.Combobox(
+            conv_frame,
+            textvariable=self.collab_var,
+            style="Metallic.TCombobox",
+            width=40,
+            state="readonly"
+        )
+        self.collab_selector.grid(row=0, column=1, padx=4, pady=4, sticky=tk.W)
+        self.load_collaborations()
+
+        # Prompt Text Box
+        prompt_label = ttk.Label(
+            conv_frame,
+            text="Enter Prompt:",
+            style="Metallic.TLabel"
+        )
+        prompt_label.grid(row=1, column=0, padx=4, pady=4, sticky=tk.W)
+
+        self.prompt_text = tk.Text(
+            conv_frame,
+            height=3,
+            width=60,
+            bg="#202020",
+            fg="#e0e0e0",
+            insertbackground="#ffffff",
+            relief="flat",
+            borderwidth=1,
+            font=("Consolas", 10)
+        )
+        self.prompt_text.grid(row=1, column=1, padx=4, pady=4, sticky=tk.W)
+
+        # Generate Button
+        generate_button = ttk.Button(
+            conv_frame,
+            text="Generate Conversation",
+            command=self.generate_conversation,
+            style="Metallic.TButton"
+        )
+        generate_button.grid(row=2, column=1, padx=4, pady=4, sticky=tk.E)
+
         # Output area with better contrast
         output_frame = ttk.LabelFrame(
             main_frame,
@@ -167,7 +225,7 @@ class ScriptGUI:
             padding="8",
             style="Metallic.TLabelframe"
         )
-        output_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=6, pady=6)
+        output_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=6, pady=6)
         
         # Enhanced output text area
         self.output_text = scrolledtext.ScrolledText(
@@ -198,7 +256,7 @@ class ScriptGUI:
             relief="sunken",
             padding=(8, 4)
         )
-        status_bar.grid(row=2, column=0, sticky=(tk.W, tk.E), padx=6, pady=4)
+        status_bar.grid(row=3, column=0, sticky=(tk.W, tk.E), padx=6, pady=4)
         
         # Configure grid weights
         main_frame.columnconfigure(0, weight=1)
@@ -333,6 +391,36 @@ class ScriptGUI:
             style="MetallicToggle.TButton"
         )
         self.status_var.set("Watch process ended")
+
+    def load_collaborations(self):
+        """Load available collaborations into the selector"""
+        try:
+            import glob
+            import json
+            collab_files = glob.glob('data/collaborations/*.json')
+            collabs = []
+            for file in collab_files:
+                with open(file, 'r') as f:
+                    data = json.load(f)
+                    desc = f"{data.get('collaborationId')} - {data.get('clientSwarmId')} with {data.get('providerSwarmId')}"
+                    collabs.append(desc)
+            self.collab_selector['values'] = sorted(collabs)
+            if collabs:
+                self.collab_selector.set(collabs[0])
+        except Exception as e:
+            print(f"Error loading collaborations: {e}")
+
+    def generate_conversation(self):
+        """Generate conversation based on selected collaboration and prompt"""
+        collab_id = self.collab_var.get().split(' - ')[0]
+        prompt = self.prompt_text.get("1.0", tk.END).strip()
+        
+        if not prompt:
+            self.status_var.set("Please enter a prompt")
+            return
+            
+        self.status_var.set("Generating conversation...")
+        self.run_script(f"generate_conversation.py {collab_id} \"{prompt}\"")
 
 def main():
     root = tk.Tk()
