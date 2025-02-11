@@ -5,63 +5,60 @@ import threading
 import time
 
 def configure_styles():
-    # Configure dark theme styles with silver gradients
     style = ttk.Style()
+    
+    # Configure dark theme base
     style.configure(".",
-        background="#1a1a1a",  # Darker background for better contrast
-        foreground="#e8e8e8",  # Brighter text
-        fieldbackground="#1a1a1a",
+        background="#1e1e1e",
+        foreground="#ffffff",
+        fieldbackground="#1e1e1e",
         troughcolor="#2d2d2d",
-        selectbackground="#505050",  # Lighter selection
+        selectbackground="#404040",
         selectforeground="#ffffff"
     )
     
-    # Metallic button style
+    # Button style with proper text visibility
     style.configure("Metallic.TButton",
-        background="linear-gradient(#4a4a4a, #3a3a3a)",
+        padding=(10, 5),
+        background="#2d2d2d",
         foreground="#ffffff",
-        borderwidth=1,
-        focuscolor="none",
-        padding=8,
-        relief="raised"
+        relief="raised",
+        font=("Segoe UI", 9)
     )
     style.map("Metallic.TButton",
-        background=[
-            ("active", "linear-gradient(#5a5a5a, #4a4a4a)"),
-            ("pressed", "linear-gradient(#3a3a3a, #2a2a2a)")
-        ],
-        foreground=[("active", "#ffffff")]
+        background=[("active", "#404040"), ("pressed", "#202020")],
+        relief=[("pressed", "sunken")]
     )
     
-    # Metallic toggle style
+    # Toggle button style
     style.configure("MetallicToggle.TButton",
-        background="linear-gradient(#4a4a4a, #3a3a3a)",
+        padding=(15, 5),
+        background="#2d2d2d",
         foreground="#ffffff",
-        borderwidth=1,
-        focuscolor="none",
-        padding=(20, 8),
-        relief="raised"
+        relief="raised",
+        font=("Segoe UI", 9)
     )
     style.map("MetallicToggle.TButton",
-        background=[
-            ("selected", "linear-gradient(#506da1, #405091)"),
-            ("active", "linear-gradient(#5a5a5a, #4a4a4a)"),
-            ("pressed", "linear-gradient(#3a3a3a, #2a2a2a)")
-        ],
-        foreground=[("selected", "#ffffff")]
-    )
-
-    # Frame styles with metallic accents
-    style.configure("Metallic.TFrame",
-        background="#1a1a1a",
-        borderwidth=1,
-        relief="raised"
+        background=[("selected", "#404da1"), ("active", "#404040"), ("pressed", "#202020")],
+        relief=[("pressed", "sunken")]
     )
     
-    # Label styles with better visibility
-    style.configure("Metallic.TLabel",
-        background="#1a1a1a",
-        foreground="#e8e8e8",
+    # Frame style
+    style.configure("Metallic.TFrame",
+        background="#1e1e1e",
+        relief="flat"
+    )
+    
+    # LabelFrame style
+    style.configure("Metallic.TLabelframe",
+        background="#1e1e1e",
+        foreground="#ffffff",
+        relief="groove",
+        borderwidth=1
+    )
+    style.configure("Metallic.TLabelframe.Label",
+        background="#1e1e1e",
+        foreground="#a0a0a0",
         font=("Segoe UI", 9, "bold")
     )
 import sys
@@ -127,9 +124,10 @@ class ScriptGUI:
                 frame,
                 text=text,
                 command=command,
-                style="Metallic.TButton"
+                style="Metallic.TButton",
+                width=20  # Fixed width for consistency
             )
-            btn.grid(row=0, column=column, padx=6, pady=3)
+            btn.grid(row=0, column=column, padx=4, pady=4)
             return btn
 
         # Create metallic buttons
@@ -164,16 +162,16 @@ class ScriptGUI:
             wrap=tk.WORD,
             width=100,
             height=30,
-            bg="#202020",  # Darker background
-            fg="#f0f0f0",  # Brighter text
+            bg="#202020",
+            fg="#e0e0e0",
             insertbackground="#ffffff",
-            selectbackground="#505050",
+            selectbackground="#404040",
             selectforeground="#ffffff",
             font=("Consolas", 10),
             relief="flat",
             borderwidth=1,
-            padx=8,
-            pady=8
+            padx=10,
+            pady=10
         )
         self.output_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
