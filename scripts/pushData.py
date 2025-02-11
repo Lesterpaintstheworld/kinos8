@@ -440,15 +440,24 @@ def push_validations():
         print(f"  - Skipped: {skipped_count}")
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--table', help='Specific table to push')
+    args = parser.parse_args()
+
     try:
-        push_swarms()
-        push_services()
-        push_collaborations()
-        push_specifications()
-        push_messages()
-        push_news()
-        push_deliverables()
-        push_validations()
+        if args.table == 'Swarms':
+            push_swarms()
+        elif not args.table:
+            # Push all if no specific table specified
+            push_swarms()
+            push_services()
+            push_collaborations()
+            push_specifications()
+            push_messages()
+            push_news()
+            push_deliverables()
+            push_validations()
         print("\nAll data has been pushed successfully!")
     except Exception as e:
         print(f"Error during push: {str(e)}")
