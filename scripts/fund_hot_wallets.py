@@ -82,8 +82,14 @@ def fund_hot_wallets():
     swarms = load_swarms_with_hot_wallets()
     print(f"\nFound {len(swarms)} hot wallets to fund")
     
-    # Initialize Solana client
-    client = Client(os.getenv('SOLANA_RPC_URL'))
+    # Initialize Solana client with Helius RPC
+    helius_url = os.getenv('NEXT_PUBLIC_HELIUS_RPC_URL')
+    if not helius_url:
+        print("Error: NEXT_PUBLIC_HELIUS_RPC_URL not found in environment variables")
+        return
+        
+    client = Client(helius_url)
+    print(f"Connected to Helius RPC endpoint")
     
     for swarm_id, swarm in swarms.items():
         hot_wallet = swarm['hotWallet']
