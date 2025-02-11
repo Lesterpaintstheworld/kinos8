@@ -461,6 +461,8 @@ def main():
     try:
         if args.table == 'Swarms':
             push_swarms()
+        elif args.table == 'Specifications':
+            push_specifications()
         elif not args.table:
             # Push all if no specific table specified
             push_swarms()
