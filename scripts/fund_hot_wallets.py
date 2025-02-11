@@ -41,15 +41,15 @@ def fund_hot_wallets():
             print(f"\nGenerating funding URLs for {swarm_id}")
             print(f"Hot wallet: {hot_wallet}")
             
-            # Generate SOL transfer URL
-            sol_url = (f"https://phantom.app/ul/v1/transfer?"
+            # Generate SOL transfer URL (correct format)
+            sol_url = (f"https://phantom.app/transfer?"
                       f"from={treasury_wallet}&"
                       f"to={hot_wallet}&"
                       f"amount=10000000&"  # 0.01 SOL
                       f"memo=Initial+SOL+funding+for+{swarm_id}")
             
             # Generate COMPUTE transfer URL
-            compute_url = (f"https://phantom.app/ul/v1/transfer?"
+            compute_url = (f"https://phantom.app/transfer?"
                          f"from={treasury_wallet}&"
                          f"to={hot_wallet}&"
                          f"amount=1000000&"  # 1M COMPUTE
