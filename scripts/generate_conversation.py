@@ -109,14 +109,15 @@ Existing conversation context:
         print(f"Error generating conversation: {str(e)}")
 
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: python generate_conversation.py <collaboration_id> <prompt>")
+    if len(sys.argv) < 4:
+        print("Usage: python generate_conversation.py <collaboration_id> <prompt> <message_count>")
         return
     
     collab_id = sys.argv[1]
-    prompt = ' '.join(sys.argv[2:])
+    prompt = sys.argv[2]
+    message_count = int(sys.argv[3])
     
-    generate_conversation(collab_id, prompt)
+    generate_conversation(collab_id, prompt, message_count)
 
 if __name__ == "__main__":
     main()
