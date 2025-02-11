@@ -3,6 +3,7 @@ import json
 import os
 import glob
 import codecs
+import subprocess
 from datetime import datetime
 import anthropic
 import requests
