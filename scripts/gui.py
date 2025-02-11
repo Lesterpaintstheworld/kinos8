@@ -7,14 +7,13 @@ import time
 def configure_styles():
     style = ttk.Style()
     
-    # Configure dark theme base with better contrast
+    # Configure dark theme base
     style.configure(".",
         background="#1e1e1e",
-        foreground="#ffffff",
-        fieldbackground="#1e1e1e"
+        foreground="#ffffff"
     )
     
-    # LabelFrame style with visible text
+    # LabelFrame style with visible text and border
     style.configure("Metallic.TLabelframe",
         background="#1e1e1e",
         foreground="#ffffff",
@@ -23,20 +22,21 @@ def configure_styles():
     )
     style.configure("Metallic.TLabelframe.Label",
         background="#1e1e1e",
-        foreground="#ffffff",  # Make label text white
-        font=("Segoe UI", 9, "bold")
+        foreground="#ffffff",
+        font=("Segoe UI", 9, "bold"),
+        padding=(5, 5)  # Add some padding around the label
     )
     
-    # Button style with proper contrast
+    # Button style with dark background and white text
     style.configure("Metallic.TButton",
         padding=(10, 5),
-        background="#404040",  # Darker background
-        foreground="#ffffff",  # White text
+        background="#2d2d2d",
+        foreground="#ffffff",
         relief="raised",
-        font=("Segoe UI", 9, "bold")  # Bold text for better visibility
+        font=("Segoe UI", 9, "bold")
     )
     style.map("Metallic.TButton",
-        background=[("active", "#505050"), ("pressed", "#303030")],
+        background=[("active", "#3d3d3d"), ("pressed", "#1d1d1d")],
         foreground=[("active", "#ffffff"), ("pressed", "#ffffff")],
         relief=[("pressed", "sunken")]
     )
@@ -44,7 +44,7 @@ def configure_styles():
     # Toggle button style
     style.configure("MetallicToggle.TButton",
         padding=(15, 5),
-        background="#404040",
+        background="#2d2d2d",
         foreground="#ffffff",
         relief="raised",
         font=("Segoe UI", 9, "bold")
@@ -52,17 +52,23 @@ def configure_styles():
     style.map("MetallicToggle.TButton",
         background=[
             ("selected", "#404da1"),
-            ("active", "#505050"),
-            ("pressed", "#303030")
+            ("active", "#3d3d3d"),
+            ("pressed", "#1d1d1d")
         ],
         foreground=[("selected", "#ffffff")],
         relief=[("pressed", "sunken")]
     )
-    
+
     # Frame style
     style.configure("Metallic.TFrame",
+        background="#1e1e1e"
+    )
+
+    # Label style for status bar
+    style.configure("Metallic.TLabel",
         background="#1e1e1e",
-        relief="flat"
+        foreground="#ffffff",
+        font=("Segoe UI", 9)
     )
 import sys
 import queue
@@ -119,7 +125,12 @@ class ScriptGUI:
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # Buttons frame
-        buttons_frame = ttk.LabelFrame(main_frame, text="Available Scripts", padding="5")
+        buttons_frame = ttk.LabelFrame(
+            main_frame,
+            text="Available Scripts",
+            padding="5",
+            style="Metallic.TLabelframe"  # Make sure this style is specified
+        )
         buttons_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
         
         def create_metallic_button(frame, text, command, column):
