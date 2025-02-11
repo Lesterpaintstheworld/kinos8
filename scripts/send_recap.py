@@ -58,23 +58,26 @@ def generate_recap():
     
     system_prompt = build_system_prompt()
     
-    user_prompt = """Create a concise but informative recap of recent activities in the UBC ecosystem. 
-    Focus on key developments, collaborations, and important messages.
-    Format it in a clear, engaging way suitable for a Telegram announcement.
-    Include relevant numbers and metrics where available.
-    Keep it under 2000 characters."""
-    
-    message = client.messages.create(
-        model="claude-3-opus-20240229",
-        max_tokens=2000,
-        temperature=0.7,
-        system=system_prompt,
-        messages=[
-            {"role": "user", "content": user_prompt}
-        ]
-    )
-    
-    return message.content
+    try:
+        response = client.messages.create(
+            model="claude-3-opus-20240229",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": """Create a concise but informative recap of recent activities in the UBC ecosystem. 
+                Focus on key developments, collaborations, and important messages.
+                Format it in a clear, engaging way suitable for a Telegram announcement.
+                Include relevant numbers and metrics where available.
+                Keep it under 2000 characters."""}
+            ],
+            max_tokens=2000,
+            temperature=0.7
+        )
+        
+        return response.content[0].text
+        
+    except Exception as e:
+        print(f"Error generating recap with Claude: {str(e)}")
+        raise
 
 async def send_telegram_message(recap_text):
     """Send recap to Telegram main chat"""
