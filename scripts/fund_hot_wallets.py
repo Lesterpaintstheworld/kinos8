@@ -58,17 +58,19 @@ def fund_hot_wallets():
             })
         
         # Create batched SOL URL
-        sol_url = f"https://phantom.app/ul/v1/batch-transfer?" + \
-                 f"from={treasury_wallet}&" + \
-                 f"transfers={','.join([f'{t[\"to\"]}:{t[\"amount\"]}' for t in sol_transfers])}&" + \
-                 f"memo=Initial+SOL+funding+for+hot+wallets"
+        transfers_str = ','.join([f'{t["to"]}:{t["amount"]}' for t in sol_transfers])
+        sol_url = (f"https://phantom.app/ul/v1/batch-transfer?"
+                  f"from={treasury_wallet}&"
+                  f"transfers={transfers_str}&"
+                  f"memo=Initial+SOL+funding+for+hot+wallets")
         
         # Create batched COMPUTE URL
-        compute_url = f"https://phantom.app/ul/v1/batch-transfer?" + \
-                     f"from={treasury_wallet}&" + \
-                     f"transfers={','.join([f'{t[\"to\"]}:{t[\"amount\"]}' for t in compute_transfers])}&" + \
-                     f"splToken={compute_token_mint}&" + \
-                     f"memo=Initial+COMPUTE+funding+for+hot+wallets"
+        transfers_str = ','.join([f'{t["to"]}:{t["amount"]}' for t in compute_transfers])
+        compute_url = (f"https://phantom.app/ul/v1/batch-transfer?"
+                      f"from={treasury_wallet}&"
+                      f"transfers={transfers_str}&"
+                      f"splToken={compute_token_mint}&"
+                      f"memo=Initial+COMPUTE+funding+for+hot+wallets")
         
         print("\nBatched funding URLs:")
         print(f"\n1. Send 0.01 SOL to all hot wallets:")
