@@ -68,8 +68,8 @@ Collaboration Context:
 
 Recent Messages:
 """
-    # Add last 5 messages for context
-    for msg in sorted(messages, key=lambda x: x.get('timestamp', ''))[-5:]:
+    # Add last 25 messages for context
+    for msg in sorted(messages, key=lambda x: x.get('timestamp', ''))[-25:]:
         context += f"- From {msg.get('senderId')} to {msg.get('receiverId')}: {msg.get('content')}\n"
 
     context += "\nExisting Specifications:\n"
