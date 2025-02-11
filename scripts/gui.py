@@ -1,7 +1,53 @@
 import tkinter as tk
-from tkinter import ttk, scrolledtext
+from tkinter import ttk, scrolledtext, font
 import subprocess
 import threading
+
+def configure_styles():
+    # Configure dark theme styles
+    style = ttk.Style()
+    style.configure(".",
+        background="#1e1e1e",
+        foreground="#e0e0e0",
+        fieldbackground="#1e1e1e",
+        troughcolor="#2d2d2d",
+        selectbackground="#404040",
+        selectforeground="#ffffff"
+    )
+    
+    # Configure frame styles
+    style.configure("TFrame",
+        background="#1e1e1e"
+    )
+    
+    # Configure label styles
+    style.configure("TLabel",
+        background="#1e1e1e",
+        foreground="#e0e0e0"
+    )
+    
+    # Configure button styles
+    style.configure("TButton",
+        background="#2d2d2d",
+        foreground="#e0e0e0",
+        borderwidth=0,
+        focuscolor="none",
+        padding=6
+    )
+    style.map("TButton",
+        background=[("active", "#404040"), ("pressed", "#505050")],
+        foreground=[("active", "#ffffff")]
+    )
+    
+    # Configure labelframe styles
+    style.configure("TLabelframe",
+        background="#1e1e1e",
+        foreground="#e0e0e0"
+    )
+    style.configure("TLabelframe.Label",
+        background="#1e1e1e",
+        foreground="#a0a0a0"
+    )
 import sys
 import queue
 import os
@@ -25,6 +71,10 @@ class ScriptGUI:
         self.root = root
         self.root.title("UBC Scripts Manager")
         self.root.geometry("1000x600")
+        self.root.configure(bg="#1e1e1e")  # Dark background
+        
+        # Configure styles
+        configure_styles()
         
         # Create queue for handling output
         self.queue = queue.Queue()
@@ -44,35 +94,51 @@ class ScriptGUI:
         buttons_frame = ttk.LabelFrame(main_frame, text="Available Scripts", padding="5")
         buttons_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
         
+        def create_button(frame, text, command, column):
+            btn = ttk.Button(frame, text=text, command=command)
+            btn.grid(row=0, column=column, padx=5, pady=2)
+            return btn
+
         # Script buttons
-        ttk.Button(buttons_frame, text="Pull Data", command=lambda: self.run_script("pullData.py")).grid(row=0, column=0, padx=5, pady=2)
-        ttk.Button(buttons_frame, text="Push Data", command=lambda: self.run_script("pushData.py")).grid(row=0, column=1, padx=5, pady=2)
-        ttk.Button(buttons_frame, text="Calculate Distributions", command=lambda: self.run_script("calculate_distributions.py")).grid(row=0, column=2, padx=5, pady=2)
-        ttk.Button(buttons_frame, text="Assign Timestamps", command=lambda: self.run_script("assign_timestamps.py")).grid(row=0, column=3, padx=5, pady=2)
+        create_button(buttons_frame, "Pull Data", lambda: self.run_script("pullData.py"), 0)
+        create_button(buttons_frame, "Push Data", lambda: self.run_script("pushData.py"), 1)
+        create_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 2)
+        create_button(buttons_frame, "Assign Timestamps", lambda: self.run_script("assign_timestamps.py"), 3)
+        create_button(buttons_frame, "Clear Output", self.clear_output, 4)
+        create_button(buttons_frame, "Save Output", self.save_output, 5)
         
-        # Clear and Save buttons
-        ttk.Button(buttons_frame, text="Clear Output", command=self.clear_output).grid(row=0, column=4, padx=5, pady=2)
-        ttk.Button(buttons_frame, text="Save Output", command=self.save_output).grid(row=0, column=5, padx=5, pady=2)
-        
-        # Add Watch Changes toggle button
-        self.watch_button = ttk.Button(
-            buttons_frame, 
-            text="Start Watching", 
-            command=self.toggle_watch
-        )
-        self.watch_button.grid(row=0, column=6, padx=5, pady=2)
+        # Watch button with special styling
+        self.watch_button = create_button(buttons_frame, "Start Watching", self.toggle_watch, 6)
         
         # Output area
         output_frame = ttk.LabelFrame(main_frame, text="Output", padding="5")
         output_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=5, pady=5)
         
-        self.output_text = scrolledtext.ScrolledText(output_frame, wrap=tk.WORD, width=100, height=30)
+        self.output_text = scrolledtext.ScrolledText(
+            output_frame,
+            wrap=tk.WORD,
+            width=100,
+            height=30,
+            bg="#2d2d2d",  # Dark gray background
+            fg="#e0e0e0",  # Light gray text
+            insertbackground="#ffffff",  # White cursor
+            selectbackground="#404040",  # Selection color
+            selectforeground="#ffffff",  # Selected text color
+            font=("Consolas", 10),  # Monospace font
+            relief="flat",  # Flat border
+            borderwidth=0
+        )
         self.output_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # Status bar
         self.status_var = tk.StringVar()
         self.status_var.set("Ready")
-        status_bar = ttk.Label(main_frame, textvariable=self.status_var, relief=tk.SUNKEN)
+        status_bar = ttk.Label(
+            main_frame,
+            textvariable=self.status_var,
+            relief=tk.FLAT,
+            padding=(5, 2)
+        )
         status_bar.grid(row=2, column=0, sticky=(tk.W, tk.E), padx=5, pady=2)
         
         # Configure grid weights
