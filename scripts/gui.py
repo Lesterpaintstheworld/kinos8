@@ -39,6 +39,26 @@ def configure_styles():
         foreground=[("active", "#ffffff")]
     )
     
+    # Add toggle button styles
+    style.configure("Toggle.TButton",
+        background="#2d2d2d",
+        foreground="#e0e0e0",
+        borderwidth=1,
+        focuscolor="none",
+        padding=(15, 6)
+    )
+    style.map("Toggle.TButton",
+        background=[
+            ("selected", "#404da1"),  # Blue-ish when active
+            ("active", "#404040"),
+            ("pressed", "#505050")
+        ],
+        foreground=[
+            ("selected", "#ffffff"),
+            ("active", "#ffffff")
+        ]
+    )
+    
     # Configure labelframe styles
     style.configure("TLabelframe",
         background="#1e1e1e",
@@ -107,8 +127,14 @@ class ScriptGUI:
         create_button(buttons_frame, "Clear Output", self.clear_output, 4)
         create_button(buttons_frame, "Save Output", self.save_output, 5)
         
-        # Watch button with special styling
-        self.watch_button = create_button(buttons_frame, "Start Watching", self.toggle_watch, 6)
+        # Watch toggle button
+        self.watch_button = ttk.Button(
+            buttons_frame, 
+            text="⚪ Watch Changes", 
+            command=self.toggle_watch,
+            style="Toggle.TButton"
+        )
+        self.watch_button.grid(row=0, column=6, padx=5, pady=2)
         
         # Output area
         output_frame = ttk.LabelFrame(main_frame, text="Output", padding="5")
@@ -211,7 +237,7 @@ class ScriptGUI:
         if not self.watching:
             # Start watching
             self.watching = True
-            self.watch_button.configure(text="Stop Watching")
+            self.watch_button.configure(text="⚫ Watching...", style="Toggle.TButton selected")
             self.status_var.set("Started watching for changes...")
             self.output_text.insert(tk.END, "\n=== Started watching for changes ===\n")
             
@@ -246,7 +272,7 @@ class ScriptGUI:
         else:
             # Stop watching
             self.watching = False
-            self.watch_button.configure(text="Start Watching")
+            self.watch_button.configure(text="⚪ Watch Changes", style="Toggle.TButton")
             self.status_var.set("Stopped watching for changes")
             self.output_text.insert(tk.END, "\n=== Stopped watching for changes ===\n")
             
@@ -263,7 +289,7 @@ class ScriptGUI:
 
     def _update_watch_button(self):
         """Update watch button state - called from non-main thread"""
-        self.watch_button.configure(text="Start Watching")
+        self.watch_button.configure(text="⚪ Watch Changes", style="Toggle.TButton")
         self.status_var.set("Watch process ended")
 
 def main():
