@@ -187,6 +187,11 @@ Recent Messages:
                 print(spec_content.encode('ascii', 'replace').decode('ascii'))
             print("=" * 50)
             
+            # Push specification to Airtable
+            print("\nPushing specification to Airtable...")
+            subprocess.run(["python", "scripts/pushData.py", "--table", "Specifications"], check=True)
+            print("Specification pushed to Airtable successfully")
+            
             # Git operations
             git_operations(spec_id)
             
