@@ -9,6 +9,7 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from dotenv import load_dotenv
 import subprocess
+import time
 
 load_dotenv()
 
@@ -87,12 +88,24 @@ def main():
     
     # Process all swarms without hot wallets
     swarm_files = glob.glob('data/swarms/*.json')
+    processed = 0
+    
+    print(f"\nFound {len(swarm_files)} swarm files to process")
+    
     for file in swarm_files:
         with open(file) as f:
             swarm = json.load(f)
             if 'hotWallet' not in swarm:
                 print(f"\nProcessing {swarm['swarmId']}...")
                 wallet_manager.create_hot_wallet(swarm['swarmId'])
+                processed += 1
+                
+                # Add delay between wallet creations
+                if processed < len(swarm_files):
+                    print("\nWaiting 2 seconds before next wallet creation...")
+                    time.sleep(2)
+    
+    print(f"\nProcessing complete. Created {processed} hot wallets.")
 
 if __name__ == "__main__":
     main()
