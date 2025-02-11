@@ -91,8 +91,8 @@ def fund_hot_wallets():
         print(f"Hot wallet: {hot_wallet}")
         
         try:
-            # Get recent blockhash
-            recent_blockhash = client.get_recent_blockhash()['result']['value']['blockhash']
+            # Get recent blockhash using the correct method
+            recent_blockhash = client.get_latest_blockhash()['result']['value']['blockhash']
             
             # Create transfer instruction
             transfer_ix = transfer(
