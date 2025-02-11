@@ -281,16 +281,23 @@ class ScriptGUI:
                 break
         self.root.after(100, self.check_queue)
 
-    def run_script(self, script_name):
+    def run_script(self, script_command):
         """Run a Python script in a separate thread"""
-        self.status_var.set(f"Running {script_name}...")
-        self.output_text.insert(tk.END, f"\n{'='*50}\nRunning {script_name} at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n{'='*50}\n")
+        self.status_var.set(f"Running {script_command}...")
+        self.output_text.insert(tk.END, f"\n{'='*50}\nRunning {script_command} at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n{'='*50}\n")
         
         def run():
             try:
-                script_path = os.path.join("scripts", script_name)
+                # Split the command into parts while preserving quoted strings
+                import shlex
+                command_parts = shlex.split(script_command)
+                script_path = os.path.join("scripts", command_parts[0])
+                
+                # Construct the command list
+                command = ["python", script_path] + command_parts[1:]
+                
                 process = subprocess.Popen(
-                    ["python", script_path],
+                    command,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT,
                     universal_newlines=True
