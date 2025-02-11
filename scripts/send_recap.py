@@ -27,33 +27,67 @@ def load_json_files(pattern, limit):
     return results
 
 def build_system_prompt():
-    """Build system prompt from recent data"""
-    messages = load_json_files('data/messages/*.json', 100)
-    collaborations = load_json_files('data/collaborations/*.json', 50)
-    swarms = load_json_files('data/swarms/*.json', 50)
-    news = load_json_files('data/news/*.json', 20)  # Added news loading
+    """Build system prompt from recent data focused on kinos and xforge"""
+    # Load swarm data
+    with open('data/swarms/kinos.json', 'r') as f:
+        kinos_data = json.load(f)
+    with open('data/swarms/xforge.json', 'r') as f:
+        xforge_data = json.load(f)
     
+    # Load services
+    services = []
+    service_files = glob.glob('data/services/*.json')
+    for file in service_files:
+        with open(file, 'r') as f:
+            data = json.load(f)
+            if data.get('swarmId') in ['kinos', 'xforge']:
+                services.append(data)
+    
+    # Load messages between kinos and xforge
+    messages = []
+    message_files = glob.glob('data/messages/*.json')
+    for file in message_files:
+        with open(file, 'r') as f:
+            data = json.load(f)
+            if ((data.get('senderId') == 'kinos' and data.get('receiverId') == 'xforge') or
+                (data.get('senderId') == 'xforge' and data.get('receiverId') == 'kinos')):
+                messages.append(data)
+    
+    # Load news for both swarms
+    news = []
+    news_files = glob.glob('data/news/*.json')
+    for file in news_files:
+        with open(file, 'r') as f:
+            data = json.load(f)
+            if data.get('swarmId') in ['kinos', 'xforge']:
+                news.append(data)
+    
+    # Build prompt
     prompt = "You are a helpful AI assistant tasked with creating a recap of recent UBC ecosystem activities. "
-    prompt += "Use the following data to create a concise, engaging summary:\n\n"
+    prompt += "Focus on the interaction between KinOS and XForge swarms. Here's the relevant data:\n\n"
     
-    # Add messages context
-    prompt += "Recent Messages:\n"
-    for msg in messages:
+    # Add swarm information
+    prompt += "KinOS Swarm:\n"
+    prompt += f"Description: {kinos_data.get('shortDescription')}\n"
+    prompt += f"Weekly Revenue: {kinos_data.get('weeklyRevenue')} $COMPUTE\n\n"
+    
+    prompt += "XForge Swarm:\n"
+    prompt += f"Description: {xforge_data.get('shortDescription')}\n"
+    prompt += f"Weekly Revenue: {xforge_data.get('weeklyRevenue')} $COMPUTE\n\n"
+    
+    # Add services
+    prompt += "Available Services:\n"
+    for service in services:
+        prompt += f"- {service.get('name')}: {service.get('description')}\n"
+    
+    # Add messages between swarms
+    prompt += "\nRecent Communications:\n"
+    for msg in sorted(messages, key=lambda x: x.get('timestamp', ''), reverse=True):
         prompt += f"- From {msg.get('senderId')} to {msg.get('receiverId')}: {msg.get('content')}\n"
     
-    # Add collaborations context
-    prompt += "\nActive Collaborations:\n"
-    for collab in collaborations:
-        prompt += f"- {collab.get('clientSwarmId')} with {collab.get('providerSwarmId')}: {collab.get('description')}\n"
-    
-    # Add swarms context
-    prompt += "\nSwarm Information:\n"
-    for swarm in swarms:
-        prompt += f"- {swarm.get('name')}: {swarm.get('shortDescription')}\n"
-    
-    # Add news context
+    # Add news
     prompt += "\nRecent News:\n"
-    for news_item in news:
+    for news_item in sorted(news, key=lambda x: x.get('timestamp', ''), reverse=True):
         prompt += f"- {news_item.get('title', 'Untitled')}: {news_item.get('content')}\n"
     
     return prompt
