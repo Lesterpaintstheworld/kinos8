@@ -148,7 +148,11 @@ Recent Messages:
             print(f"\nSpecification generated and saved as {filename}")
             print("\nSpecification content:")
             print("=" * 50)
-            print(spec_content)
+            try:
+                print(spec_content.encode('utf-8').decode('utf-8'))
+            except UnicodeEncodeError:
+                print("Note: Some characters could not be displayed in console")
+                print(spec_content.encode('ascii', 'replace').decode('ascii'))
             print("=" * 50)
             
             # Send to NLR and Telegram

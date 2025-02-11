@@ -2,9 +2,15 @@ import sys
 import json
 import os
 import glob
+import codecs
 from datetime import datetime
 import anthropic
 from dotenv import load_dotenv
+
+# Set console output encoding to UTF-8
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 # Load environment variables
 load_dotenv()
