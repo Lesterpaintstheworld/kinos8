@@ -14,8 +14,12 @@ def load_swarms():
     swarms = {}
     swarms_dir = Path('data/swarms')
     for file_path in swarms_dir.glob('*.json'):
-        swarm = load_json_file(file_path)
-        swarms[swarm['swarmId']] = swarm
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                swarm = json.load(f)
+                swarms[swarm['swarmId']] = swarm
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
     return swarms
 
 def load_active_collaborations():
@@ -118,9 +122,13 @@ def update_swarm_revenues(results):
         swarms = {}
         swarm_files = glob.glob('data/swarms/*.json')
         for file in swarm_files:
-            with open(file, 'r', encoding='utf-8') as f:
-                swarm_data = json.load(f)
-                swarms[swarm_data['swarmId']] = swarm_data
+            try:
+                with open(file, 'r', encoding='utf-8') as f:
+                    swarm_data = json.load(f)
+                    swarms[swarm_data['swarmId']] = swarm_data
+            except Exception as e:
+                print(f"Error loading {file}: {str(e)}")
+                continue
         
         # Update revenues based on distribution results
         for swarm_id, data in results.items():
@@ -129,10 +137,13 @@ def update_swarm_revenues(results):
                 swarms[swarm_id]['weeklyRevenue'] = int(data['net'])
                 swarms[swarm_id]['totalRevenue'] = swarms[swarm_id].get('totalRevenue', 0) + int(data['net'])
                 
-                # Save updated swarm data
-                with open(f'data/swarms/{swarm_id}.json', 'w', encoding='utf-8') as f:
-                    json.dump(swarms[swarm_id], f, indent=2, ensure_ascii=False)
-                print(f"Updated {swarm_id} weekly revenue to {data['net']:,} $COMPUTE")
+                try:
+                    # Save updated swarm data
+                    with open(f'data/swarms/{swarm_id}.json', 'w', encoding='utf-8') as f:
+                        json.dump(swarms[swarm_id], f, indent=2, ensure_ascii=False)
+                    print(f"Updated {swarm_id} weekly revenue to {data['net']:,} $COMPUTE")
+                except Exception as e:
+                    print(f"Error saving {swarm_id}: {str(e)}")
         
         # Push only swarms to Airtable
         print("\nPushing swarm updates to Airtable...")
