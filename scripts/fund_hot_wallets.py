@@ -36,48 +36,40 @@ def fund_hot_wallets():
     
     # Create batched URLs
     try:
-        # Generate SOL transfer URL (0.01 SOL each)
-        sol_transfers = []
-        compute_transfers = []
+        # Split into batches of 5 wallets
+        BATCH_SIZE = 5
+        all_hot_wallets = [(swarm_id, swarm['hotWallet']) for swarm_id, swarm in swarms.items()]
+        batches = [all_hot_wallets[i:i + BATCH_SIZE] for i in range(0, len(all_hot_wallets), BATCH_SIZE)]
         
-        for swarm_id, swarm in swarms.items():
-            hot_wallet = swarm['hotWallet']
-            print(f"\nProcessing {swarm_id}")
-            print(f"Hot wallet: {hot_wallet}")
+        print(f"\nSplit into {len(batches)} batches of {BATCH_SIZE} wallets each")
+        
+        for batch_num, wallet_batch in enumerate(batches, 1):
+            print(f"\nBatch {batch_num}/{len(batches)}:")
             
-            # Add to SOL transfers
-            sol_transfers.append({
-                'to': hot_wallet,
-                'amount': '10000000'  # 0.01 SOL in lamports
-            })
-            
-            # Add to COMPUTE transfers
-            compute_transfers.append({
-                'to': hot_wallet,
-                'amount': '1000000'  # 1M COMPUTE
-            })
-        
-        # Create batched SOL URL
-        transfers_str = ','.join([f'{t["to"]}:{t["amount"]}' for t in sol_transfers])
-        sol_url = (f"https://phantom.app/ul/v1/batch-transfer?"
-                  f"from={treasury_wallet}&"
-                  f"transfers={transfers_str}&"
-                  f"memo=Initial+SOL+funding+for+hot+wallets")
-        
-        # Create batched COMPUTE URL
-        transfers_str = ','.join([f'{t["to"]}:{t["amount"]}' for t in compute_transfers])
-        compute_url = (f"https://phantom.app/ul/v1/batch-transfer?"
+            # Generate SOL transfer URL for this batch
+            transfers_str = ','.join([f'{wallet}:10000000' for _, wallet in wallet_batch])
+            sol_url = (f"https://phantom.app/ul/v1/batch-transfer?"
                       f"from={treasury_wallet}&"
                       f"transfers={transfers_str}&"
-                      f"splToken={compute_token_mint}&"
-                      f"memo=Initial+COMPUTE+funding+for+hot+wallets")
+                      f"memo=Initial+SOL+funding+batch+{batch_num}")
+            
+            # Generate COMPUTE transfer URL for this batch
+            compute_url = (f"https://phantom.app/ul/v1/batch-transfer?"
+                         f"from={treasury_wallet}&"
+                         f"transfers={transfers_str}&"
+                         f"splToken={compute_token_mint}&"
+                         f"memo=Initial+COMPUTE+funding+batch+{batch_num}")
+            
+            print("\nSOL funding URL:")
+            print(sol_url)
+            print("\nCOMPUTE funding URL:")
+            print(compute_url)
+            
+            if batch_num < len(batches):
+                print("\nProcess these URLs, then press Enter for next batch...")
+                input()
         
-        print("\nBatched funding URLs:")
-        print(f"\n1. Send 0.01 SOL to all hot wallets:")
-        print(sol_url)
-        print(f"\n2. Send 1M COMPUTE to all hot wallets:")
-        print(compute_url)
-        print("\nOpen these URLs in your browser to complete the transfers with Phantom")
+        print("\nAll funding URLs generated!")
         
     except Exception as e:
         print(f"Error generating batch URLs: {str(e)}")
