@@ -108,9 +108,11 @@ def fund_hot_wallets():
                     time.sleep(retry_delay)
                     retry_delay *= 2  # Exponential backoff
                 
-                # Get recent blockhash
+                # Get recent blockhash - updated to handle Solders response
                 print("Getting recent blockhash...")
-                recent_blockhash = client.get_latest_blockhash()['result']['value']['blockhash']
+                blockhash_response = client.get_latest_blockhash()
+                recent_blockhash = blockhash_response.value.blockhash
+                print(f"Got blockhash: {recent_blockhash}")
                 
                 # Create transfer instruction
                 print("Creating transfer instruction...")
