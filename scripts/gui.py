@@ -175,7 +175,7 @@ class ScriptGUI:
             padding="8",
             style="Metallic.TLabelframe"
         )
-        conv_frame.grid(row=1, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
+        conv_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
 
         # Collaboration Selector
         collab_label = ttk.Label(
@@ -253,7 +253,7 @@ class ScriptGUI:
             padding="8",
             style="Metallic.TLabelframe"
         )
-        spec_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
+        spec_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
 
         # Collaboration Selector (reuse the same one from conversation generator)
         spec_collab_label = ttk.Label(
@@ -303,7 +303,7 @@ class ScriptGUI:
             padding="8",
             style="Metallic.TLabelframe"
         )
-        output_frame.grid(row=2, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=6, pady=6)
+        output_frame.grid(row=3, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=6, pady=6)
         
         # Enhanced output text area
         self.output_text = scrolledtext.ScrolledText(
@@ -334,7 +334,7 @@ class ScriptGUI:
             relief="sunken",
             padding=(8, 4)
         )
-        status_bar.grid(row=3, column=0, sticky=(tk.W, tk.E), padx=6, pady=4)
+        status_bar.grid(row=4, column=0, sticky=(tk.W, tk.E), padx=6, pady=4)
         
         # Configure grid weights
         main_frame.columnconfigure(0, weight=1)
