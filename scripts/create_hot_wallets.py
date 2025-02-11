@@ -93,17 +93,21 @@ def main():
     print(f"\nFound {len(swarm_files)} swarm files to process")
     
     for file in swarm_files:
-        with open(file) as f:
-            swarm = json.load(f)
-            if 'hotWallet' not in swarm:
-                print(f"\nProcessing {swarm['swarmId']}...")
-                wallet_manager.create_hot_wallet(swarm['swarmId'])
-                processed += 1
-                
-                # Add delay between wallet creations
-                if processed < len(swarm_files):
-                    print("\nWaiting 2 seconds before next wallet creation...")
-                    time.sleep(2)
+        try:
+            with open(file, 'r', encoding='utf-8') as f:
+                swarm = json.load(f)
+                if 'hotWallet' not in swarm:
+                    print(f"\nProcessing {swarm['swarmId']}...")
+                    wallet_manager.create_hot_wallet(swarm['swarmId'])
+                    processed += 1
+                    
+                    # Add delay between wallet creations
+                    if processed < len(swarm_files):
+                        print("\nWaiting 2 seconds before next wallet creation...")
+                        time.sleep(2)
+        except Exception as e:
+            print(f"Error processing {file}: {str(e)}")
+            continue
     
     print(f"\nProcessing complete. Created {processed} hot wallets.")
 
