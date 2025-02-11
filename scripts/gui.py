@@ -112,20 +112,6 @@ class ScriptGUI:
         # Destroy the root window
         if self.root:
             self.root.destroy()
-        self.root.geometry("1000x600")
-        self.root.configure(bg="#1e1e1e")  # Dark background
-        
-        # Configure styles
-        configure_styles()
-        
-        # Create queue for handling output
-        self.queue = queue.Queue()
-        
-        self.watch_process = None
-        self.watching = False
-        
-        self.setup_gui()
-        self.setup_output_handling()
 
     def setup_gui(self):
         # Main container
