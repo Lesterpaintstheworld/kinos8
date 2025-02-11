@@ -1,10 +1,23 @@
 import os
+import sys
 import glob
 import json
+import codecs
 from datetime import datetime
 import anthropic
 from telegram.ext import ApplicationBuilder
 from dotenv import load_dotenv
+
+# Force UTF-8 encoding for stdin/stdout/stderr
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+if sys.stdin.encoding != 'utf-8':
+    sys.stdin = codecs.getreader('utf-8')(sys.stdin.buffer, 'strict')
+
+# Set default encoding to UTF-8
+import locale
+locale.getpreferredencoding = lambda: 'UTF-8'
 
 # Load environment variables
 load_dotenv()

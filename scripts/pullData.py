@@ -1,7 +1,20 @@
 import os
+import sys
+import codecs
+import json
 from dotenv import load_dotenv
 from pyairtable import Api
-import json
+
+# Force UTF-8 encoding for stdin/stdout/stderr
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+if sys.stdin.encoding != 'utf-8':
+    sys.stdin = codecs.getreader('utf-8')(sys.stdin.buffer, 'strict')
+
+# Set default encoding to UTF-8
+import locale
+locale.getpreferredencoding = lambda: 'UTF-8'
 
 # Load environment variables from .env file
 load_dotenv()
@@ -61,8 +74,8 @@ def fetch_and_save_table(table_name, id_field):
             continue
             
         filename = f"{directory}/{record_id}.json"
-        with open(filename, 'w') as f:
-            json.dump(record['fields'], f, indent=2)
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(record['fields'], f, indent=2, ensure_ascii=False)
         saved_count += 1
     
     print(f"Completed {table_name}:")

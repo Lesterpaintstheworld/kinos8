@@ -1,8 +1,21 @@
 import os
-from dotenv import load_dotenv
-from pyairtable import Api
+import sys
+import codecs
 import json
 import glob
+from dotenv import load_dotenv
+from pyairtable import Api
+
+# Force UTF-8 encoding for stdin/stdout/stderr
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+if sys.stdin.encoding != 'utf-8':
+    sys.stdin = codecs.getreader('utf-8')(sys.stdin.buffer, 'strict')
+
+# Set default encoding to UTF-8
+import locale
+locale.getpreferredencoding = lambda: 'UTF-8'
 
 def get_table_schema(table):
     """Get the available fields for a table by checking a sample record"""
@@ -51,7 +64,7 @@ def push_swarms():
     
     for file_path in swarm_files:
         try:
-            with open(file_path, 'r') as f:
+            with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
             swarm_id = data.get('swarmId')

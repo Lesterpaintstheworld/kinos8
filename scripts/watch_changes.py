@@ -1,7 +1,9 @@
 import time
 import os
+import sys
 import json
 import glob
+import codecs
 import subprocess
 import logging
 from datetime import datetime
@@ -12,6 +14,17 @@ from telegram.ext import ApplicationBuilder
 from dotenv import load_dotenv
 from pyairtable import Api
 from tenacity import retry, stop_after_attempt, wait_exponential
+
+# Force UTF-8 encoding for stdin/stdout/stderr
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+if sys.stdin.encoding != 'utf-8':
+    sys.stdin = codecs.getreader('utf-8')(sys.stdin.buffer, 'strict')
+
+# Set default encoding to UTF-8
+import locale
+locale.getpreferredencoding = lambda: 'UTF-8'
 
 # Configure logging
 logging.basicConfig(

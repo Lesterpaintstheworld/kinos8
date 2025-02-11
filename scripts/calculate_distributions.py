@@ -1,10 +1,22 @@
 import glob
 import json
 import os
+import sys
+import codecs
 import subprocess
 from datetime import datetime
 from pathlib import Path
-from pathlib import Path
+
+# Force UTF-8 encoding for stdin/stdout/stderr
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+if sys.stdin.encoding != 'utf-8':
+    sys.stdin = codecs.getreader('utf-8')(sys.stdin.buffer, 'strict')
+
+# Set default encoding to UTF-8
+import locale
+locale.getpreferredencoding = lambda: 'UTF-8'
 
 def load_json_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
