@@ -3,11 +3,7 @@ import json
 import glob
 import codecs
 import sys
-from solders.keypair import Keypair
 from solana.rpc.api import Client
-from solana.transaction import Transaction
-from solders.system_program import transfer, TransferParams
-from spl.token.instructions import transfer as spl_transfer
 from dotenv import load_dotenv
 
 # Force UTF-8 encoding
@@ -32,11 +28,9 @@ def load_swarms_with_hot_wallets():
     return swarms
 
 def fund_hot_wallets():
-    """Fund hot wallets with initial SOL and COMPUTE"""
+    """Generate Phantom URLs to fund hot wallets with initial SOL and COMPUTE"""
     client = Client(os.getenv('SOLANA_RPC_URL'))
-    
-    # Load funding wallet (treasury)
-    treasury_keypair = Keypair.from_bytes(bytes.fromhex(os.getenv('TREASURY_PRIVATE_KEY')))
+    treasury_wallet = os.getenv('TREASURY_WALLET')  # Public key only
     compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
     
     swarms = load_swarms_with_hot_wallets()
@@ -48,39 +42,30 @@ def fund_hot_wallets():
         print(f"Hot wallet: {hot_wallet}")
         
         try:
-            # Create SOL transfer transaction (0.01 SOL)
-            sol_tx = Transaction()
-            sol_tx.add(transfer(
-                TransferParams(
-                    from_pubkey=treasury_keypair.pubkey(),
-                    to_pubkey=hot_wallet,
-                    lamports=10000000  # 0.01 SOL in lamports
-                )
-            ))
+            # Generate SOL transfer URL
+            sol_url = f"https://phantom.app/ul/v1/transfer?" + \
+                     f"from={treasury_wallet}&" + \
+                     f"to={hot_wallet}&" + \
+                     f"amount=10000000&" + \
+                     f"memo=Initial+0.01+SOL+funding+for+{swarm_id}+hot+wallet"
             
-            # Send SOL transaction
-            print("Sending 0.01 SOL...")
-            sol_result = client.send_transaction(sol_tx, treasury_keypair)
-            print(f"SOL transfer signature: {sol_result['result']}")
+            # Generate COMPUTE transfer URL
+            compute_url = f"https://phantom.app/ul/v1/transfer?" + \
+                         f"from={treasury_wallet}&" + \
+                         f"to={hot_wallet}&" + \
+                         f"amount=1000000&" + \
+                         f"splToken={compute_token_mint}&" + \
+                         f"memo=Initial+1M+COMPUTE+funding+for+{swarm_id}+hot+wallet"
             
-            # Create COMPUTE transfer transaction (1M tokens)
-            compute_tx = Transaction()
-            compute_tx.add(spl_transfer(
-                treasury_keypair.pubkey(),
-                hot_wallet,
-                1000000,  # 1M COMPUTE
-                compute_token_mint
-            ))
-            
-            # Send COMPUTE transaction
-            print("Sending 1M COMPUTE...")
-            compute_result = client.send_transaction(compute_tx, treasury_keypair)
-            print(f"COMPUTE transfer signature: {compute_result['result']}")
-            
-            print(f"Successfully funded {swarm_id} hot wallet")
+            print("\nFunding URLs:")
+            print(f"1. Send 0.01 SOL:")
+            print(sol_url)
+            print(f"\n2. Send 1M COMPUTE:")
+            print(compute_url)
+            print("\nOpen these URLs in your browser to complete the transfers with Phantom")
             
         except Exception as e:
-            print(f"Error funding {swarm_id}: {str(e)}")
+            print(f"Error generating URLs for {swarm_id}: {str(e)}")
 
 def main():
     print("Starting hot wallet funding process...")
