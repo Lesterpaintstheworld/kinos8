@@ -8,9 +8,10 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from solders.keypair import Keypair
-from solana.rpc.client import Client
-from solana.transaction import Transaction
-from solana.system_program import transfer, TransferParams
+from solders.rpc.client import Client
+from solders.transaction import Transaction
+from solders.system_program import transfer, TransferParams
+from solders.pubkey import Pubkey
 from spl.token.instructions import transfer as spl_transfer
 import base58
 from dotenv import load_dotenv
@@ -93,12 +94,13 @@ def fund_hot_wallets():
         try:
             # Send SOL
             sol_tx = Transaction()
+            # Convert string to Pubkey for hot wallet
+            hot_wallet_pubkey = Pubkey.from_string(hot_wallet)
+            
             sol_tx.add(transfer(
-                TransferParams(
-                    from_pubkey=treasury.pubkey(),
-                    to_pubkey=hot_wallet,
-                    lamports=10000000  # 0.01 SOL
-                )
+                from_pubkey=treasury.pubkey(),
+                to_pubkey=hot_wallet_pubkey,
+                lamports=10000000  # 0.01 SOL
             ))
             
             print("Sending 0.01 SOL...")
