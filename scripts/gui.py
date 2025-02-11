@@ -1,72 +1,68 @@
 import tkinter as tk
-from tkinter import ttk, scrolledtext, font
+from tkinter import ttk, scrolledtext, font, Canvas
 import subprocess
 import threading
+import time
 
 def configure_styles():
-    # Configure dark theme styles
+    # Configure dark theme styles with silver gradients
     style = ttk.Style()
     style.configure(".",
-        background="#1e1e1e",
-        foreground="#e0e0e0",
-        fieldbackground="#1e1e1e",
+        background="#1a1a1a",  # Darker background for better contrast
+        foreground="#e8e8e8",  # Brighter text
+        fieldbackground="#1a1a1a",
         troughcolor="#2d2d2d",
-        selectbackground="#404040",
+        selectbackground="#505050",  # Lighter selection
         selectforeground="#ffffff"
     )
     
-    # Configure frame styles
-    style.configure("TFrame",
-        background="#1e1e1e"
-    )
-    
-    # Configure label styles
-    style.configure("TLabel",
-        background="#1e1e1e",
-        foreground="#e0e0e0"
-    )
-    
-    # Configure button styles
-    style.configure("TButton",
-        background="#2d2d2d",
-        foreground="#e0e0e0",
-        borderwidth=0,
+    # Metallic button style
+    style.configure("Metallic.TButton",
+        background="linear-gradient(#4a4a4a, #3a3a3a)",
+        foreground="#ffffff",
+        borderwidth=1,
         focuscolor="none",
-        padding=6
+        padding=8,
+        relief="raised"
     )
-    style.map("TButton",
-        background=[("active", "#404040"), ("pressed", "#505050")],
+    style.map("Metallic.TButton",
+        background=[
+            ("active", "linear-gradient(#5a5a5a, #4a4a4a)"),
+            ("pressed", "linear-gradient(#3a3a3a, #2a2a2a)")
+        ],
         foreground=[("active", "#ffffff")]
     )
     
-    # Add toggle button styles
-    style.configure("Toggle.TButton",
-        background="#2d2d2d",
-        foreground="#e0e0e0",
+    # Metallic toggle style
+    style.configure("MetallicToggle.TButton",
+        background="linear-gradient(#4a4a4a, #3a3a3a)",
+        foreground="#ffffff",
         borderwidth=1,
         focuscolor="none",
-        padding=(15, 6)
+        padding=(20, 8),
+        relief="raised"
     )
-    style.map("Toggle.TButton",
+    style.map("MetallicToggle.TButton",
         background=[
-            ("selected", "#404da1"),  # Blue-ish when active
-            ("active", "#404040"),
-            ("pressed", "#505050")
+            ("selected", "linear-gradient(#506da1, #405091)"),
+            ("active", "linear-gradient(#5a5a5a, #4a4a4a)"),
+            ("pressed", "linear-gradient(#3a3a3a, #2a2a2a)")
         ],
-        foreground=[
-            ("selected", "#ffffff"),
-            ("active", "#ffffff")
-        ]
+        foreground=[("selected", "#ffffff")]
+    )
+
+    # Frame styles with metallic accents
+    style.configure("Metallic.TFrame",
+        background="#1a1a1a",
+        borderwidth=1,
+        relief="raised"
     )
     
-    # Configure labelframe styles
-    style.configure("TLabelframe",
-        background="#1e1e1e",
-        foreground="#e0e0e0"
-    )
-    style.configure("TLabelframe.Label",
-        background="#1e1e1e",
-        foreground="#a0a0a0"
+    # Label styles with better visibility
+    style.configure("Metallic.TLabel",
+        background="#1a1a1a",
+        foreground="#e8e8e8",
+        font=("Segoe UI", 9, "bold")
     )
 import sys
 import queue
@@ -126,58 +122,72 @@ class ScriptGUI:
         buttons_frame = ttk.LabelFrame(main_frame, text="Available Scripts", padding="5")
         buttons_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
         
-        def create_button(frame, text, command, column):
-            btn = ttk.Button(frame, text=text, command=command)
-            btn.grid(row=0, column=column, padx=5, pady=2)
+        def create_metallic_button(frame, text, command, column):
+            btn = ttk.Button(
+                frame,
+                text=text,
+                command=command,
+                style="Metallic.TButton"
+            )
+            btn.grid(row=0, column=column, padx=6, pady=3)
             return btn
 
-        # Script buttons
-        create_button(buttons_frame, "Pull Data", lambda: self.run_script("pullData.py"), 0)
-        create_button(buttons_frame, "Push Data", lambda: self.run_script("pushData.py"), 1)
-        create_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 2)
-        create_button(buttons_frame, "Assign Timestamps", lambda: self.run_script("assign_timestamps.py"), 3)
-        create_button(buttons_frame, "Clear Output", self.clear_output, 4)
-        create_button(buttons_frame, "Save Output", self.save_output, 5)
+        # Create metallic buttons
+        create_metallic_button(buttons_frame, "Pull Data", lambda: self.run_script("pullData.py"), 0)
+        create_metallic_button(buttons_frame, "Push Data", lambda: self.run_script("pushData.py"), 1)
+        create_metallic_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 2)
+        create_metallic_button(buttons_frame, "Assign Timestamps", lambda: self.run_script("assign_timestamps.py"), 3)
+        create_metallic_button(buttons_frame, "Clear Output", self.clear_output, 4)
+        create_metallic_button(buttons_frame, "Save Output", self.save_output, 5)
         
-        # Watch toggle button
+        # Watch toggle button with metallic effect
         self.watch_button = ttk.Button(
-            buttons_frame, 
-            text="⚪ Watch Changes", 
+            buttons_frame,
+            text="⚪ Watch Changes",
             command=self.toggle_watch,
-            style="Toggle.TButton"
+            style="MetallicToggle.TButton"
         )
-        self.watch_button.grid(row=0, column=6, padx=5, pady=2)
+        self.watch_button.grid(row=0, column=6, padx=6, pady=3)
         
-        # Output area
-        output_frame = ttk.LabelFrame(main_frame, text="Output", padding="5")
-        output_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=5, pady=5)
+        # Output area with better contrast
+        output_frame = ttk.LabelFrame(
+            main_frame,
+            text="Output",
+            padding="8",
+            style="Metallic.TFrame"
+        )
+        output_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=6, pady=6)
         
+        # Enhanced output text area
         self.output_text = scrolledtext.ScrolledText(
             output_frame,
             wrap=tk.WORD,
             width=100,
             height=30,
-            bg="#2d2d2d",  # Dark gray background
-            fg="#e0e0e0",  # Light gray text
-            insertbackground="#ffffff",  # White cursor
-            selectbackground="#404040",  # Selection color
-            selectforeground="#ffffff",  # Selected text color
-            font=("Consolas", 10),  # Monospace font
-            relief="flat",  # Flat border
-            borderwidth=0
+            bg="#202020",  # Darker background
+            fg="#f0f0f0",  # Brighter text
+            insertbackground="#ffffff",
+            selectbackground="#505050",
+            selectforeground="#ffffff",
+            font=("Consolas", 10),
+            relief="flat",
+            borderwidth=1,
+            padx=8,
+            pady=8
         )
         self.output_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
-        # Status bar
+        # Enhanced status bar
         self.status_var = tk.StringVar()
         self.status_var.set("Ready")
         status_bar = ttk.Label(
             main_frame,
             textvariable=self.status_var,
-            relief=tk.FLAT,
-            padding=(5, 2)
+            style="Metallic.TLabel",
+            relief="sunken",
+            padding=(8, 4)
         )
-        status_bar.grid(row=2, column=0, sticky=(tk.W, tk.E), padx=5, pady=2)
+        status_bar.grid(row=2, column=0, sticky=(tk.W, tk.E), padx=6, pady=4)
         
         # Configure grid weights
         main_frame.columnconfigure(0, weight=1)
