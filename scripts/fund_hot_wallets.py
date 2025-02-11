@@ -116,6 +116,9 @@ def fund_hot_wallets():
             
         except Exception as e:
             print(f"Error funding {swarm_id}: {e}")
+            import traceback
+            print("Full error traceback:")
+            print(traceback.format_exc())
 
 def main():
     print("Starting hot wallet funding process...")
