@@ -34,45 +34,41 @@ def fund_hot_wallets():
     swarms = load_swarms_with_hot_wallets()
     print(f"\nFound {len(swarms)} hot wallets to fund")
     
-    # Create batched URLs
+    # Create URLs for each wallet
     try:
-        # Split into batches of 5 wallets
-        BATCH_SIZE = 5
-        all_hot_wallets = [(swarm_id, swarm['hotWallet']) for swarm_id, swarm in swarms.items()]
-        batches = [all_hot_wallets[i:i + BATCH_SIZE] for i in range(0, len(all_hot_wallets), BATCH_SIZE)]
-        
-        print(f"\nSplit into {len(batches)} batches of {BATCH_SIZE} wallets each")
-        
-        for batch_num, wallet_batch in enumerate(batches, 1):
-            print(f"\nBatch {batch_num}/{len(batches)}:")
+        for batch_num, (swarm_id, swarm) in enumerate(swarms.items(), 1):
+            hot_wallet = swarm['hotWallet']
+            print(f"\nGenerating funding URLs for {swarm_id}")
+            print(f"Hot wallet: {hot_wallet}")
             
-            # Generate SOL transfer URL for this batch
-            transfers_str = ','.join([f'{wallet}:10000000' for _, wallet in wallet_batch])
-            sol_url = (f"https://phantom.app/ul/v1/batch-transfer?"
+            # Generate SOL transfer URL
+            sol_url = (f"https://phantom.app/ul/v1/transfer?"
                       f"from={treasury_wallet}&"
-                      f"transfers={transfers_str}&"
-                      f"memo=Initial+SOL+funding+batch+{batch_num}")
+                      f"to={hot_wallet}&"
+                      f"amount=10000000&"  # 0.01 SOL
+                      f"memo=Initial+SOL+funding+for+{swarm_id}")
             
-            # Generate COMPUTE transfer URL for this batch
-            compute_url = (f"https://phantom.app/ul/v1/batch-transfer?"
+            # Generate COMPUTE transfer URL
+            compute_url = (f"https://phantom.app/ul/v1/transfer?"
                          f"from={treasury_wallet}&"
-                         f"transfers={transfers_str}&"
+                         f"to={hot_wallet}&"
+                         f"amount=1000000&"  # 1M COMPUTE
                          f"splToken={compute_token_mint}&"
-                         f"memo=Initial+COMPUTE+funding+batch+{batch_num}")
+                         f"memo=Initial+COMPUTE+funding+for+{swarm_id}")
             
             print("\nSOL funding URL:")
             print(sol_url)
             print("\nCOMPUTE funding URL:")
             print(compute_url)
             
-            if batch_num < len(batches):
-                print("\nProcess these URLs, then press Enter for next batch...")
+            if batch_num < len(swarms):
+                print("\nProcess these URLs, then press Enter for next wallet...")
                 input()
         
         print("\nAll funding URLs generated!")
         
     except Exception as e:
-        print(f"Error generating batch URLs: {str(e)}")
+        print(f"Error generating URLs: {str(e)}")
 
 def main():
     print("Starting hot wallet funding process...")
