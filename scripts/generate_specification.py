@@ -72,7 +72,10 @@ def send_to_nlr_and_telegram(specification, collab):
         token = os.getenv('KINKONG_TELEGRAM_BOT_TOKEN')
         
         if not token or not chat_id:
-            raise ValueError(f"Telegram credentials not found for client swarm {client_swarm}")
+            print(f"Warning: Telegram credentials not found for client swarm {client_swarm}")
+            print(f"Chat ID key: {chat_id_key}")
+            print(f"Chat ID value: {chat_id}")
+            return  # Return without raising an error
         
         telegram_url = f"https://api.telegram.org/bot{token}/sendMessage"
         
@@ -90,13 +93,17 @@ def send_to_nlr_and_telegram(specification, collab):
         
         print(f"Sending notification to {client_swarm}'s Telegram channel...")
         response = requests.post(telegram_url, json=data)
-        response.raise_for_status()
+        
+        if response.status_code != 200:
+            print(f"Warning: Failed to send Telegram notification (status {response.status_code})")
+            print(f"Response: {response.text}")
+            return  # Return without raising an error
         
         print("Specification notification sent successfully!")
         
     except Exception as e:
-        print(f"Error sending specification notification: {str(e)}")
-        raise
+        print(f"Warning: Error sending specification notification: {str(e)}")
+        # Don't raise the error, just log it
 
 def git_operations(spec_id):
     """Add, commit and push the new specification file"""
