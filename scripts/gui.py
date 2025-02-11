@@ -143,7 +143,7 @@ class ScriptGUI:
         create_metallic_button(buttons_frame, "Pull Data", lambda: self.run_script("pullData.py"), 0)
         create_metallic_button(buttons_frame, "Push Data", lambda: self.run_script("pushData.py"), 1)
         create_metallic_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 2)
-        create_metallic_button(buttons_frame, "Assign Timestamps", lambda: self.run_script("assign_timestamps.py"), 3)
+        create_metallic_button(buttons_frame, "Send Recap", lambda: self.run_script("send_recap.py"), 3)
         create_metallic_button(buttons_frame, "Clear Output", self.clear_output, 4)
         create_metallic_button(buttons_frame, "Save Output", self.save_output, 5)
         
