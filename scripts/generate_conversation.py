@@ -43,7 +43,7 @@ def save_message(message_data):
     with open(filename, 'w') as f:
         json.dump(message_data, f, indent=2)
 
-def generate_conversation(collab_id, prompt):
+def generate_conversation(collab_id, prompt, message_count=1):
     """Generate a conversation using Claude"""
     # Load collaboration data
     collab = load_collaboration(collab_id)
@@ -51,62 +51,73 @@ def generate_conversation(collab_id, prompt):
         print(f"Error: Collaboration {collab_id} not found")
         return
 
-    # Get existing messages
-    existing_messages = load_messages(collab_id)
-    
-    # Create context for Claude
-    context = f"""You are helping generate a conversation between {collab['clientSwarmId']} and {collab['providerSwarmId']}.
-
-Existing conversation context:
-"""
-    
-    for msg in existing_messages[-5:]:  # Last 5 messages for context
-        context += f"\n{msg['senderId']}: {msg['content']}\n"
-
-    context += f"\nPrompt: {prompt}\n"
-    
     # Initialize Claude client
     client = anthropic.Client(
         api_key=os.getenv('ANTHROPIC_API_KEY')
     )
     
-    try:
-        # Generate response using Claude
-        response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
-            max_tokens=2000,
-            messages=[{
-                "role": "user",
-                "content": "Generate the next message in this conversation. Return ONLY the message content, no additional formatting or explanation."
-            }],
-            system=context
-        )
+    # Generate multiple messages
+    for i in range(message_count):
+        # Get existing messages for updated context
+        existing_messages = load_messages(collab_id)
         
-        if not hasattr(response, 'content') or len(response.content) == 0:
-            print("Error: No response content from Claude")
-            return
+        # Create context for Claude
+        context = f"""You are helping generate a conversation between {collab['clientSwarmId']} and {collab['providerSwarmId']}.
 
-        # Create message data
-        timestamp = datetime.utcnow().isoformat() + 'Z'
-        message_data = {
-            "collaborationId": collab_id,
-            "senderId": collab['providerSwarmId'],
-            "receiverId": collab['clientSwarmId'],
-            "content": response.content[0].text.strip(),
-            "timestamp": timestamp,
-            "messageId": generate_message_id(collab['providerSwarmId'], timestamp)
-        }
+Existing conversation context:
+"""
         
-        # Save the message
-        save_message(message_data)
-        print(f"\nGenerated message saved as {message_data['messageId']}.json")
-        print("\nMessage content:")
-        print("-" * 50)
-        print(message_data['content'])
-        print("-" * 50)
+        for msg in existing_messages[-5:]:  # Last 5 messages for context
+            context += f"\n{msg['senderId']}: {msg['content']}\n"
+
+        context += f"\nPrompt: {prompt}\n"
         
-    except Exception as e:
-        print(f"Error generating conversation: {str(e)}")
+        try:
+            # Generate response using Claude
+            response = client.messages.create(
+                model="claude-3-5-sonnet-20241022",
+                max_tokens=2000,
+                messages=[{
+                    "role": "user",
+                    "content": "Generate the next message in this conversation. Return ONLY the message content, no additional formatting or explanation."
+                }],
+                system=context
+            )
+            
+            if not hasattr(response, 'content') or len(response.content) == 0:
+                print("Error: No response content from Claude")
+                continue
+
+            # Create message data
+            timestamp = datetime.utcnow().isoformat() + 'Z'
+            
+            # Alternate between senders
+            if i % 2 == 0:
+                sender_id = collab['providerSwarmId']
+                receiver_id = collab['clientSwarmId']
+            else:
+                sender_id = collab['clientSwarmId']
+                receiver_id = collab['providerSwarmId']
+                
+            message_data = {
+                "collaborationId": collab_id,
+                "senderId": sender_id,
+                "receiverId": receiver_id,
+                "content": response.content[0].text.strip(),
+                "timestamp": timestamp,
+                "messageId": generate_message_id(sender_id, timestamp)
+            }
+            
+            # Save the message
+            save_message(message_data)
+            print(f"\nGenerated message {i+1}/{message_count} saved as {message_data['messageId']}.json")
+            print("\nMessage content:")
+            print("-" * 50)
+            print(message_data['content'])
+            print("-" * 50)
+            
+        except Exception as e:
+            print(f"Error generating message {i+1}: {str(e)}")
 
 def main():
     if len(sys.argv) < 4:
