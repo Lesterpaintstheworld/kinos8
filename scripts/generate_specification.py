@@ -29,7 +29,7 @@ def load_collaboration(collab_id):
         collab_files = glob.glob('data/collaborations/*.json')
         collab_data = None
         for file in collab_files:
-            with open(file, 'r') as f:
+            with open(file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 if data.get('collaborationId') == collab_id:
                     collab_data = data

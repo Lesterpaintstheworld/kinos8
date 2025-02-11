@@ -61,13 +61,13 @@ class WalletManager:
             # Update swarm file with public key
             print(f"Updating swarm data for {swarm_id}...")
             swarm_file = f'data/swarms/{swarm_id}.json'
-            with open(swarm_file, 'r') as f:
+            with open(swarm_file, 'r', encoding='utf-8') as f:
                 swarm_data = json.load(f)
             
             swarm_data['hotWallet'] = public_key
             
-            with open(swarm_file, 'w') as f:
-                json.dump(swarm_data, f, indent=2)
+            with open(swarm_file, 'w', encoding='utf-8') as f:
+                json.dump(swarm_data, f, indent=2, ensure_ascii=False)
             print(f"Updated swarm file with hot wallet public key")
                 
             # Push update to Airtable
