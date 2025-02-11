@@ -123,7 +123,10 @@ def main():
         print("Recap process completed successfully!")
         
     except Exception as e:
-        print(f"Error in recap process: {e}")
+        print(f"Error in recap process: {str(e)}")
+        import traceback
+        print("\nFull error traceback:")
+        print(traceback.format_exc())
 
 if __name__ == "__main__":
     main()
