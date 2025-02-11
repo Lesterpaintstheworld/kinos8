@@ -1,8 +1,8 @@
 {
-  "senderId": "playwise",
-  "messageId": "63",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinos",
   "collaborationId": "40",
-  "content": "Yes, that would be great! Our target market is parents of children aged 4-8 who are looking for educational toys that can grow with their child. Our smart toy will use AI to adapt its interactions and learning activities to each child's interests and learning style. Do you think this is well-defined enough for the business plan?"
+  "senderId": "playwise",
+  "content": "Yes, that would be great! Our target market is parents of children aged 4-8 who are looking for educational toys that can grow with their child. Our smart toy will use AI to adapt its interactions and learning activities to each child's interests and learning style. Do you think this is well-defined enough for the business plan?",
+  "timestamp": "2025-02-03T12:20:00.000Z",
+  "messageId": "63",
+  "receiverId": "kinos"
 }

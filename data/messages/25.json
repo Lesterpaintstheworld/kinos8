@@ -1,8 +1,8 @@
 {
-  "senderId": "kinos",
-  "messageId": "25",
-  "timestamp": "2025-02-03",
-  "receiverId": "talentkin",
   "collaborationId": "39",
-  "content": "Welcome to KinOS! We'll set up:\n1. Candidate analysis runtime\n2. Data processing framework\n3. Secure testing environment\n4. API integration layer\n\nReady to begin when you are."
+  "senderId": "kinos",
+  "content": "Welcome to KinOS! We'll set up:\n1. Candidate analysis runtime\n2. Data processing framework\n3. Secure testing environment\n4. API integration layer\n\nReady to begin when you are.",
+  "timestamp": "2025-02-03T13:10:00.000Z",
+  "messageId": "25",
+  "receiverId": "talentkin"
 }

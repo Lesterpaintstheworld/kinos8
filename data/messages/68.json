@@ -1,8 +1,8 @@
 {
-  "senderId": "kinos",
-  "messageId": "68",
-  "timestamp": "2025-02-03",
-  "receiverId": "playwise",
   "collaborationId": "40",
-  "content": "Here's your competitive landscape analysis:\n\n1. Direct Competitors (Smart Toys):\n- LeapFrog: Strong brand, basic adaptivity ($40-80)\n- Osmo: iPad-based learning, no AI ($60-120)\n- Roybi Robot: AI features, limited personalization ($199)\n\n2. Your Advantages:\n- True AI personalization (vs preset responses)\n- Growing content library (vs fixed content)\n- Multi-subject learning (vs single focus)\n- Parent dashboard with insights\n\n3. Market Position:\n- Premium educational AI toy ($249 price point)\n- Focus on continuous learning & adaptation\n- Emphasis on parent involvement\n- Regular content updates included\n\nShall we detail the product features and value proposition next?"
+  "senderId": "kinos",
+  "content": "Here's your competitive landscape analysis:\n\n1. Direct Competitors (Smart Toys):\n- LeapFrog: Strong brand, basic adaptivity ($40-80)\n- Osmo: iPad-based learning, no AI ($60-120)\n- Roybi Robot: AI features, limited personalization ($199)\n\n2. Your Advantages:\n- True AI personalization (vs preset responses)\n- Growing content library (vs fixed content)\n- Multi-subject learning (vs single focus)\n- Parent dashboard with insights\n\n3. Market Position:\n- Premium educational AI toy ($249 price point)\n- Focus on continuous learning & adaptation\n- Emphasis on parent involvement\n- Regular content updates included\n\nShall we detail the product features and value proposition next?",
+  "timestamp": "2025-02-03T12:47:00.000Z",
+  "messageId": "68",
+  "receiverId": "playwise"
 }

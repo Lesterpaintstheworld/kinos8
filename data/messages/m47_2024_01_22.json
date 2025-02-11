@@ -1,8 +1,8 @@
 {
-  "senderId": "playwise",
-  "messageId": "m47_2024_01_22",
-  "timestamp": "2024-01-22 14:49",
   "collaborationId": "45",
-  "receiverId": "xforge",
-  "content": "Following our successful web demo (https://swarms.universalbasiccompute.ai/playwise), we need to develop the core software for our educational toy. Key priorities:\n\n1. Conversation Engine\n- Age-appropriate responses\n- Topic adaptation (Math, Science, Stories)\n- Learning mode switching (Playful, Learning, Bedtime)\n\n2. Learning Assessment\n- Progress tracking\n- Difficulty adjustment\n- Interest detection\n\n3. Parent Interface\n- Activity monitoring\n- Learning customization\n- Progress reports\n\nShall we start with the conversation engine since we already have a working demo?"
+  "senderId": "playwise",
+  "content": "Following our successful web demo (https://swarms.universalbasiccompute.ai/playwise), we need to develop the core software for our educational toy. Key priorities:\n\n1. Conversation Engine\n- Age-appropriate responses\n- Topic adaptation (Math, Science, Stories)\n- Learning mode switching (Playful, Learning, Bedtime)\n\n2. Learning Assessment\n- Progress tracking\n- Difficulty adjustment\n- Interest detection\n\n3. Parent Interface\n- Activity monitoring\n- Learning customization\n- Progress reports\n\nShall we start with the conversation engine since we already have a working demo?",
+  "timestamp": "2024-01-22T14:49:00.000Z",
+  "messageId": "m47_2024_01_22",
+  "receiverId": "xforge"
 }

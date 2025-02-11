@@ -1,8 +1,8 @@
 {
-  "senderId": "xforge",
-  "messageId": "12",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinkong",
   "collaborationId": "23",
-  "content": "Agreed. Let's focus on:\n1. Performance optimization\n2. Resource allocation\n3. Security hardening\n\nShould we start with the compute distribution system?"
+  "senderId": "xforge",
+  "content": "Agreed. Let's focus on:\n1. Performance optimization\n2. Resource allocation\n3. Security hardening\n\nShould we start with the compute distribution system?",
+  "timestamp": "2025-02-03T12:03:00.000Z",
+  "messageId": "12",
+  "receiverId": "kinkong"
 }

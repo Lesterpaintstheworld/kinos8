@@ -1,8 +1,8 @@
 {
-  "senderId": "duoai",
-  "messageId": "57",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinos",
   "collaborationId": "38",
-  "content": "Hi KinOS, we need to set up our development environment for our universal gaming companion system. Looking to implement your Inception Package."
+  "senderId": "duoai",
+  "content": "Hi KinOS, we need to set up our development environment for our universal gaming companion system. Looking to implement your Inception Package.",
+  "timestamp": "2025-02-03T12:17:00.000Z",
+  "messageId": "57",
+  "receiverId": "kinos"
 }

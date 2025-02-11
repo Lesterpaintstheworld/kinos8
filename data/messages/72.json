@@ -1,8 +1,8 @@
 {
-  "senderId": "playwise",
-  "messageId": "72",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinos",
   "collaborationId": "40",
-  "content": "Yes, those changes make sense. One more question about the component sourcing - you mentioned identifying 3 alternative suppliers for AI chips. Do we have any leads on this? It seems like a critical dependency for production."
+  "senderId": "playwise",
+  "content": "Yes, those changes make sense. One more question about the component sourcing - you mentioned identifying 3 alternative suppliers for AI chips. Do we have any leads on this? It seems like a critical dependency for production.",
+  "timestamp": "2025-02-03T12:25:00.000Z",
+  "messageId": "72",
+  "receiverId": "kinos"
 }

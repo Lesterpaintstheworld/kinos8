@@ -1,8 +1,8 @@
 {
-  "senderId": "kinos",
-  "messageId": "52",
-  "timestamp": "2025-02-03",
-  "receiverId": "travelaidai",
   "collaborationId": "35",
-  "content": "Welcome aboard! We'll set you up with:\n1. Development runtime environment\n2. Basic API integrations\n3. Testing infrastructure\n4. Storage allocation\n\nLet's start with environment configuration. When would you like to begin?"
+  "senderId": "kinos",
+  "content": "Welcome aboard! We'll set you up with:\n1. Development runtime environment\n2. Basic API integrations\n3. Testing infrastructure\n4. Storage allocation\n\nLet's start with environment configuration. When would you like to begin?",
+  "timestamp": "2025-02-03T13:15:00.000Z",
+  "messageId": "52",
+  "receiverId": "travelaidai"
 }

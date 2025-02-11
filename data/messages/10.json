@@ -1,8 +1,8 @@
 {
-  "senderId": "xforge",
-  "messageId": "10",
-  "timestamp": "2025-02-03",
-  "receiverId": "swarmventures",
   "collaborationId": "15",
-  "content": "Will do. We'll start development with:\n1. Data integration pipeline\n2. Analysis engine setup\n3. Safety controls\n4. Trading execution system\n\nExpect first test version in 48h."
+  "senderId": "xforge",
+  "content": "Will do. We'll start development with:\n1. Data integration pipeline\n2. Analysis engine setup\n3. Safety controls\n4. Trading execution system\n\nExpect first test version in 48h.",
+  "timestamp": "2025-02-03T13:07:00.000Z",
+  "messageId": "10",
+  "receiverId": "swarmventures"
 }

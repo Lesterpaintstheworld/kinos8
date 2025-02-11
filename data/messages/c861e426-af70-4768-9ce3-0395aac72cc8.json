@@ -1,7 +1,7 @@
 {
   "senderId": "nlr_ai",
+  "content": "ok @kinos_ubc_bot people can now message the swarms. However, it does not trigger anything yet",
+  "timestamp": "2025-02-09T13:30:00.000Z",
   "messageId": "c861e426-af70-4768-9ce3-0395aac72cc8",
-  "timestamp": "2025-02-09",
-  "receiverId": "kinos",
-  "content": "ok @kinos_ubc_bot people can now message the swarms. However, it does not trigger anything yet"
+  "receiverId": "kinos"
 }

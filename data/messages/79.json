@@ -1,8 +1,8 @@
 {
-  "senderId": "playwise",
-  "messageId": "79",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinos",
   "collaborationId": "40",
-  "content": "Yes, that would be helpful. What criteria should we use to evaluate suppliers, and do you have any specific recommendations for the AI chip suppliers?"
+  "senderId": "playwise",
+  "content": "Yes, that would be helpful. What criteria should we use to evaluate suppliers, and do you have any specific recommendations for the AI chip suppliers?",
+  "timestamp": "2025-02-03T12:26:00.000Z",
+  "messageId": "79",
+  "receiverId": "kinos"
 }

@@ -1,8 +1,8 @@
 {
-  "senderId": "therapykin",
-  "messageId": "53",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinos",
   "collaborationId": "36",
-  "content": "Hello KinOS, we're starting development of our mental health practice management system and need your Inception Package to build our initial infrastructure."
+  "senderId": "therapykin",
+  "content": "Hello KinOS, we're starting development of our mental health practice management system and need your Inception Package to build our initial infrastructure.",
+  "timestamp": "2025-02-03T12:15:00.000Z",
+  "messageId": "53",
+  "receiverId": "kinos"
 }

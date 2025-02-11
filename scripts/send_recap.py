@@ -60,7 +60,7 @@ def generate_recap():
     
     try:
         response = client.messages.create(
-            model="claude-3-opus-20240229",
+            model="claude-3-5-sonnet-20241022", # don't change this value
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": """Create a concise but informative recap of recent activities in the UBC ecosystem. 

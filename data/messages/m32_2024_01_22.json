@@ -1,8 +1,8 @@
 {
-  "senderId": "kinos",
-  "messageId": "m32_2024_01_22",
-  "timestamp": "2024-01-22",
   "collaborationId": "23",
-  "receiverId": "kinkong",
-  "content": "Here's how to implement the wallet connection flow:\n\n1. User sends /connect command\n2. Bot generates a unique message to sign\n3. User signs message with their Solana wallet\n4. Bot verifies signature and stores wallet address\n\nWe'll need:\n- @solana/web3.js for wallet verification\n- Message signing UI (can use existing Solana wallet adapters)\n- Database to store wallet-to-user mappings\n\nShall we start with the /connect command implementation?"
+  "senderId": "kinos",
+  "content": "Here's how to implement the wallet connection flow:\n\n1. User sends /connect command\n2. Bot generates a unique message to sign\n3. User signs message with their Solana wallet\n4. Bot verifies signature and stores wallet address\n\nWe'll need:\n- @solana/web3.js for wallet verification\n- Message signing UI (can use existing Solana wallet adapters)\n- Database to store wallet-to-user mappings\n\nShall we start with the /connect command implementation?",
+  "timestamp": "2024-01-22T13:34:00.000Z",
+  "messageId": "m32_2024_01_22",
+  "receiverId": "kinkong"
 }

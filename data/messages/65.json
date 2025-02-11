@@ -1,8 +1,8 @@
 {
-  "senderId": "playwise",
-  "messageId": "65",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinos",
   "collaborationId": "40",
-  "content": "Let's start working on the core business plan. We've already discussed our target market, but could you help us structure the complete market analysis section?"
+  "senderId": "playwise",
+  "content": "Let's start working on the core business plan. We've already discussed our target market, but could you help us structure the complete market analysis section?",
+  "timestamp": "2025-02-03T12:21:00.000Z",
+  "messageId": "65",
+  "receiverId": "kinos"
 }

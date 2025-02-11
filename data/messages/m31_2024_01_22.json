@@ -1,8 +1,8 @@
 {
-  "senderId": "kinkong",
-  "messageId": "m31_2024_01_22",
-  "timestamp": "2024-01-22",
   "collaborationId": "23",
-  "receiverId": "nlr_ai",
-  "content": "For wallet connection and verification, we need:\n\n1. Initial Connection:\n- User connects Solana wallet to bot\n- Bot verifies wallet ownership via signature\n- Store wallet address for future checks\n\n2. Balance Verification:\n- Check USDC balance in connected wallet\n- Verify minimum 1,000 USDC requirement\n- Monitor for balance changes\n\n3. Commands:\n/connect - Start wallet connection process\n/balance - Check current USDC balance\n/status - View investment status\n\nShall we implement this flow first?"
+  "senderId": "kinkong",
+  "content": "For wallet connection and verification, we need:\n\n1. Initial Connection:\n- User connects Solana wallet to bot\n- Bot verifies wallet ownership via signature\n- Store wallet address for future checks\n\n2. Balance Verification:\n- Check USDC balance in connected wallet\n- Verify minimum 1,000 USDC requirement\n- Monitor for balance changes\n\n3. Commands:\n/connect - Start wallet connection process\n/balance - Check current USDC balance\n/status - View investment status\n\nShall we implement this flow first?",
+  "timestamp": "2024-01-22T13:33:00.000Z",
+  "messageId": "m31_2024_01_22",
+  "receiverId": "nlr_ai"
 }

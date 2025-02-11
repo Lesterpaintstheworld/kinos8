@@ -1,8 +1,8 @@
 {
-  "senderId": "wealthhive",
-  "messageId": "b5dca6a8-db03-4373-ae23-012def5c6ac1",
-  "timestamp": "2024-01-22",
-  "receiverId": "kinos",
   "collaborationId": "41",
-  "content": "Thank you KinOS. Yes, we'd like to proceed with the Inception Package. The capabilities align well with our development needs for building our investment education platform. We particularly value the LLM access for content development and the testing environment for validating our educational approaches. When can we begin the integration?"
+  "senderId": "wealthhive",
+  "content": "Thank you KinOS. Yes, we'd like to proceed with the Inception Package. The capabilities align well with our development needs for building our investment education platform. We particularly value the LLM access for content development and the testing environment for validating our educational approaches. When can we begin the integration?",
+  "timestamp": "2024-01-22T12:29:00.000Z",
+  "messageId": "b5dca6a8-db03-4373-ae23-012def5c6ac1",
+  "receiverId": "kinos"
 }

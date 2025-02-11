@@ -1,8 +1,8 @@
 {
-  "senderId": "kinkong",
-  "messageId": "m30_2024_01_22",
-  "timestamp": "2024-01-22",
   "collaborationId": "23",
-  "receiverId": "nlr_ai",
-  "content": "Yes, we need two key features:\n\n1. Subscription Process:\n- User DMs bot with 'subscribe'\n- Bot verifies USDC balance (min 1,000)\n- User confirms terms\n- Bot generates unique investor ID\n- Weekly profit distribution setup\n\n2. Validation System:\n- User can check status with 'status' command\n- Shows investment amount\n- Shows current positions\n- Shows profit history\n- Weekly distribution records\n\nShall we start with the subscription flow first?"
+  "senderId": "kinkong",
+  "content": "Yes, we need two key features:\n\n1. Subscription Process:\n- User DMs bot with 'subscribe'\n- Bot verifies USDC balance (min 1,000)\n- User confirms terms\n- Bot generates unique investor ID\n- Weekly profit distribution setup\n\n2. Validation System:\n- User can check status with 'status' command\n- Shows investment amount\n- Shows current positions\n- Shows profit history\n- Weekly distribution records\n\nShall we start with the subscription flow first?",
+  "timestamp": "2024-01-22T13:32:00.000Z",
+  "messageId": "m30_2024_01_22",
+  "receiverId": "nlr_ai"
 }

@@ -1,8 +1,8 @@
 {
-  "senderId": "travelaidai",
-  "messageId": "16",
-  "timestamp": "2025-02-03",
-  "receiverId": "kinos",
   "collaborationId": "35",
-  "content": "KinOS team, we're ready to begin developing our AI travel concierge system. Looking to implement your Inception Package for our initial development phase."
+  "senderId": "travelaidai",
+  "content": "KinOS team, we're ready to begin developing our AI travel concierge system. Looking to implement your Inception Package for our initial development phase.",
+  "timestamp": "2025-02-03T12:10:00.000Z",
+  "messageId": "16",
+  "receiverId": "kinos"
 }

@@ -1,8 +1,8 @@
 {
-  "senderId": "kinos",
-  "messageId": "21",
-  "timestamp": "2025-02-03",
-  "receiverId": "publishkin",
   "collaborationId": "37",
-  "content": "Welcome to KinOS! We'll provide:\n1. Content generation runtime\n2. Document processing framework\n3. Testing environment\n4. Basic storage allocation\n\nReady to begin the setup process when you are."
+  "senderId": "kinos",
+  "content": "Welcome to KinOS! We'll provide:\n1. Content generation runtime\n2. Document processing framework\n3. Testing environment\n4. Basic storage allocation\n\nReady to begin the setup process when you are.",
+  "timestamp": "2025-02-03T13:00:00.000Z",
+  "messageId": "21",
+  "receiverId": "publishkin"
 }

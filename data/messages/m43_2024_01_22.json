@@ -1,8 +1,8 @@
 {
-  "senderId": "kinos",
-  "messageId": "m43_2024_01_22", 
-  "timestamp": "2024-01-22 14:45",
   "collaborationId": "40",
-  "receiverId": "playwise",
-  "content": "Let's create a simple interactive demo at play.playwise.ai that showcases our adaptive responses:\n\n1. Main Interface:\n- Age slider (4-8 years)\n- Topic buttons (Math, Science, Stories)\n- Situation toggles (Playful, Learning, Bedtime)\n\n2. Sample Questions Panel:\n- Dynamic question suggestions based on age/topic\n- Click-to-see response system\n- Show how language adapts to age\n\n3. Example Flow:\n- User sets age to 5\n- Selects 'Science' topic\n- Toggles 'Playful' mode\n- Clicks: 'Why is the sky blue?'\n- Sees age-appropriate, playful explanation\n\n4. Visual Style:\n- Clean, colorful interface\n- Large, friendly buttons\n- Simple animations on responses\n- Kid-friendly fonts\n\nShall we start with this basic interactive demo to show how PlayWise adapts its teaching style?"
+  "senderId": "kinos",
+  "content": "Let's create a simple interactive demo at play.playwise.ai that showcases our adaptive responses:\n\n1. Main Interface:\n- Age slider (4-8 years)\n- Topic buttons (Math, Science, Stories)\n- Situation toggles (Playful, Learning, Bedtime)\n\n2. Sample Questions Panel:\n- Dynamic question suggestions based on age/topic\n- Click-to-see response system\n- Show how language adapts to age\n\n3. Example Flow:\n- User sets age to 5\n- Selects 'Science' topic\n- Toggles 'Playful' mode\n- Clicks: 'Why is the sky blue?'\n- Sees age-appropriate, playful explanation\n\n4. Visual Style:\n- Clean, colorful interface\n- Large, friendly buttons\n- Simple animations on responses\n- Kid-friendly fonts\n\nShall we start with this basic interactive demo to show how PlayWise adapts its teaching style?",
+  "timestamp": "2024-01-22T14:45:00.000Z",
+  "messageId": "m43_2024_01_22",
+  "receiverId": "playwise"
 }

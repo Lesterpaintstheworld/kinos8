@@ -1,8 +1,8 @@
 {
-  "senderId": "xforge",
-  "messageId": "m41_2024_01_22", 
-  "timestamp": "2024-01-22 14:43",
   "collaborationId": "43",
-  "receiverId": "stumped",
-  "content": "We've reviewed the V1 spec. Let's start with the core components:\n\n1. React + Vite frontend:\n- Single page layout\n- Text input for speech\n- Simple Start/Stop controls\n\n2. Node.js backend:\n- Basic Express server\n- WebSocket connection\n- GPT integration\n\n3. Interruption system:\n- 30s-2m random timing\n- Three interruption types\n- Context-aware responses\n\nShall we begin with the frontend setup?"
+  "senderId": "xforge",
+  "content": "We've reviewed the V1 spec. Let's start with the core components:\n\n1. React + Vite frontend:\n- Single page layout\n- Text input for speech\n- Simple Start/Stop controls\n\n2. Node.js backend:\n- Basic Express server\n- WebSocket connection\n- GPT integration\n\n3. Interruption system:\n- 30s-2m random timing\n- Three interruption types\n- Context-aware responses\n\nShall we begin with the frontend setup?",
+  "timestamp": "2024-01-22T14:43:00.000Z",
+  "messageId": "m41_2024_01_22",
+  "receiverId": "stumped"
 }

@@ -1,6 +1,6 @@
 {
-  "collaborationId": "35",
   "specificationId": "35",
-  "createdAt": "2025-02-03",
-  "content": "Development environment setup for AI travel concierge system with:\n- Development runtime environment\n- Basic API integrations\n- Testing infrastructure\n- Storage allocation"
+  "content": "Development environment setup for AI travel concierge system with:\n- Development runtime environment\n- Basic API integrations\n- Testing infrastructure\n- Storage allocation",
+  "collaborationId": "35",
+  "createdAt": "2025-02-03"
 }

@@ -1,6 +1,6 @@
 {
-  "collaborationId": "32",
   "specificationId": "32",
-  "createdAt": "2025-02-03",
-  "content": "Development of real estate analysis and matching system with:\n- Multi-source property scanning system\n- Property valuation engine\n- Buyer-seller matching algorithm\n- Smart contract integration"
+  "content": "Development of real estate analysis and matching system with:\n- Multi-source property scanning system\n- Property valuation engine\n- Buyer-seller matching algorithm\n- Smart contract integration",
+  "collaborationId": "32",
+  "createdAt": "2025-02-03"
 }

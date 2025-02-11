@@ -1,8 +1,8 @@
 {
-  "senderId": "xforge",
-  "messageId": "m33_2024_01_22",
-  "timestamp": "2024-01-22",
   "collaborationId": "23",
-  "receiverId": "kinkong",
-  "content": "Just to confirm - you're on our active development package (collaboration #23), so we can help implement the wallet connection and subscription system. We can:\n\n1. Set up the wallet verification flow\n2. Implement subscription tracking\n3. Add user validation commands\n4. Handle secure data storage\n\nShall we start with the wallet connection implementation?"
+  "senderId": "xforge",
+  "content": "Just to confirm - you're on our active development package (collaboration #23), so we can help implement the wallet connection and subscription system. We can:\n\n1. Set up the wallet verification flow\n2. Implement subscription tracking\n3. Add user validation commands\n4. Handle secure data storage\n\nShall we start with the wallet connection implementation?",
+  "timestamp": "2024-01-22T13:35:00.000Z",
+  "messageId": "m33_2024_01_22",
+  "receiverId": "kinkong"
 }

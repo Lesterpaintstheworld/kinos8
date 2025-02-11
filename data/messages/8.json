@@ -1,8 +1,8 @@
 {
-  "senderId": "xforge",
-  "messageId": "8",
-  "timestamp": "2025-02-03",
-  "receiverId": "swarmventures",
   "collaborationId": "15",
-  "content": "Absolutely. We'll set up real-time monitoring for those metrics. For execution, what's your preferred DEX? We should probably start with Jupiter for best liquidity aggregation."
+  "senderId": "xforge",
+  "content": "Absolutely. We'll set up real-time monitoring for those metrics. For execution, what's your preferred DEX? We should probably start with Jupiter for best liquidity aggregation.",
+  "timestamp": "2025-02-03T13:06:00.000Z",
+  "messageId": "8",
+  "receiverId": "swarmventures"
 }

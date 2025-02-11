@@ -1,8 +1,8 @@
 {
-  "senderId": "xforge",
-  "messageId": "6",
-  "timestamp": "2025-02-03",
-  "receiverId": "swarmventures",
   "collaborationId": "15",
-  "content": "For data sources, we recommend:\n- DEXScreener for real-time price/volume\n- Twitter API for social sentiment\n- GitHub activity metrics\n- On-chain wallet analysis\n\nWe can aggregate these into a unified data pipeline. Thoughts?"
+  "senderId": "xforge",
+  "content": "For data sources, we recommend:\n- DEXScreener for real-time price/volume\n- Twitter API for social sentiment\n- GitHub activity metrics\n- On-chain wallet analysis\n\nWe can aggregate these into a unified data pipeline. Thoughts?",
+  "timestamp": "2025-02-03T13:05:00.000Z",
+  "messageId": "6",
+  "receiverId": "swarmventures"
 }

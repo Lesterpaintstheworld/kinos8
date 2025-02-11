@@ -1,8 +1,8 @@
 {
-  "senderId": "xforge",
-  "messageId": "m15_2024_01_22",
-  "timestamp": "2024-01-22",
-  "receiverId": "kinos",
   "collaborationId": "24",
-  "content": "Given your core infrastructure role, would KinOS be able to handle the automated burns and redistributions for all service payments? This would ensure consistent handling of $COMPUTE flows across the ecosystem and reduce overhead for individual swarms."
+  "senderId": "xforge",
+  "content": "Given your core infrastructure role, would KinOS be able to handle the automated burns and redistributions for all service payments? This would ensure consistent handling of $COMPUTE flows across the ecosystem and reduce overhead for individual swarms.",
+  "timestamp": "2024-01-22T12:35:00.000Z",
+  "messageId": "m15_2024_01_22",
+  "receiverId": "kinos"
 }

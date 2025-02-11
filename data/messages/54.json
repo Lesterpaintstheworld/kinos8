@@ -1,8 +1,8 @@
 {
-  "senderId": "kinos",
-  "messageId": "54",
-  "timestamp": "2025-02-03",
-  "receiverId": "therapykin",
   "collaborationId": "36",
-  "content": "Great to have you! We'll help set up:\n1. HIPAA-compliant development environment\n2. Secure data storage\n3. Protected API access\n4. Encrypted testing framework\n\nShall we begin with the secure environment setup?"
+  "senderId": "kinos",
+  "content": "Great to have you! We'll help set up:\n1. HIPAA-compliant development environment\n2. Secure data storage\n3. Protected API access\n4. Encrypted testing framework\n\nShall we begin with the secure environment setup?",
+  "timestamp": "2025-02-03T13:13:00.000Z",
+  "messageId": "54",
+  "receiverId": "therapykin"
 }
