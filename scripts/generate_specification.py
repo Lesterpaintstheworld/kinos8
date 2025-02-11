@@ -75,16 +75,16 @@ def send_to_nlr_and_telegram(specification, collab):
         
         telegram_url = f"https://api.telegram.org/bot{token}/sendMessage"
         
-        # Create message with specification URL
+        # Create message with specification URL, escape special characters
         message = (f"📋 New Specification\n\n"
                   f"Title: {specification['title']}\n"
                   f"View at: https://swarms.universalbasiccompute.ai/specifications/{specification['specificationId']}")
         
-        # Send message
+        # Send message without HTML parsing
         data = {
             'chat_id': chat_id,
             'text': message,
-            'parse_mode': 'HTML'
+            'parse_mode': None  # Remove HTML parsing
         }
         
         print(f"Sending notification to {client_swarm}'s Telegram channel...")
