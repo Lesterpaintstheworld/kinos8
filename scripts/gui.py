@@ -128,7 +128,8 @@ class ScriptGUI:
         )
         buttons_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
         
-        def create_metallic_button(frame, text, command, column):
+        # Create two rows of buttons for better layout
+        def create_metallic_button(frame, text, command, row, column):
             btn = ttk.Button(
                 frame,
                 text=text,
@@ -136,16 +137,19 @@ class ScriptGUI:
                 style="Metallic.TButton",
                 width=20
             )
-            btn.grid(row=0, column=column, padx=4, pady=4)
+            btn.grid(row=row, column=column, padx=4, pady=4)
             return btn
 
-        # Create metallic buttons
-        create_metallic_button(buttons_frame, "Pull Data", lambda: self.run_script("pullData.py"), 0)
-        create_metallic_button(buttons_frame, "Push Data", lambda: self.run_script("pushData.py"), 1)
-        create_metallic_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 2)
-        create_metallic_button(buttons_frame, "Send Recap", lambda: self.run_script("send_recap.py"), 3)
-        create_metallic_button(buttons_frame, "Clear Output", self.clear_output, 4)
-        create_metallic_button(buttons_frame, "Save Output", self.save_output, 5)
+        # First row of buttons
+        create_metallic_button(buttons_frame, "Pull Data", lambda: self.run_script("pullData.py"), 0, 0)
+        create_metallic_button(buttons_frame, "Push Data", lambda: self.run_script("pushData.py"), 0, 1)
+        create_metallic_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 0, 2)
+        create_metallic_button(buttons_frame, "List Relations", lambda: self.run_script("list_swarm_relations.py"), 0, 3)
+
+        # Second row of buttons
+        create_metallic_button(buttons_frame, "Send Recap", lambda: self.run_script("send_recap.py"), 1, 0)
+        create_metallic_button(buttons_frame, "Clear Output", self.clear_output, 1, 1)
+        create_metallic_button(buttons_frame, "Save Output", self.save_output, 1, 2)
         
         # Watch toggle button with metallic effect
         self.watch_button = ttk.Button(
@@ -154,7 +158,7 @@ class ScriptGUI:
             command=self.toggle_watch,
             style="MetallicToggle.TButton"
         )
-        self.watch_button.grid(row=0, column=6, padx=6, pady=3)
+        self.watch_button.grid(row=1, column=3, padx=6, pady=3)
         
         # Output area with better contrast
         output_frame = ttk.LabelFrame(
