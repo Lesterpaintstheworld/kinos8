@@ -60,21 +60,25 @@ def generate_recap():
     
     try:
         response = client.messages.create(
-            model="claude-3-5-sonnet-20241022",  # don't change this value!!!!!
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=1024,
             messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": """Create a concise but informative recap of recent activities in the UBC ecosystem. 
-                Focus on key developments, collaborations, and important messages.
-                Format it in a clear, engaging way suitable for a Telegram announcement.
-                Include relevant numbers and metrics where available.
-                Keep it under 2000 characters."""}
+                {
+                    "role": "system", 
+                    "content": system_prompt
+                },
+                {
+                    "role": "user", 
+                    "content": """Create a concise but informative recap of recent activities in the UBC ecosystem. 
+                    Focus on key developments, collaborations, and important messages.
+                    Format it in a clear, engaging way suitable for a Telegram announcement.
+                    Include relevant numbers and metrics where available.
+                    Keep it under 2000 characters."""
+                }
             ]
         )
         
-        if hasattr(response, 'content') and len(response.content) > 0:
-            return response.content[0].text
-        else:
-            raise Exception("No content in response")
+        return response.content[0].text
         
     except Exception as e:
         print(f"Error generating recap with Claude: {str(e)}")
