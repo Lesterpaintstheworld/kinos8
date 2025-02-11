@@ -66,18 +66,20 @@ Existing conversation context:
     context += f"\nPrompt: {prompt}\n"
     
     # Initialize Claude client
-    client = anthropic.Client(api_key=os.getenv('ANTHROPIC_API_KEY'))
+    client = anthropic.Client(
+        api_key=os.getenv('ANTHROPIC_API_KEY')
+    )
     
     try:
         # Generate response using Claude
         response = client.messages.create(
-            model="claude-3-opus-20240229",
+            model="claude-3-5-sonnet-20241022",
             max_tokens=2000,
-            system=context,
             messages=[{
                 "role": "user",
                 "content": "Generate the next message in this conversation. Return ONLY the message content, no additional formatting or explanation."
-            }]
+            }],
+            system=context
         )
         
         if not hasattr(response, 'content') or len(response.content) == 0:
