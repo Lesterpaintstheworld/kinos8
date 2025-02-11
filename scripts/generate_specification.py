@@ -167,6 +167,9 @@ Recent Messages:
                 print(spec_content.encode('ascii', 'replace').decode('ascii'))
             print("=" * 50)
             
+            # Git operations
+            git_operations(spec_id)
+            
             # Send to NLR and Telegram
             send_to_nlr_and_telegram(specification, collab)
             
