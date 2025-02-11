@@ -108,7 +108,7 @@ def fund_hot_wallets():
                     time.sleep(retry_delay)
                     retry_delay *= 2  # Exponential backoff
                 
-                # Get recent blockhash - updated to handle Solders response
+                # Get recent blockhash
                 print("Getting recent blockhash...")
                 blockhash_response = client.get_latest_blockhash()
                 recent_blockhash = blockhash_response.value.blockhash
@@ -124,15 +124,18 @@ def fund_hot_wallets():
                     )
                 )
                 
-                # Create transaction
+                # Create transaction with proper parameters
                 print("Creating transaction...")
-                tx = Transaction()
+                tx = Transaction.new_with_payer(
+                    instructions=[transfer_ix],
+                    payer=treasury.pubkey()
+                )
                 tx.recent_blockhash = recent_blockhash
-                tx.add(transfer_ix)
+                tx.sign([treasury])  # Sign with treasury keypair
                 
                 print("Sending 0.01 SOL...")
-                # Sign and send transaction
-                result = client.send_transaction(tx, treasury)
+                # Send signed transaction
+                result = client.send_transaction(tx)
                 print(f"SOL transfer signature: {result['result']}")
                 print(f"Successfully funded {swarm_id} hot wallet")
                 
