@@ -61,12 +61,27 @@ def generate_conversation(collab_id, prompt, message_count=1):
         # Get existing messages for updated context
         existing_messages = load_messages(collab_id)
         
+        # Load specifications for this collaboration
+        specifications = []
+        spec_files = glob.glob('data/specifications/*.json')
+        for file in spec_files:
+            with open(file, 'r') as f:
+                spec_data = json.load(f)
+                if spec_data.get('collaborationId') == collab_id:
+                    specifications.append(spec_data)
+        
         # Create context for Claude
         context = f"""You are helping generate a conversation between {collab['clientSwarmId']} and {collab['providerSwarmId']}.
 
-Existing conversation context:
+Collaboration Specifications:
 """
-        
+        # Add specifications to context
+        for spec in specifications:
+            context += f"\nSpecification: {spec.get('title')}\n"
+            context += f"Content:\n{spec.get('content')}\n"
+            context += "-" * 40 + "\n"
+
+        context += "\nExisting conversation context:\n"
         for msg in existing_messages[-5:]:  # Last 5 messages for context
             context += f"\n{msg['senderId']}: {msg['content']}\n"
 
