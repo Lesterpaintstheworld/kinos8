@@ -263,8 +263,16 @@ class ScriptGUI:
         )
         spec_collab_label.grid(row=0, column=0, padx=4, pady=4, sticky=tk.W)
 
-        # Reuse the same collaboration selector
-        self.collab_selector.grid(row=0, column=1, padx=4, pady=4, sticky=tk.W)
+        # Create a separate collaboration selector for specifications
+        self.spec_collab_var = tk.StringVar()
+        self.spec_collab_selector = ttk.Combobox(
+            spec_frame,
+            textvariable=self.spec_collab_var,
+            style="Metallic.TCombobox",
+            width=40,
+            state="readonly"
+        )
+        self.spec_collab_selector.grid(row=0, column=1, padx=4, pady=4, sticky=tk.W)
 
         # Topic Text Box
         topic_label = ttk.Label(
@@ -478,7 +486,7 @@ class ScriptGUI:
         self.status_var.set("Watch process ended")
 
     def load_collaborations(self):
-        """Load available collaborations into the selector"""
+        """Load available collaborations into the selectors"""
         try:
             import glob
             import json
@@ -489,9 +497,18 @@ class ScriptGUI:
                     data = json.load(f)
                     desc = f"{data.get('collaborationId')} - {data.get('clientSwarmId')} with {data.get('providerSwarmId')}"
                     collabs.append(desc)
-            self.collab_selector['values'] = sorted(collabs)
+            
+            sorted_collabs = sorted(collabs)
+            # Set values for conversation selector
+            self.collab_selector['values'] = sorted_collabs
             if collabs:
-                self.collab_selector.set(collabs[0])
+                self.collab_selector.set(sorted_collabs[0])
+                
+            # Set values for specification selector
+            self.spec_collab_selector['values'] = sorted_collabs
+            if collabs:
+                self.spec_collab_selector.set(sorted_collabs[0])
+                
         except Exception as e:
             print(f"Error loading collaborations: {e}")
 
@@ -510,7 +527,7 @@ class ScriptGUI:
 
     def generate_specification(self):
         """Generate specification based on selected collaboration and topic"""
-        collab_id = self.collab_var.get().split(' - ')[0]
+        collab_id = self.spec_collab_var.get().split(' - ')[0]
         topic = self.topic_text.get("1.0", tk.END).strip()
         
         if not topic:
