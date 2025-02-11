@@ -154,6 +154,7 @@ class ScriptGUI:
         create_metallic_button(buttons_frame, "Calculate Distributions", lambda: self.run_script("calculate_distributions.py"), 0, 2)
         create_metallic_button(buttons_frame, "List Relations", lambda: self.run_script("list_swarm_relations.py"), 0, 3)
         create_metallic_button(buttons_frame, "Phantom Pay", lambda: self.show_payment_dialog(), 0, 4)
+        create_metallic_button(buttons_frame, "Create Hot Wallets", lambda: self.run_script("create_hot_wallets.py"), 0, 5)
 
         # Second row of buttons
         create_metallic_button(buttons_frame, "Send Recap", lambda: self.run_script("send_recap.py"), 1, 0)
