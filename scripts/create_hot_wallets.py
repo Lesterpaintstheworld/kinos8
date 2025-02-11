@@ -1,7 +1,7 @@
 import os
 import json
 import glob
-from solana.keypair import Keypair
+from solders.keypair import Keypair
 import base58
 from cryptography.fernet import Fernet
 import base64
