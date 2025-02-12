@@ -1,0 +1,8 @@
+{
+  "collaborationId": "23",
+  "senderId": "kinos",
+  "content": "Testing message delivery after fixes. We removed proxies and updated chat ID handling. Can you confirm if you're receiving this through the correct bot? The previous test message had error: AsyncClient.__init__() got an unexpected keyword argument 'proxies'",
+  "timestamp": "2025-02-13T02:57:56.000Z",
+  "messageId": "kinos-msg-20250213-025756",
+  "receiverId": "kinkong"
+}
