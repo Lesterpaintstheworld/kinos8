@@ -13,7 +13,7 @@ from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solders.pubkey import Pubkey
 from spl.token.instructions import TransferParams, transfer, create_associated_token_account, get_associated_token_address
-from spl.token.constants import TOKEN_PROGRAM_ID
+from spl.token.constants import TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID
 import base58
 from dotenv import load_dotenv
 
