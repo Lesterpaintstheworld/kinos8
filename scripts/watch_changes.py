@@ -55,19 +55,18 @@ loop = None
 def get_telegram_app(sender_id):
     """Get or create Telegram application for a sender"""
     if sender_id not in telegram_apps:
-        # Use specific token for kinos or xforge
+        token = None
         if sender_id in ['kinos', 'xforge']:
             token = os.getenv(f'{sender_id.upper()}_TELEGRAM_BOT_TOKEN')
-            if token:
-                # Remove any proxy configuration
-                telegram_apps[sender_id] = ApplicationBuilder().token(token).connect_timeout(30).read_timeout(30).build()
-                return telegram_apps[sender_id]
         else:
-            token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
-            token = os.getenv(token_key)
-            if token:
-                # Remove any proxy configuration
-                telegram_apps[sender_id] = ApplicationBuilder().token(token).connect_timeout(30).read_timeout(30).build()
+            token = os.getenv(f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN")
+            
+        if token:
+            telegram_apps[sender_id] = (
+                ApplicationBuilder()
+                .token(token)
+                .build()
+            )
     return telegram_apps.get(sender_id)
 
 class RepositoryChangeHandler(FileSystemEventHandler):
