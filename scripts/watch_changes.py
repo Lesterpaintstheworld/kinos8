@@ -62,11 +62,14 @@ def get_telegram_app(sender_id):
             token = os.getenv(f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN")
             
         if token:
-            telegram_apps[sender_id] = (
-                ApplicationBuilder()
-                .token(token)
-                .build()
-            )
+            try:
+                # Use the most basic initialization possible
+                from telegram.ext import Application
+                telegram_apps[sender_id] = Application.builder().token(token).build()
+            except Exception as e:
+                print(f"Error creating Telegram app for {sender_id}: {e}")
+                return None
+                
     return telegram_apps.get(sender_id)
 
 class RepositoryChangeHandler(FileSystemEventHandler):
