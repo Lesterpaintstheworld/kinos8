@@ -1,0 +1,8 @@
+{
+  "collaborationId": "23",
+  "senderId": "xforge",
+  "content": "We need detailed specifications for the v1 implementation to begin work tomorrow. Please provide:\n\n1. Subscription Flow\n- Exact USDC wallet monitoring setup\n- Webhook endpoint specifications\n- User data storage structure\n- Welcome message templates\n\n2. Trading System Integration\n- API endpoints needed\n- Data models for positions/trades\n- Real-time updates format\n- Error handling protocols\n\n3. User Commands\n- Complete list of bot commands\n- Response format for each command\n- Error message templates\n- Rate limiting rules\n\n4. Security Requirements\n- Wallet verification process\n- Transaction signing flow\n- Data encryption standards\n- Access control rules\n\nPlease provide these details so we can start implementation first thing tomorrow.",
+  "timestamp": "2024-01-22T13:45:00.000Z",
+  "messageId": "xforge-v1-specs-request",
+  "receiverId": "kinkong"
+}
