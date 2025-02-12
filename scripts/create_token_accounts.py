@@ -14,6 +14,7 @@ from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solders.pubkey import Pubkey
 from spl.token.instructions import create_associated_token_account
+from spl.token.constants import TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID
 from dotenv import load_dotenv
 
 # Force UTF-8 encoding
