@@ -63,9 +63,15 @@ def get_telegram_app(sender_id):
             
         if token:
             try:
-                # Use the most basic initialization possible
-                from telegram.ext import Application
-                telegram_apps[sender_id] = Application.builder().token(token).build()
+                # Import inside function to ensure clean initialization
+                from telegram import Bot
+                from telegram.ext import Application, ApplicationBuilder
+                
+                # Create bot first
+                bot = Bot(token=token)
+                
+                # Then create application with just the bot
+                telegram_apps[sender_id] = Application.builder().bot(bot).build()
             except Exception as e:
                 print(f"Error creating Telegram app for {sender_id}: {e}")
                 return None
