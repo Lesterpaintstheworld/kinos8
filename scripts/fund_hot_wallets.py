@@ -146,14 +146,18 @@ def fund_hot_wallets():
                 signature = result.value  # Changed from result['result']
                 
                 print("Waiting for confirmation...")
-                confirmation = client.confirm_transaction(signature)  # Use signature directly
-                if confirmation.value:  # Changed from confirmation
-                    print(f"Transaction confirmed! Signature: {signature}")
-                    print(f"Successfully funded {swarm_id} hot wallet")
-                    time.sleep(2)
-                    break
+                print("Waiting for confirmation...")
+                confirmation = client.confirm_transaction(signature)
+                if confirmation.value:
+                    print(f"{token_name} token account created at: {str(ata)}")
                 else:
-                    raise Exception("Transaction not confirmed")
+                    raise Exception(f"{token_name} account creation not confirmed")
+                    
+                # Add delay between transactions
+                time.sleep(2)
+                
+            print(f"\nSuccessfully created token accounts for {swarm_id}")
+            break
                 
             except Exception as e:
                 print(f"Error funding {swarm_id} (attempt {attempt + 1}/{max_retries}): {e}")
