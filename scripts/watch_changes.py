@@ -73,7 +73,6 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         super().__init__()
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
-        self.processed_messages = set()  # Add set to track processed messages
 
     def on_created(self, event):
         if event.is_directory:
@@ -185,11 +184,6 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     data = json.loads(f.read())
                     if 'content' in data and 'senderId' in data and 'messageId' in data:
-                        # Check if we've already processed this message
-                        if data['messageId'] in self.processed_messages:
-                            print(f"Skipping duplicate message {data['messageId']}")
-                            return
-                            
                         # Check if we've sent a message recently
                         current_time = time.time()
                         if hasattr(self, 'last_message_time'):
@@ -200,9 +194,6 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         message = f"{data['content']}"
                         await self._send_telegram_message(message, data['senderId'])
                         self.last_message_time = time.time()
-                        
-                        # Mark message as processed
-                        self.processed_messages.add(data['messageId'])
                         print(f"Processed message {data['messageId']}")
             except Exception as e:
                 print(f"Error processing message file {file_path}: {e}")
