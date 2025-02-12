@@ -117,14 +117,13 @@ def fund_hot_wallets():
                 print("Creating COMPUTE transfer instruction...")
                 compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
                 compute_tx = Transaction()
-                transfer_params = TransferParams(
-                    program_id=compute_token_mint,
-                    source=treasury.pubkey(),
-                    dest=Pubkey.from_string(hot_wallet),
-                    owner=treasury.pubkey(),
-                    amount=1000000  # 1M COMPUTE
-                )
-                compute_tx.add(transfer(transfer_params))
+                compute_tx.add(transfer(
+                    TransferParams(
+                        from_pubkey=treasury.pubkey(),
+                        to_pubkey=Pubkey.from_string(hot_wallet),
+                        lamports=1000000  # 1M COMPUTE
+                    )
+                ))
                 
                 print("Signing transaction...")
                 compute_tx.sign(treasury)  # Sign with treasury keypair
