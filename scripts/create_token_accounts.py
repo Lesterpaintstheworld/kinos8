@@ -122,8 +122,7 @@ def create_token_accounts():
                     # Get the associated token account address
                     ata = get_associated_token_address(
                         owner=hot_wallet_pubkey,
-                        mint=mint_pubkey,
-                        program_id=TOKEN_PROGRAM_ID
+                        mint=mint_pubkey
                     )
                     
                     # Create instruction to create the associated token account
