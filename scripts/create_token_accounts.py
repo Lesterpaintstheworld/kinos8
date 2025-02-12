@@ -4,6 +4,7 @@ import glob
 import codecs
 import sys
 import base64
+import base58
 import time
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
