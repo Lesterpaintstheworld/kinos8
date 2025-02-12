@@ -69,7 +69,7 @@ def load_swarms_with_hot_wallets():
     return swarms
 
 def fund_hot_wallets():
-    """Fund hot wallets with initial SOL"""
+    """Fund hot wallets with initial COMPUTE"""
     # Load treasury wallet
     treasury = load_treasury_wallet()
     if not treasury:
@@ -101,19 +101,13 @@ def fund_hot_wallets():
         
         for attempt in range(max_retries):
             try:
-                # Add delay between requests
-                if attempt > 0:
-                    print(f"Retry attempt {attempt + 1}/{max_retries}, waiting {retry_delay} seconds...")
-                    time.sleep(retry_delay)
-                    retry_delay *= 2  # Exponential backoff
-                
-                # Get recent blockhash
+                # Get recent blockhash and immediately use it
                 print("Getting recent blockhash...")
                 blockhash_response = client.get_latest_blockhash()
                 recent_blockhash = blockhash_response.value.blockhash
                 print(f"Got blockhash: {recent_blockhash}")
                 
-                # Create COMPUTE transfer instruction
+                # Create and send transaction immediately
                 print("Creating COMPUTE transfer instruction...")
                 compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
                 compute_tx = Transaction()
@@ -126,20 +120,25 @@ def fund_hot_wallets():
                     signers=[]
                 )
                 compute_tx.add(transfer(transfer_params))
+                compute_tx.recent_blockhash = recent_blockhash
                 
-                print("Signing transaction...")
-                compute_tx.sign(treasury)  # Sign with treasury keypair
-                serialized_tx = compute_tx.serialize()  # Serialize after signing
+                print("Signing and sending transaction...")
+                compute_tx.sign(treasury)
+                serialized_tx = compute_tx.serialize()
                 
-                print("Sending 1M COMPUTE...")
-                # Send serialized transaction
+                # Send immediately after signing
                 result = client.send_raw_transaction(serialized_tx)
-                print(f"COMPUTE transfer signature: {result['result']}")
-                print(f"Successfully funded {swarm_id} hot wallet")
                 
-                # Add delay after successful transaction
-                time.sleep(2)
-                break  # Exit retry loop if successful
+                # Wait for confirmation
+                print("Waiting for confirmation...")
+                confirmation = client.confirm_transaction(result['result'])
+                if confirmation:
+                    print(f"Transaction confirmed! Signature: {result['result']}")
+                    print(f"Successfully funded {swarm_id} hot wallet")
+                    time.sleep(2)  # Brief delay before next transaction
+                    break
+                else:
+                    raise Exception("Transaction not confirmed")
                 
             except Exception as e:
                 print(f"Error funding {swarm_id} (attempt {attempt + 1}/{max_retries}): {e}")
