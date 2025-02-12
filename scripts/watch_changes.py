@@ -290,39 +290,39 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             current_time = time.time()
             if hasattr(self, '_last_message_time'):
                 time_since_last = current_time - self._last_message_time
-                if time_since_last < 3:  # Minimum 3 seconds between messages
+                if time_since_last < 3:
                     await asyncio.sleep(3 - time_since_last)
             self._last_message_time = current_time
 
             logging.info(f"Sending message from {sender_id}")
             
-            # Use KinOS or XForge token based on sender
-            if sender_id in ['kinos', 'xforge']:
-                # Get bot token based on sender
-                token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
-                app = get_telegram_app(sender_id)
-                
-                # Get most recent message file for receiver ID
-                message_files = glob.glob('data/messages/*.json')
-                latest_file = max(message_files, key=os.path.getctime)
-                
-                with open(latest_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    receiver_id = data.get('receiverId')
-                    if receiver_id:
-                        chat_id_key = f"{receiver_id.upper()}_TELEGRAM_CHAT_ID"
-                        chat_id = os.getenv(chat_id_key)
-            else:
-                # For other senders, use their own chat ID
+            # Get chat ID from swarm data first
+            chat_id = None
+            swarm_file = f'data/swarms/{sender_id}.json'
+            if os.path.exists(swarm_file):
+                with open(swarm_file, 'r', encoding='utf-8') as f:
+                    swarm_data = json.load(f)
+                    chat_id = swarm_data.get('telegramChatId')
+            
+            # Fallback to environment variable if not found in swarm data
+            if not chat_id:
                 chat_id_key = f"{sender_id.upper()}_TELEGRAM_CHAT_ID"
                 chat_id = os.getenv(chat_id_key)
+
+            # Get appropriate bot token and app
+            if sender_id in ['kinos', 'xforge']:
                 app = get_telegram_app(sender_id)
-                
+            else:
+                # For other senders, use their own chat ID
+                app = get_telegram_app('xforge')  # Default to xforge bot for other senders
+                    
             if app and chat_id:
                 print(f"Sending message as {sender_id} to chat {chat_id}")
                 await app.bot.send_message(chat_id=chat_id, text=message)
             else:
-                print(f"Telegram credentials not configured for {'receiver' if sender_id in ['kinos', 'xforge'] else 'sender'} {sender_id}")
+                print(f"Could not send message - Missing {'app' if not app else 'chat_id'}")
+                print(f"Sender: {sender_id}")
+                print(f"Chat ID: {chat_id}")
         except Exception as e:
             print(f"Error sending Telegram message: {e}")
             print(f"Sender: {sender_id}")
