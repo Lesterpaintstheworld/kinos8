@@ -249,6 +249,40 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                             
             except Exception as e:
                 print(f"Error processing specification file {file_path}: {e}")
+                
+        # Handle deliverable files
+        elif 'data/deliverables' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
+            try:
+                # Wait a brief moment to ensure file is fully written
+                await asyncio.sleep(0.1)
+                
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.loads(f.read())
+                    if 'deliverableId' in data and 'collaborationId' in data:
+                        # Load collaboration to get client swarm
+                        collab_files = glob.glob('data/collaborations/*.json')
+                        client_swarm_id = None
+                        for collab_file in collab_files:
+                            with open(collab_file, 'r', encoding='utf-8') as cf:
+                                collab_data = json.load(cf)
+                                if collab_data.get('collaborationId') == data['collaborationId']:
+                                    client_swarm_id = collab_data.get('clientSwarmId')
+                                    break
+                        
+                        if client_swarm_id:
+                            # Create a message with content preview
+                            content_preview = data.get('content', '')[:200] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
+                            message = (f"📦 New Deliverable\n\n"
+                                     f"Title: {data.get('title')}\n"
+                                     f"Created: {data.get('createdAt')}\n\n"
+                                     f"Preview:\n{content_preview}\n\n"
+                                     f"View full deliverable at:\n"
+                                     f"https://swarms.universalbasiccompute.ai/deliverables/{data['deliverableId']}")
+                            await self._send_telegram_message(message, client_swarm_id)
+                            print(f"Sent deliverable notification to {client_swarm_id}")
+                            
+            except Exception as e:
+                print(f"Error processing deliverable file {file_path}: {e}")
 
     async def _send_telegram_message(self, message, sender_id):
         try:
