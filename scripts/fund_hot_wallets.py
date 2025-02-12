@@ -12,7 +12,7 @@ from solders.keypair import Keypair
 from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solders.pubkey import Pubkey
-from spl.token.instructions import transfer as spl_transfer
+from spl.token.instructions import TransferParams, transfer
 import base58
 from dotenv import load_dotenv
 
@@ -117,12 +117,14 @@ def fund_hot_wallets():
                 print("Creating COMPUTE transfer instruction...")
                 compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
                 compute_tx = Transaction()
-                compute_tx.add(spl_transfer(
-                    treasury.pubkey(),
-                    Pubkey.from_string(hot_wallet),
-                    1000000,  # 1M COMPUTE
-                    compute_token_mint
-                ))
+                transfer_params = TransferParams(
+                    program_id=compute_token_mint,
+                    source=treasury.pubkey(),
+                    dest=Pubkey.from_string(hot_wallet),
+                    owner=treasury.pubkey(),
+                    amount=1000000  # 1M COMPUTE
+                )
+                compute_tx.add(transfer(transfer_params))
                 
                 print("Signing transaction...")
                 compute_tx.sign(treasury)  # Sign with treasury keypair
