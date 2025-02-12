@@ -59,13 +59,15 @@ def get_telegram_app(sender_id):
         if sender_id in ['kinos', 'xforge']:
             token = os.getenv(f'{sender_id.upper()}_TELEGRAM_BOT_TOKEN')
             if token:
-                telegram_apps[sender_id] = ApplicationBuilder().token(token).build()
+                # Remove any proxy configuration
+                telegram_apps[sender_id] = ApplicationBuilder().token(token).connect_timeout(30).read_timeout(30).build()
                 return telegram_apps[sender_id]
         else:
             token_key = f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN"
             token = os.getenv(token_key)
             if token:
-                telegram_apps[sender_id] = ApplicationBuilder().token(token).build()
+                # Remove any proxy configuration
+                telegram_apps[sender_id] = ApplicationBuilder().token(token).connect_timeout(30).read_timeout(30).build()
     return telegram_apps.get(sender_id)
 
 class RepositoryChangeHandler(FileSystemEventHandler):
