@@ -132,8 +132,8 @@ def fund_hot_wallets():
                 tx.fee_payer = treasury.pubkey()
                 
                 print("Signing transaction...")
-                signed_tx = tx.sign(treasury)  # Get signed transaction
-                serialized_tx = signed_tx.serialize()  # Serialize the signed transaction
+                tx.sign([treasury])  # Pass treasury as list
+                serialized_tx = tx.serialize()  # Serialize after signing
                 
                 print("Sending 0.01 SOL...")
                 # Send serialized transaction
