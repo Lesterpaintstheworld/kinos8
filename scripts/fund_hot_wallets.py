@@ -12,7 +12,7 @@ from solders.keypair import Keypair
 from solana.rpc.api import Client
 from solana.transaction import Transaction
 from solders.pubkey import Pubkey
-from spl.token.instructions import TransferParams, transfer
+from spl.token.instructions import TransferParams, transfer, create_associated_token_account, get_associated_token_address
 from spl.token.constants import TOKEN_PROGRAM_ID
 import base58
 from dotenv import load_dotenv
@@ -90,6 +90,7 @@ def fund_hot_wallets():
         return
         
     client = Client(helius_url)
+    compute_token_mint = Pubkey.from_string(os.getenv('COMPUTE_TOKEN_ADDRESS'))
     print(f"Connected to Helius RPC endpoint")
     
     for swarm_id, swarm in swarms.items():
@@ -102,52 +103,63 @@ def fund_hot_wallets():
         
         for attempt in range(max_retries):
             try:
-                # Get recent blockhash and immediately use it
+                # Get recent blockhash
                 print("Getting recent blockhash...")
                 blockhash_response = client.get_latest_blockhash()
                 recent_blockhash = blockhash_response.value.blockhash
                 print(f"Got blockhash: {recent_blockhash}")
                 
-                # Create and send transaction immediately
+                # Get or create token account
+                print("Creating/checking token account...")
+                hot_wallet_pubkey = Pubkey.from_string(hot_wallet)
+                token_account = get_associated_token_address(hot_wallet_pubkey, compute_token_mint)
+                
+                # Create token account if it doesn't exist
+                create_account_ix = create_associated_token_account(
+                    payer=treasury.pubkey(),
+                    owner=hot_wallet_pubkey,
+                    mint=compute_token_mint
+                )
+                
+                # Create transfer instruction
                 print("Creating COMPUTE transfer instruction...")
-                compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
-                compute_tx = Transaction()
                 transfer_params = TransferParams(
-                    program_id=TOKEN_PROGRAM_ID,  # Use TOKEN_PROGRAM_ID instead of compute token mint
-                    source=treasury.pubkey(),
-                    dest=Pubkey.from_string(hot_wallet),
+                    program_id=TOKEN_PROGRAM_ID,
+                    source=get_associated_token_address(treasury.pubkey(), compute_token_mint),
+                    dest=token_account,
                     owner=treasury.pubkey(),
                     amount=1000000,  # 1M COMPUTE
                     signers=[]
                 )
-                compute_tx.add(transfer(transfer_params))
-                compute_tx.recent_blockhash = recent_blockhash
+                
+                # Create transaction with both instructions
+                tx = Transaction()
+                tx.add(create_account_ix)  # Add create account instruction
+                tx.add(transfer(transfer_params))  # Add transfer instruction
+                tx.recent_blockhash = recent_blockhash
                 
                 print("Signing and sending transaction...")
-                compute_tx.sign(treasury)
-                serialized_tx = compute_tx.serialize()
+                tx.sign(treasury)
+                serialized_tx = tx.serialize()
                 
-                # Send immediately after signing
                 result = client.send_raw_transaction(serialized_tx)
                 
-                # Wait for confirmation
                 print("Waiting for confirmation...")
                 confirmation = client.confirm_transaction(result['result'])
                 if confirmation:
                     print(f"Transaction confirmed! Signature: {result['result']}")
                     print(f"Successfully funded {swarm_id} hot wallet")
-                    time.sleep(2)  # Brief delay before next transaction
+                    time.sleep(2)
                     break
                 else:
                     raise Exception("Transaction not confirmed")
                 
             except Exception as e:
                 print(f"Error funding {swarm_id} (attempt {attempt + 1}/{max_retries}): {e}")
-                if attempt == max_retries - 1:  # Last attempt
+                if attempt == max_retries - 1:
                     print("Full error traceback:")
                     import traceback
                     print(traceback.format_exc())
-                    print(f"Failed to fund {swarm_id} after {max_retries} attempts")
 
 def main():
     print("Starting hot wallet funding process...")
