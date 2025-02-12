@@ -119,9 +119,7 @@ def create_token_accounts():
                     create_account_ix = create_associated_token_account(
                         payer=treasury.pubkey(),
                         owner=Pubkey.from_string(hot_wallet),
-                        mint=Pubkey.from_string(token_mint),
-                        program_id=TOKEN_PROGRAM_ID,
-                        associated_token_program_id=ASSOCIATED_TOKEN_PROGRAM_ID
+                        mint=Pubkey.from_string(token_mint)
                     )
                     
                     # Create and sign transaction
