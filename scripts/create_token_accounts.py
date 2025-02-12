@@ -115,21 +115,31 @@ def create_token_accounts():
                     token_name = "COMPUTE" if token_mint == COMPUTE_TOKEN else "UBC"
                     print(f"\nCreating {token_name} token account...")
                     
-                    # Create token account instruction
-                    create_account_ix = create_associated_token_account(
-                        payer=treasury.pubkey(),
-                        owner=Pubkey.from_string(hot_wallet),
-                        mint=Pubkey.from_string(token_mint)
+                    # Convert addresses to Pubkeys
+                    hot_wallet_pubkey = Pubkey.from_string(hot_wallet)
+                    mint_pubkey = Pubkey.from_string(token_mint)
+                    
+                    # Get the associated token account address
+                    ata = get_associated_token_address(
+                        owner=hot_wallet_pubkey,
+                        mint=mint_pubkey
                     )
                     
-                    # Create and sign transaction
-                    tx = Transaction()
-                    tx.add(create_account_ix)
-                    tx.recent_blockhash = recent_blockhash
-                    tx.sign(treasury)
+                    # Create instruction to create the associated token account
+                    create_ata_ix = create_associated_token_account(
+                        payer=treasury.pubkey(),
+                        owner=hot_wallet_pubkey,
+                        mint=mint_pubkey
+                    )
                     
-                    # Send transaction
+                    # Create transaction
+                    tx = Transaction()
+                    tx.add(create_ata_ix)
+                    tx.recent_blockhash = recent_blockhash
+                    
+                    # Sign and send transaction
                     print(f"Sending create {token_name} account transaction...")
+                    tx.sign(treasury)
                     result = client.send_raw_transaction(tx.serialize())
                     signature = result.value
                     
