@@ -11,7 +11,6 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from solders.keypair import Keypair
 from solana.rpc.api import Client
 from solana.transaction import Transaction
-from solders.system_program import transfer, TransferParams
 from solders.pubkey import Pubkey
 from spl.token.instructions import transfer as spl_transfer
 import base58
@@ -114,31 +113,25 @@ def fund_hot_wallets():
                 recent_blockhash = blockhash_response.value.blockhash
                 print(f"Got blockhash: {recent_blockhash}")
                 
-                # Create transfer instruction
-                print("Creating transfer instruction...")
-                transfer_ix = transfer(
-                    TransferParams(
-                        from_pubkey=treasury.pubkey(),
-                        to_pubkey=Pubkey.from_string(hot_wallet),
-                        lamports=10000000  # 0.01 SOL
-                    )
-                )
-                
-                # Create and sign transaction
-                print("Creating transaction...")
-                tx = Transaction()
-                tx.add(transfer_ix)
-                tx.recent_blockhash = recent_blockhash
-                tx.fee_payer = treasury.pubkey()
+                # Create COMPUTE transfer instruction
+                print("Creating COMPUTE transfer instruction...")
+                compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
+                compute_tx = Transaction()
+                compute_tx.add(spl_transfer(
+                    treasury.pubkey(),
+                    Pubkey.from_string(hot_wallet),
+                    1000000,  # 1M COMPUTE
+                    compute_token_mint
+                ))
                 
                 print("Signing transaction...")
-                tx.sign(treasury)  # Pass treasury directly
-                serialized_tx = tx.serialize()  # Serialize after signing
-            
-                print("Sending 0.01 SOL...")
+                compute_tx.sign(treasury)  # Sign with treasury keypair
+                serialized_tx = compute_tx.serialize()  # Serialize after signing
+                
+                print("Sending 1M COMPUTE...")
                 # Send serialized transaction
                 result = client.send_raw_transaction(serialized_tx)
-                print(f"SOL transfer signature: {result.value}")
+                print(f"COMPUTE transfer signature: {result['result']}")
                 print(f"Successfully funded {swarm_id} hot wallet")
                 
                 # Add delay after successful transaction
