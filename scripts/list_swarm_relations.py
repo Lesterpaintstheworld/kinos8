@@ -2,13 +2,14 @@ import json
 import glob
 import os
 from collections import defaultdict
+from pathlib import Path
 
 def load_json_file(file_path):
     try:
-        with open(file_path, 'r') as f:
+        with Path(file_path).open('r', encoding='utf-8') as f:
             return json.load(f)
-    except:
-        print(f"Warning: Could not load {file_path}")
+    except Exception as e:
+        print(f"Warning: Could not load {file_path}: {str(e)}")
         return None
 
 def get_swarm_services():
@@ -44,7 +45,7 @@ def analyze_swarm_relations():
         print(data)
 
     # Get all swarms first
-    swarm_files = glob.glob('data/swarms/*.json')
+    swarm_files = list(Path('data/swarms').glob('*.json'))
     swarm_relations = defaultdict(lambda: defaultdict(list))
     
     # Get service mappings
@@ -52,12 +53,12 @@ def analyze_swarm_relations():
     
     # Process each swarm
     for swarm_file in swarm_files:
-        swarm_data = load_json_file(swarm_file)
+        swarm_data = load_json_file(str(swarm_file))
         if not swarm_data or 'swarmId' not in swarm_data:
             continue
         
         swarm_id = swarm_data['swarmId']
-        swarm_relations[swarm_id]['swarm_files'].append(f"swarms/{os.path.basename(swarm_file)}")
+        swarm_relations[swarm_id]['swarm_files'].append(f"swarms/{swarm_file.name}")
         
         # Add services
         if swarm_id in swarm_services:
@@ -65,7 +66,7 @@ def analyze_swarm_relations():
                 swarm_relations[swarm_id]['services'].append(f"services/{service_id}.json")
         
         # Check collaborations
-        collab_files = glob.glob('data/collaborations/*.json')
+        collab_files = list(Path('data/collaborations').glob('*.json'))
         for collab_file in collab_files:
             data = load_json_file(collab_file)
             if data:
@@ -77,28 +78,28 @@ def analyze_swarm_relations():
                         swarm_relations[swarm_id]['collaborations'].append(f"collaborations/{collab_id}.json")
                         
                         # Check specifications linked to this collaboration
-                        spec_files = glob.glob('data/specifications/*.json')
+                        spec_files = list(Path('data/specifications').glob('*.json'))
                         for spec_file in spec_files:
                             spec_data = load_json_file(spec_file)
                             if spec_data and 'collaborationId' in spec_data and spec_data['collaborationId'] == collab_id:
                                 swarm_relations[swarm_id]['specifications'].append(f"specifications/{spec_data['specificationId']}.json")
                 
                         # Check messages linked to this collaboration
-                        message_files = glob.glob('data/messages/*.json')
+                        message_files = list(Path('data/messages').glob('*.json'))
                         for msg_file in message_files:
                             msg_data = load_json_file(msg_file)
                             if msg_data and 'collaborationId' in msg_data and msg_data['collaborationId'] == collab_id:
                                 swarm_relations[swarm_id]['messages'].append(f"messages/{msg_data['messageId']}.json")
         
         # Check messages
-        message_files = glob.glob('data/messages/*.json')
+        message_files = list(Path('data/messages').glob('*.json'))
         for msg_file in message_files:
             data = load_json_file(msg_file)
             if data and 'senderId' in data and data['senderId'] == swarm_id:
                 swarm_relations[swarm_id]['messages'].append(f"messages/{data['messageId']}.json")
         
         # Check news
-        news_files = glob.glob('data/news/*.json')
+        news_files = list(Path('data/news').glob('*.json'))
         for news_file in news_files:
             data = load_json_file(news_file)
             if data and 'swarmId' in data and data['swarmId'] == swarm_id:
