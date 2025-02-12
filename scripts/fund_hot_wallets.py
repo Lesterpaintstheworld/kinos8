@@ -132,13 +132,13 @@ def fund_hot_wallets():
                 tx.fee_payer = treasury.pubkey()
                 
                 print("Signing transaction...")
-                tx.sign([treasury])  # Pass treasury as list
+                tx.sign(treasury)  # Pass treasury directly
                 serialized_tx = tx.serialize()  # Serialize after signing
-                
+            
                 print("Sending 0.01 SOL...")
                 # Send serialized transaction
                 result = client.send_raw_transaction(serialized_tx)
-                print(f"SOL transfer signature: {result['result']}")
+                print(f"SOL transfer signature: {result.value}")
                 print(f"Successfully funded {swarm_id} hot wallet")
                 
                 # Add delay after successful transaction
