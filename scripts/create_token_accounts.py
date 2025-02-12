@@ -122,14 +122,17 @@ def create_token_accounts():
                     # Get the associated token account address
                     ata = get_associated_token_address(
                         owner=hot_wallet_pubkey,
-                        mint=mint_pubkey
+                        mint=mint_pubkey,
+                        program_id=TOKEN_PROGRAM_ID
                     )
                     
                     # Create instruction to create the associated token account
                     create_ata_ix = create_associated_token_account(
                         payer=treasury.pubkey(),
                         owner=hot_wallet_pubkey,
-                        mint=mint_pubkey
+                        mint=mint_pubkey,
+                        program_id=TOKEN_PROGRAM_ID,
+                        associated_token_program_id=ASSOCIATED_TOKEN_PROGRAM_ID
                     )
                     
                     # Create transaction
