@@ -113,7 +113,7 @@ def fund_hot_wallets():
                 compute_token_mint = os.getenv('COMPUTE_TOKEN_ADDRESS')
                 compute_tx = Transaction()
                 transfer_params = TransferParams(
-                    program_id=Pubkey.from_string(compute_token_mint),
+                    program_id=TOKEN_PROGRAM_ID,  # Use TOKEN_PROGRAM_ID instead of compute token mint
                     source=treasury.pubkey(),
                     dest=Pubkey.from_string(hot_wallet),
                     owner=treasury.pubkey(),
