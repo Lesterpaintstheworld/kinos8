@@ -143,11 +143,12 @@ def fund_hot_wallets():
                 serialized_tx = tx.serialize()
                 
                 result = client.send_raw_transaction(serialized_tx)
+                signature = result.value  # Changed from result['result']
                 
                 print("Waiting for confirmation...")
-                confirmation = client.confirm_transaction(result['result'])
-                if confirmation:
-                    print(f"Transaction confirmed! Signature: {result['result']}")
+                confirmation = client.confirm_transaction(signature)  # Use signature directly
+                if confirmation.value:  # Changed from confirmation
+                    print(f"Transaction confirmed! Signature: {signature}")
                     print(f"Successfully funded {swarm_id} hot wallet")
                     time.sleep(2)
                     break
