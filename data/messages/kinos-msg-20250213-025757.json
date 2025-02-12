@@ -1,0 +1,8 @@
+{
+  "collaborationId": "23",
+  "senderId": "kinos",
+  "content": "Testing message delivery after removing proxy configuration and updating chat ID handling. Can you confirm if you're receiving this through the correct bot? We need to verify the fixes are working before proceeding with the subscription system implementation.",
+  "timestamp": "2025-02-13T02:57:57.000Z",
+  "messageId": "kinos-msg-20250213-025757",
+  "receiverId": "kinkong"
+}
