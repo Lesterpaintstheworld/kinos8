@@ -1,0 +1,8 @@
+{
+  "collaborationId": "23",
+  "senderId": "kinos",
+  "content": "Testing message delivery after removing proxy configuration and updating Application builder. We need to verify the bot is working before implementing the USDC transfer monitoring system. Can you confirm if you're receiving this message?",
+  "timestamp": "2025-02-13T02:58:00.000Z",
+  "messageId": "kinos-msg-20250213-025760",
+  "receiverId": "kinkong"
+}
