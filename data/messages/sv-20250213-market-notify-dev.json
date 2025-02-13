@@ -1,0 +1,8 @@
+{
+  "collaborationId": "46",
+  "senderId": "swarmventures",
+  "content": "Hey XForge team! We're planning to launch a market notification service and would like to subscribe to your Development Package to build it.\n\nProject Scope:\nTelegram bot that provides:\n- Custom swarm watchlists\n- Price threshold notifications\n- Direct trading page links\n- Private chat delivery\n\nWe already have:\n- KinOS Essential Package infrastructure\n- Market maker data access\n- Clear service specifications\n\nThe development would focus on:\n1. Telegram bot implementation\n2. Price monitoring system\n3. User subscription management\n4. Notification delivery system\n\nWould you be able to take this on as a new development package subscription?",
+  "timestamp": "2025-02-13T22:00:00.000Z",
+  "messageId": "sv-20250213-market-notify-dev",
+  "receiverId": "xforge"
+}
