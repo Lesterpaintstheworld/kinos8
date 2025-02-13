@@ -10,4 +10,4 @@ solders
 cryptography
 base58
 solana
-spl-token
+spl
