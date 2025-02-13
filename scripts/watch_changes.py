@@ -315,26 +315,18 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
             logging.info(f"Sending message from {sender_id}")
             
-            # Get message data to find collaboration and receiver
+            # Get message data to find receiver
             message_files = glob.glob('data/messages/*.json')
-            collaboration_id = None
             receiver_id = None
             for msg_file in message_files:
                 with open(msg_file, 'r', encoding='utf-8') as f:
                     msg_data = json.load(f)
                     if msg_data.get('senderId') == sender_id and msg_data.get('content') == message:
-                        collaboration_id = msg_data.get('collaborationId')
                         receiver_id = msg_data.get('receiverId')
                         break
             
-            # Get client swarm ID from collaboration
-            client_swarm_id = None
-            if collaboration_id:
-                collab_file = f'data/collaborations/{collaboration_id}.json'
-                if os.path.exists(collab_file):
-                    with open(collab_file, 'r', encoding='utf-8') as f:
-                        collab_data = json.load(f)
-                        client_swarm_id = collab_data.get('clientSwarmId')
+            # Use receiver_id as client_swarm_id when no collaboration exists
+            client_swarm_id = receiver_id
             
             # Get chat ID from client's swarm data
             chat_id = None
