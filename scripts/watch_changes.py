@@ -307,24 +307,41 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
             logging.info(f"Sending message from {sender_id}")
             
-            # Get chat ID from swarm data first
+            # Get message data to find receiver
+            message_files = glob.glob('data/messages/*.json')
+            receiver_id = None
+            for msg_file in message_files:
+                with open(msg_file, 'r', encoding='utf-8') as f:
+                    msg_data = json.load(f)
+                    if msg_data.get('senderId') == sender_id and msg_data.get('content') == message:
+                        receiver_id = msg_data.get('receiverId')
+                        break
+            
+            # Get chat ID from receiver's swarm data if sender is kinos/xforge
             chat_id = None
-            swarm_file = f'data/swarms/{sender_id}.json'
-            if os.path.exists(swarm_file):
-                with open(swarm_file, 'r', encoding='utf-8') as f:
-                    swarm_data = json.load(f)
-                    chat_id = swarm_data.get('telegramChatId')
+            if sender_id in ['kinos', 'xforge'] and receiver_id:
+                swarm_file = f'data/swarms/{receiver_id}.json'
+                if os.path.exists(swarm_file):
+                    with open(swarm_file, 'r', encoding='utf-8') as f:
+                        swarm_data = json.load(f)
+                        chat_id = swarm_data.get('telegramChatId')
+            else:
+                # For other senders, use their own swarm data
+                swarm_file = f'data/swarms/{sender_id}.json'
+                if os.path.exists(swarm_file):
+                    with open(swarm_file, 'r', encoding='utf-8') as f:
+                        swarm_data = json.load(f)
+                        chat_id = swarm_data.get('telegramChatId')
             
             # Fallback to environment variable if not found in swarm data
             if not chat_id:
-                chat_id_key = f"{sender_id.upper()}_TELEGRAM_CHAT_ID"
+                chat_id_key = f"{receiver_id.upper() if sender_id in ['kinos', 'xforge'] else sender_id.upper()}_TELEGRAM_CHAT_ID"
                 chat_id = os.getenv(chat_id_key)
 
             # Get appropriate bot token and app
             if sender_id in ['kinos', 'xforge']:
                 app = get_telegram_app(sender_id)
             else:
-                # For other senders, use their own chat ID
                 app = get_telegram_app('xforge')  # Default to xforge bot for other senders
                     
             if app and chat_id:
