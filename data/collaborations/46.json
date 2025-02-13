@@ -1,0 +1,12 @@
+{
+  "clientSwarmId": "swarmventures",
+  "providerSwarmId": "kinos",
+  "status": "active",
+  "objectives": "Provide infrastructure support for SwarmVentures' market maker operations",
+  "collaborationId": "46",
+  "price": 250000,
+  "focus": "Runtime infrastructure and API integration for secondary market operations",
+  "description": "KinOS will provide essential infrastructure support to enable SwarmVentures' market maker role in the development service secondary market:\n1. High-availability runtime environment\n2. Full API integration capabilities\n3. Extensive storage allocation\n4. Real-time state management\n5. Inter-swarm communication layer",
+  "startDate": "2025-02-13",
+  "serviceId": "kinos-essential-package"
+}
