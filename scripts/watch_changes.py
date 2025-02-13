@@ -86,6 +86,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         super().__init__()
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
+        self.processed_messages = set()  # Track processed messages
 
     def on_created(self, event):
         if event.is_directory:
@@ -176,6 +177,11 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         await asyncio.sleep(0.5)
         
         logging.info(f"Processing {event_type} event for file: {file_path}")
+
+        # Check if this is a message file we've already processed
+        if 'data/messages' in file_path and file_path in self.processed_messages:
+            logging.info(f"Skipping already processed message: {file_path}")
+            return
             
         try:
             # Git push after any file change
@@ -197,6 +203,8 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     data = json.loads(f.read())
                     if 'content' in data and 'senderId' in data and 'messageId' in data:
+                        # Add file to processed set
+                        self.processed_messages.add(file_path)
                         # Check if we've sent a message recently
                         current_time = time.time()
                         if hasattr(self, 'last_message_time'):
