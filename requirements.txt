@@ -1,7 +1,7 @@
 anthropic
 pyairtable
 watchdog
-python-telegram-bot>=20.0
+python-telegram-bot==20.7
 python-dotenv
 httpx
 tenacity
