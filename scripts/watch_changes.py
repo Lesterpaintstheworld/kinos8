@@ -55,11 +55,12 @@ loop = None
 def get_telegram_app(sender_id):
     """Get or create Telegram application for a sender"""
     if sender_id not in telegram_apps:
-        token = None
-        if sender_id in ['kinos', 'xforge']:
-            token = os.getenv(f'{sender_id.upper()}_TELEGRAM_BOT_TOKEN')
-        else:
-            token = os.getenv(f"{sender_id.upper()}_TELEGRAM_BOT_TOKEN")
+        token = os.getenv(f'{sender_id.upper()}_TELEGRAM_BOT_TOKEN')
+        
+        # Only default to KINOS if sender's token not found
+        if not token:
+            token = os.getenv('KINOS_TELEGRAM_BOT_TOKEN')
+            print(f"No bot token found for {sender_id}, defaulting to KINOS bot")
             
         if token:
             try:
@@ -346,10 +347,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         chat_id = int(chat_id)  # Convert string to integer for Telegram
             
             # Get appropriate bot token and app
-            if sender_id in ['kinos', 'xforge']:
-                app = get_telegram_app(sender_id)
-            else:
-                app = get_telegram_app('xforge')  # Default to xforge bot for other senders
+            app = get_telegram_app(sender_id)
                     
             if app and chat_id:
                 print(f"Sending message as {sender_id} to client {client_swarm_id} (chat {chat_id})")
