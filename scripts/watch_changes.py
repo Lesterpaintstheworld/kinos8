@@ -54,8 +54,11 @@ loop = None
 
 def get_telegram_app(sender_id):
     """Get or create Telegram application for a sender"""
+    print(f"Getting telegram app for sender: {sender_id}")
     if sender_id not in telegram_apps:
         token = os.getenv(f'{sender_id.upper()}_TELEGRAM_BOT_TOKEN')
+        print(f"Looking for token: {sender_id.upper()}_TELEGRAM_BOT_TOKEN")
+        print(f"Token found: {bool(token)}")
         
         # Only default to KINOS if sender's token not found
         if not token:
