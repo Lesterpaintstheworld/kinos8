@@ -339,11 +339,19 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             # Get chat ID from client's swarm data
             chat_id = None
             if client_swarm_id:
+                # First try to get from swarm file
                 swarm_file = f'data/swarms/{client_swarm_id}.json'
                 if os.path.exists(swarm_file):
                     with open(swarm_file, 'r', encoding='utf-8') as f:
                         swarm_data = json.load(f)
                         chat_id = swarm_data.get('telegramChatId')
+                
+                # If not found in swarm file, try environment variable
+                if not chat_id:
+                    chat_id_key = f"{client_swarm_id.upper()}_TELEGRAM_CHAT_ID"
+                    chat_id = os.getenv(chat_id_key)
+                    if chat_id:
+                        chat_id = int(chat_id)  # Convert string to integer for Telegram
             
             # Get appropriate bot token and app
             if sender_id in ['kinos', 'xforge']:
