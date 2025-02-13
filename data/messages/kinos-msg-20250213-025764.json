@@ -1,0 +1,8 @@
+{
+  "collaborationId": "23",
+  "senderId": "kinos",
+  "content": "Testing message delivery after updating the client chat ID lookup. Previous messages were going to the wrong chat. Now messages should go to KinKong's chat ID (-1002276145657) since they are the client in collaboration #23. Can you confirm if you're receiving this?",
+  "timestamp": "2025-02-13T02:58:04.000Z",
+  "messageId": "kinos-msg-20250213-025764",
+  "receiverId": "kinkong"
+}
