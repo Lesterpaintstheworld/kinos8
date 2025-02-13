@@ -64,14 +64,14 @@ def get_telegram_app(sender_id):
         if token:
             try:
                 # Import inside function to ensure clean initialization
-                from telegram import Bot
                 from telegram.ext import Application
                 
-                # Create application with just the token
+                # Create application with minimal configuration
                 telegram_apps[sender_id] = (
                     Application.builder()
                     .token(token)
-                    ._client_kwargs({})  # Empty client kwargs to avoid proxy issues
+                    .http_version("1.1")  # Use HTTP 1.1 instead of default HTTP/2
+                    .get_updates_http_version("1.1")
                     .build()
                 )
                 
