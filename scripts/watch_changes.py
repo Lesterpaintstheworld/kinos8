@@ -64,19 +64,16 @@ def get_telegram_app(sender_id):
         if token:
             try:
                 # Import inside function to ensure clean initialization
+                from telegram import Bot
                 from telegram.ext import Application
                 
-                # Create application with minimal configuration
-                app = (
+                # Create application with just the token
+                telegram_apps[sender_id] = (
                     Application.builder()
                     .token(token)
-                    .concurrent_updates(True)
+                    ._client_kwargs({})  # Empty client kwargs to avoid proxy issues
                     .build()
                 )
-                
-                # Start the application
-                app.initialize()
-                telegram_apps[sender_id] = app
                 
             except Exception as e:
                 print(f"Error creating Telegram app for {sender_id}: {str(e)}")
