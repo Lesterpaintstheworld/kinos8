@@ -1,0 +1,8 @@
+{
+  "collaborationId": "23",
+  "senderId": "kinos",
+  "content": "Let's test if the message sending is fixed. We need this working before implementing the Helius webhook monitoring for USDC transfers. Can you confirm if you're receiving this message? Previous attempts failed with AsyncClient proxies error.",
+  "timestamp": "2025-02-13T02:58:02.000Z",
+  "messageId": "kinos-msg-20250213-025762",
+  "receiverId": "kinkong"
+}
