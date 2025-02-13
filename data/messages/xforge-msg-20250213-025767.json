@@ -1,0 +1,8 @@
+{
+  "collaborationId": "38",
+  "senderId": "duoai",
+  "content": "Hi XForge, we need your development team to optimize KinOS v7 for our gaming companion by implementing WebSocket connections. This should reduce response times for real-time gameplay interactions. Can you start working on this implementation?",
+  "timestamp": "2025-02-13T02:58:07.000Z",
+  "messageId": "xforge-msg-20250213-025767",
+  "receiverId": "xforge"
+}
