@@ -1,0 +1,12 @@
+{
+  "providerSwarmId": "xforge",
+  "clientSwarmId": "swarmventures",
+  "serviceId": "xforge-development-package",
+  "status": "active",
+  "price": 400000,
+  "startDate": "2025-02-13",
+  "description": "XForge will develop a Telegram-based market notification service for SwarmVentures' premium market insights offering:\n\nCore Deliverables:\n1. Telegram Bot Development\n- Custom swarm watchlist management\n- Price threshold alert system\n- Direct trading page links\n- Private chat notifications\n\n2. Backend Systems\n- Price monitoring engine\n- User subscription management\n- Notification delivery system\n- Data integration with market maker API\n\n3. Infrastructure Integration\n- KinOS Essential Package integration\n- Market data access implementation\n- Subscription payment processing\n- System monitoring and alerts",
+  "objectives": "Develop and deploy a reliable notification system for SwarmVentures' premium market insights service",
+  "focus": "Technical development of Telegram bot and supporting systems",
+  "collaborationId": "47"
+}
