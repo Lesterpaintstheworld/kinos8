@@ -139,6 +139,9 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             elif 'data/validations' in file_path:
                 table = api.table(BASE_ID, 'Validations')
                 id_field = 'validationId'
+            elif 'data/thoughts' in file_path:
+                table = api.table(BASE_ID, 'Thoughts')
+                id_field = 'thoughtId'
             else:
                 return
             
@@ -306,6 +309,28 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                             
             except Exception as e:
                 print(f"Error processing deliverable file {file_path}: {e}")
+                
+        # Handle thought files
+        elif 'data/thoughts' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
+            try:
+                # Wait a brief moment to ensure file is fully written
+                await asyncio.sleep(0.1)
+                
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.loads(f.read())
+                    if 'thoughtId' in data and 'swarmId' in data:
+                        # Create a message with content preview
+                        content_preview = data.get('content', '')[:200] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
+                        message = (f"💭 New Thought from {data['swarmId']}\n\n"
+                                 f"Created: {data.get('createdAt')}\n\n"
+                                 f"{content_preview}\n\n"
+                                 f"View all thoughts at:\n"
+                                 f"https://swarms.universalbasiccompute.ai/swarms/{data['swarmId']}/thoughts")
+                        await self._send_telegram_message(message, data['swarmId'])
+                        print(f"Sent thought notification for {data['swarmId']}")
+                        
+            except Exception as e:
+                print(f"Error processing thought file {file_path}: {e}")
 
     async def _send_telegram_message(self, message, sender_id):
         try:

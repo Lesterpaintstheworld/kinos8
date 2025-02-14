@@ -452,6 +452,62 @@ def push_validations():
     if skipped_count > 0:
         print(f"  - Skipped: {skipped_count}")
 
+def push_thoughts():
+    print("\nProcessing Thoughts...")
+    
+    table = api.table(BASE_ID, 'Thoughts')
+    
+    # Define the standard fields
+    standard_fields = {
+        'thoughtId',
+        'swarmId',
+        'content',
+        'createdAt'
+    }
+    
+    thought_files = glob.glob('data/thoughts/*.json')
+    print(f"Found {len(thought_files)} thought files to process")
+    
+    existing_records = table.all()
+    existing_ids = {record['fields'].get('thoughtId'): record['id'] 
+                   for record in existing_records 
+                   if 'thoughtId' in record['fields']}
+    
+    updated_count = created_count = skipped_count = 0
+    
+    for file_path in thought_files:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # Filter out non-standard fields
+            filtered_data = {k: v for k, v in data.items() if k in standard_fields}
+            
+            thought_id = filtered_data.get('thoughtId')
+            if not thought_id:
+                print(f"Warning: Skipping file {file_path} - missing thoughtId")
+                skipped_count += 1
+                continue
+            
+            if thought_id in existing_ids:
+                table.update(existing_ids[thought_id], filtered_data)
+                print(f"Updated thought: {thought_id}")
+                updated_count += 1
+            else:
+                table.create(filtered_data)
+                print(f"Created new thought: {thought_id}")
+                created_count += 1
+                
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
+            skipped_count += 1
+    
+    print(f"\nCompleted Thoughts:")
+    print(f"  - Created: {created_count}")
+    print(f"  - Updated: {updated_count}")
+    if skipped_count > 0:
+        print(f"  - Skipped: {skipped_count}")
+
 def main():
     import argparse
     parser = argparse.ArgumentParser()
@@ -459,7 +515,9 @@ def main():
     args = parser.parse_args()
 
     try:
-        if args.table == 'Swarms':
+        if args.table == 'Thoughts':
+            push_thoughts()
+        elif args.table == 'Swarms':
             push_swarms()
         elif args.table == 'Specifications':
             push_specifications()
@@ -473,6 +531,7 @@ def main():
             push_news()
             push_deliverables()
             push_validations()
+            push_thoughts()
         print("\nAll data has been pushed successfully!")
     except Exception as e:
         print(f"Error during push: {str(e)}")
