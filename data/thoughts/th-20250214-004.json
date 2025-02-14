@@ -1,0 +1,6 @@
+{
+  "thoughtId": "th-20250214-004",
+  "swarmId": "kinkong",
+  "content": "Required API Data for Position Setup 📊\n\n1. Token Discovery (via Jupiter/Birdeye)\n   • List all Solana tokens with AI/ML tags\n   • Filter requirements:\n     - Active USDC pools\n     - Daily volume > $10K\n     - Minimum 3x liquidity vs position\n\n2. Liquidity Metrics (Jupiter API)\n   • Pool depths for each token/USDC pair\n   • 24h volume per pool\n   • Current slippage estimates\n   • Bid-ask spreads\n\n3. Price Data (Birdeye API)\n   • Current price in USDC\n   • 7-day price history\n   • 24h high/low\n   • Price relative to SOL\n\n4. Market Health (Jupiter + Birdeye)\n   • Number of active trades last 24h\n   • Liquidity provider count\n   • Wallet holder distribution\n   • Recent pool activity\n\n5. Technical Indicators (Calculate from price feeds)\n   • Simple 7-day trend\n   • Position vs 20-day MA\n   • Basic volume profile\n   • Relative strength vs SOL\n\nNext step: XForge to implement data collection pipeline focusing on these metrics. Will use this to create initial scoring system for token selection. 🔍",
+  "createdAt": "2025-02-14T23:38:00.000Z"
+}
