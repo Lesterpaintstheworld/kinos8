@@ -201,132 +201,111 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         except subprocess.CalledProcessError as e:
             print(f"Error pushing to git: {e}")
             
-        # Only process created/modified JSON files in data/messages
-        if 'data/messages' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
-            try:
-                # Wait a brief moment to ensure file is fully written
-                await asyncio.sleep(0.1)
-                
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.loads(f.read())
-                    if 'content' in data and 'senderId' in data and 'messageId' in data:
-                        # Add file to processed set
-                        self.processed_messages.add(file_path)
-                        # Check if we've sent a message recently
-                        current_time = time.time()
-                        if hasattr(self, 'last_message_time'):
-                            time_since_last = current_time - self.last_message_time
-                            if time_since_last < 2:
-                                await asyncio.sleep(2 - time_since_last)
+        # Only process CREATED JSON files (not modified) for notifications
+        if event_type == 'created' and file_path.endswith('.json'):
+            # Handle messages
+            if 'data/messages' in file_path:
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.loads(f.read())
+                        if 'content' in data and 'senderId' in data and 'messageId' in data:
+                            self.processed_messages.add(file_path)
+                            current_time = time.time()
+                            if hasattr(self, 'last_message_time'):
+                                time_since_last = current_time - self.last_message_time
+                                if time_since_last < 2:
+                                    await asyncio.sleep(2 - time_since_last)
                         
-                        message = f"{data['content']}"
-                        await self._send_telegram_message(message, data['senderId'])
-                        self.last_message_time = time.time()
-                        print(f"Processed message {data['messageId']}")
-            except Exception as e:
-                print(f"Error processing message file {file_path}: {e}")
+                            message = f"{data['content']}"
+                            await self._send_telegram_message(message, data['senderId'])
+                            self.last_message_time = time.time()
+                            print(f"Processed new message {data['messageId']}")
+                except Exception as e:
+                    print(f"Error processing message file {file_path}: {e}")
                 
-        # Handle news files
-        elif 'data/news' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
-            try:
-                # Wait a brief moment to ensure file is fully written
-                await asyncio.sleep(0.1)
+            # Handle news
+            elif 'data/news' in file_path:
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.loads(f.read())
+                        if 'content' in data and 'swarmId' in data:
+                            message = f"News: {data['content']}"
+                            await self._send_telegram_message(message, data['swarmId'])
+                            self.last_message_time = time.time()
+                            print(f"Processed new news from {data['swarmId']}")
+                except Exception as e:
+                    print(f"Error processing news file {file_path}: {e}")
                 
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.loads(f.read())
-                    if 'content' in data and 'swarmId' in data:
-                        message = f"News: {data['content']}"
-                        await self._send_telegram_message(message, data['swarmId'])
-                        self.last_message_time = time.time()
-                        print(f"Processed news from {data['swarmId']}")
-            except Exception as e:
-                print(f"Error processing news file {file_path}: {e}")
-                
-        # Handle specification files
-        elif 'data/specifications' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
-            try:
-                # Wait a brief moment to ensure file is fully written
-                await asyncio.sleep(0.1)
-                
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.loads(f.read())
-                    if 'specificationId' in data and 'collaborationId' in data:
-                        # Load collaboration to get client swarm
-                        collab_files = glob.glob('data/collaborations/*.json')
-                        client_swarm_id = None
-                        for collab_file in collab_files:
-                            with open(collab_file, 'r', encoding='utf-8') as cf:
-                                collab_data = json.load(cf)
-                                if collab_data.get('collaborationId') == data['collaborationId']:
-                                    client_swarm_id = collab_data.get('clientSwarmId')
-                                    break
+            # Handle specifications
+            elif 'data/specifications' in file_path:
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.loads(f.read())
+                        if 'specificationId' in data and 'collaborationId' in data:
+                            # Load collaboration to get client swarm
+                            collab_files = glob.glob('data/collaborations/*.json')
+                            client_swarm_id = None
+                            for collab_file in collab_files:
+                                with open(collab_file, 'r', encoding='utf-8') as cf:
+                                    collab_data = json.load(cf)
+                                    if collab_data.get('collaborationId') == data['collaborationId']:
+                                        client_swarm_id = collab_data.get('clientSwarmId')
+                                        break
                         
-                        if client_swarm_id:
-                            # Create a more detailed message including content preview
-                            content_preview = data.get('content', '')[:200] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
-                            message = (f"📋 New Specification\n\n"
-                                     f"Title: {data.get('title')}\n"
-                                     f"Created: {data.get('createdAt')}\n\n"
-                                     f"Preview:\n{content_preview}\n\n"
-                                     f"View full specification at:\n"
-                                     f"https://swarms.universalbasiccompute.ai/specifications/{data['specificationId']}")
-                            await self._send_telegram_message(message, client_swarm_id)
-                            print(f"Sent specification notification to {client_swarm_id}")
-                            
-            except Exception as e:
-                print(f"Error processing specification file {file_path}: {e}")
+                            if client_swarm_id:
+                                content_preview = data.get('content', '')[:200] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
+                                message = (f"📋 New Specification\n\n"
+                                         f"Title: {data.get('title')}\n"
+                                         f"Created: {data.get('createdAt')}\n\n"
+                                         f"Preview:\n{content_preview}\n\n"
+                                         f"View full specification at:\n"
+                                         f"https://swarms.universalbasiccompute.ai/specifications/{data['specificationId']}")
+                                await self._send_telegram_message(message, client_swarm_id)
+                                print(f"Sent notification for new specification to {client_swarm_id}")
+                except Exception as e:
+                    print(f"Error processing specification file {file_path}: {e}")
                 
-        # Handle deliverable files
-        elif 'data/deliverables' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
-            try:
-                # Wait a brief moment to ensure file is fully written
-                await asyncio.sleep(0.1)
-                
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.loads(f.read())
-                    if 'deliverableId' in data and 'collaborationId' in data:
-                        # Load collaboration to get client swarm
-                        collab_files = glob.glob('data/collaborations/*.json')
-                        client_swarm_id = None
-                        for collab_file in collab_files:
-                            with open(collab_file, 'r', encoding='utf-8') as cf:
-                                collab_data = json.load(cf)
-                                if collab_data.get('collaborationId') == data['collaborationId']:
-                                    client_swarm_id = collab_data.get('clientSwarmId')
-                                    break
+            # Handle deliverables
+            elif 'data/deliverables' in file_path:
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.loads(f.read())
+                        if 'deliverableId' in data and 'collaborationId' in data:
+                            # Load collaboration to get client swarm
+                            collab_files = glob.glob('data/collaborations/*.json')
+                            client_swarm_id = None
+                            for collab_file in collab_files:
+                                with open(collab_file, 'r', encoding='utf-8') as cf:
+                                    collab_data = json.load(cf)
+                                    if collab_data.get('collaborationId') == data['collaborationId']:
+                                        client_swarm_id = collab_data.get('clientSwarmId')
+                                        break
                         
-                        if client_swarm_id:
-                            # Create a message with content preview
-                            content_preview = data.get('content', '')[:250] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
-                            message = (f"📦 New Deliverable\n\n"
-                                     f"Title: {data.get('title')}\n"
-                                     f"Preview:\n{content_preview}\n\n"
-                                     f"View full deliverable at:\n"
-                                     f"https://swarms.universalbasiccompute.ai/deliverables/{data['deliverableId']}")
-                            await self._send_telegram_message(message, client_swarm_id)
-                            print(f"Sent deliverable notification to {client_swarm_id}")
-                            
-            except Exception as e:
-                print(f"Error processing deliverable file {file_path}: {e}")
+                            if client_swarm_id:
+                                content_preview = data.get('content', '')[:250] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
+                                message = (f"📦 New Deliverable\n\n"
+                                         f"Title: {data.get('title')}\n"
+                                         f"Preview:\n{content_preview}\n\n"
+                                         f"View full deliverable at:\n"
+                                         f"https://swarms.universalbasiccompute.ai/deliverables/{data['deliverableId']}")
+                                await self._send_telegram_message(message, client_swarm_id)
+                                print(f"Sent notification for new deliverable to {client_swarm_id}")
+                except Exception as e:
+                    print(f"Error processing deliverable file {file_path}: {e}")
                 
-        # Handle thought files
-        elif 'data/thoughts' in file_path and event_type in ['created', 'modified'] and file_path.endswith('.json'):
-            try:
-                # Wait a brief moment to ensure file is fully written
-                await asyncio.sleep(0.1)
-                
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.loads(f.read())
-                    if 'thoughtId' in data and 'swarmId' in data:
-                        # Create a message with content preview
-                        content_preview = data.get('content', '')[:1000] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
-                        message = (f"💭 New Thought from {data['swarmId']}\n\n"
-                                 f"{content_preview}\n\n")
-                        await self._send_telegram_message(message, data['swarmId'])
-                        print(f"Sent thought notification for {data['swarmId']}")
-                        
-            except Exception as e:
-                print(f"Error processing thought file {file_path}: {e}")
+            # Handle thoughts
+            elif 'data/thoughts' in file_path:
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.loads(f.read())
+                        if 'thoughtId' in data and 'swarmId' in data:
+                            content_preview = data.get('content', '')[:1000] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
+                            message = (f"💭 New Thought from {data['swarmId']}\n\n"
+                                     f"{content_preview}\n\n")
+                            await self._send_telegram_message(message, data['swarmId'])
+                            print(f"Sent notification for new thought from {data['swarmId']}")
+                except Exception as e:
+                    print(f"Error processing thought file {file_path}: {e}")
 
     async def _send_telegram_message(self, message, sender_id):
         try:
