@@ -253,12 +253,16 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         # Convert path to use forward slashes for consistency
         file_path = file_path.replace('\\', '/')
         
+        # Add debug logging
+        print(f"Detected {event_type} event for: {file_path}")
+        
         # Skip non-relevant files early
         if any(skip in file_path for skip in ['.git', '.aider', '.tmp']):
             return
             
         # Only process certain file types
         if not any(file_path.startswith(f"data/{d}") for d in ['messages', 'news', 'thoughts', 'specifications', 'deliverables', 'collaborations', 'swarms', 'services']):
+            print(f"Skipping non-data file: {file_path}")
             return
             
         # Wait for file to be ready with increased timeout for larger files
@@ -267,9 +271,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         
         for attempt in range(max_attempts):
             if is_file_ready(file_path, timeout=timeout):
+                print(f"File is ready after attempt {attempt + 1}: {file_path}")
                 break
             if attempt == max_attempts - 1:
-                logging.error(f"File not ready after {max_attempts} attempts: {file_path}")
+                print(f"File not ready after {max_attempts} attempts: {file_path}")
                 return
             await asyncio.sleep(1)  # Wait between attempts
         
