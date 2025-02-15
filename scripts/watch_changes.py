@@ -320,7 +320,7 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         message = f"{data['content']}"
                         await self._send_telegram_message(message, data['senderId'])
                         self.last_message_time = time.time()
-                            print(f"Processed new message {data['messageId']}")
+                        print(f"Processed new message {data['messageId']}")
                 except Exception as e:
                     print(f"Error processing message file {file_path}: {e}")
                 
