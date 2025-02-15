@@ -488,7 +488,8 @@ def main():
     # Paths to watch
     paths = ["./data/messages", "./data/news", "./data/thoughts", 
              "./data/specifications", "./data/deliverables", 
-             "./data/collaborations", "./data/swarms", "./data/services"]
+             "./data/collaborations", "./data/swarms", "./data/services",
+             "./kinos"]
     
     # Create event handler and observer
     event_handler = RepositoryChangeHandler()
