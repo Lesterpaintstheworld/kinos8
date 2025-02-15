@@ -413,9 +413,40 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
             logging.info(f"Sending message from {sender_id}")
             
-            # For global messages (no collaborationId), always use main chat
-            chat_id = int(os.getenv('MAIN_TELEGRAM_CHAT_ID'))
-            logging.info(f"Using main chat ID for message from {sender_id}")
+            # Get message data to find collaboration
+            message_files = glob.glob('data/messages/*.json')
+            collab_id = None
+            for msg_file in message_files:
+                with open(msg_file, 'r', encoding='utf-8') as f:
+                    msg_data = json.load(f)
+                    if msg_data.get('senderId') == sender_id and msg_data.get('content') == message:
+                        collab_id = msg_data.get('collaborationId')
+                        break
+
+            # Get client from collaboration if it exists
+            client_swarm_id = None
+            if collab_id:
+                collab_file = f'data/collaborations/{collab_id}.json'
+                if os.path.exists(collab_file):
+                    with open(collab_file, 'r', encoding='utf-8') as f:
+                        collab_data = json.load(f)
+                        client_swarm_id = collab_data.get('clientSwarmId')
+
+            # If client found, get their telegram chat ID from their swarm file
+            chat_id = None
+            if client_swarm_id:
+                swarm_file = f'data/swarms/{client_swarm_id}.json'
+                if os.path.exists(swarm_file):
+                    with open(swarm_file, 'r', encoding='utf-8') as f:
+                        swarm_data = json.load(f)
+                        if swarm_data.get('telegramChatId'):
+                            chat_id = int(swarm_data['telegramChatId'])
+                            logging.info(f"Using client {client_swarm_id}'s telegram chat: {chat_id}")
+
+            # Fallback to main chat if no client chat found
+            if not chat_id:
+                chat_id = int(os.getenv('MAIN_TELEGRAM_CHAT_ID'))
+                logging.info(f"Using main chat ID for message from {sender_id}")
             
             # Get appropriate bot token and app
             app = get_telegram_app(sender_id)
