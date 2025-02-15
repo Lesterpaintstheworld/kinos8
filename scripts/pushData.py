@@ -521,6 +521,18 @@ def main():
             push_swarms()
         elif args.table == 'Specifications':
             push_specifications()
+        elif args.table == 'Collaborations':
+            push_collaborations()
+        elif args.table == 'Messages':
+            push_messages()
+        elif args.table == 'News':
+            push_news()
+        elif args.table == 'Services':
+            push_services()
+        elif args.table == 'Deliverables':
+            push_deliverables()
+        elif args.table == 'Validations':
+            push_validations()
         elif not args.table:
             # Push all if no specific table specified
             push_swarms()
