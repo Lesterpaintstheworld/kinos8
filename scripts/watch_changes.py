@@ -316,10 +316,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                             time_since_last = current_time - self.last_message_time
                             if time_since_last < 2:
                                 await asyncio.sleep(2 - time_since_last)
-                        
-                            message = f"{data['content']}"
-                            await self._send_telegram_message(message, data['senderId'])
-                            self.last_message_time = time.time()
+                    
+                        message = f"{data['content']}"
+                        await self._send_telegram_message(message, data['senderId'])
+                        self.last_message_time = time.time()
                             print(f"Processed new message {data['messageId']}")
                 except Exception as e:
                     print(f"Error processing message file {file_path}: {e}")
