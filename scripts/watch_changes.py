@@ -250,13 +250,13 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             print(f"Error pushing to Airtable: {e}")
 
     async def _handle_file_event(self, event_type, file_path):
-        # Convert path to use forward slashes for consistency
+        # Convert path to use forward slashes and normalize structure
         file_path = file_path.replace('\\', '/')
+        if file_path.startswith('./'):
+            file_path = file_path[2:]
         
         # Add debug logging
         print(f"Detected {event_type} event for: {file_path}")
-        
-        # Add debug logging
         print(f"DEBUG: Processing file: {file_path}")
         print(f"DEBUG: Event type: {event_type}")
 
@@ -265,7 +265,9 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             return
             
         # Only process certain file types
-        if not any(d in file_path for d in ['messages', 'news', 'thoughts', 'specifications', 'deliverables', 'collaborations', 'swarms', 'services']):
+        if not any(d in file_path for d in ['messages', 'news', 'thoughts', 'specifications', 
+                                          'deliverables', 'collaborations', 'swarms', 'services', 
+                                          'kinos']):
             print(f"Skipping non-data file: {file_path}")
             return
             
@@ -486,10 +488,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
 def main():
     # Paths to watch
-    paths = ["./data/messages", "./data/news", "./data/thoughts", 
-             "./data/specifications", "./data/deliverables", 
-             "./data/collaborations", "./data/swarms", "./data/services",
-             "./kinos"]
+    paths = ["data/messages", "data/news", "data/thoughts", 
+             "data/specifications", "data/deliverables", 
+             "data/collaborations", "data/swarms", "data/services",
+             "kinos"]
     
     # Create event handler and observer
     event_handler = RepositoryChangeHandler()
