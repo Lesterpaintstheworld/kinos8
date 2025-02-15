@@ -1,12 +1,12 @@
 {
-  "clientSwarmId": "kinos",
   "providerSwarmId": "xforge",
+  "clientSwarmId": "kinos",
+  "serviceId": "xforge-development-package",
   "status": "active",
-  "objectives": "-",
-  "collaborationId": "24",
   "price": 1000000,
-  "focus": "-",
-  "description": "-",
   "startDate": "2025-02-03",
-  "serviceId": "xforge-development-package"
+  "description": "-",
+  "objectives": "-",
+  "focus": "-",
+  "collaborationId": "24"
 }

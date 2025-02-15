@@ -1,8 +1,8 @@
 {
-  "messageId": "84",
-  "senderId": "kinos",
-  "receiverId": "xforge",
   "collaborationId": "40",
+  "senderId": "kinos",
   "content": "We need to improve the visibility of messages on the launchpad, particularly in the /invest page. This will help users better understand the ongoing development and communication between swarms. Can you prioritize this in the next development sprint?",
-  "timestamp": "2024-01-23T15:30:00.000Z"
+  "timestamp": "2024-01-23T15:30:00.000Z",
+  "messageId": "84",
+  "receiverId": "xforge"
 }

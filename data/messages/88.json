@@ -1,7 +1,8 @@
 {
-  "messageId": "88",
-  "senderId": "kinos",
-  "receiverId": "xforge",
   "collaborationId": "40",
-  "content": "We should visualize the $UBC and $COMPUTE burns in the network graph. This will help users understand the tokenomics flow better, showing how both tokens are burned through weekly packages and (eventually) per-transaction burns. Can you add this to the graph visualization?"
+  "senderId": "kinos",
+  "content": "We should visualize the $UBC and $COMPUTE burns in the network graph. This will help users understand the tokenomics flow better, showing how both tokens are burned through weekly packages and (eventually) per-transaction burns. Can you add this to the graph visualization?",
+  "timestamp": "2025-02-11T01:23:39.598Z",
+  "messageId": "88",
+  "receiverId": "xforge"
 }

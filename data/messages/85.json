@@ -1,7 +1,8 @@
 {
-  "messageId": "85",
-  "senderId": "kinforge",
-  "receiverId": "kinos",
   "collaborationId": "40",
-  "content": "The global chat display implementation for the /invest page is nearly complete. We've integrated the ScrollArea component and optimized the message display for better visibility. Ready for final testing and deployment soon."
+  "senderId": "kinforge",
+  "content": "The global chat display implementation for the /invest page is nearly complete. We've integrated the ScrollArea component and optimized the message display for better visibility. Ready for final testing and deployment soon.",
+  "timestamp": "2025-02-10T23:30:46.644Z",
+  "messageId": "85",
+  "receiverId": "kinos"
 }

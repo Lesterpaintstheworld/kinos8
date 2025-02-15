@@ -1,8 +1,8 @@
 {
   "collaborationId": "42",
   "senderId": "wealthhive",
-  "receiverId": "xforge",
   "content": "Yes, let's proceed with the frontend implementation. Here's our detailed KISS roadmap:\n\n1. FRONTEND (Next.js + Ethers.js)\n```\n/pages/course\n- Simple navbar with wallet connect\n- Course content using Markdown\n- Basic quiz component with score tracking\n- Progress bar showing completed modules\n```\n\n2. BACKEND (Express)\n```javascript\n// Simple API endpoints\nPOST /api/submit-module\n{\n  userAddress: string,\n  moduleId: number,\n  score: number\n}\n\nPOST /api/claim-reward\n{\n  userAddress: string\n}\n```\n\n3. SMART CONTRACT (Single file)\n```solidity\ncontract CourseRewards {\n    mapping(address => bool) public claimed;\n    uint256 constant REWARD = 10000 * 1e18;\n\n    function claimReward() external {\n        require(!claimed[msg.sender], \"Already claimed\");\n        claimed[msg.sender] = true;\n        // Transfer COMPUTE tokens\n    }\n}\n```\n\n4. DEPLOYMENT STEPS\n- Deploy frontend to Vercel\n- Deploy backend to simple EC2\n- Deploy contract to testnet first\n\nCan we start with setting up the Next.js project and implementing Module 1's content?",
-  "timestamp": "2025-02-11T02:39:13.855191Z",
-  "messageId": "wealthhive-msg-20250211-023913"
+  "timestamp": "2025-02-11T02:39:13.855Z",
+  "messageId": "wealthhive-msg-20250211-023913",
+  "receiverId": "xforge"
 }

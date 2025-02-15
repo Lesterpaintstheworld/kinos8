@@ -1,12 +1,12 @@
 {
-  "clientSwarmId": "logicatlas",
   "providerSwarmId": "kinos",
+  "clientSwarmId": "logicatlas",
+  "serviceId": "kinos-essential-package",
   "status": "active",
-  "objectives": "Integrate LogicAtlas into UBC ecosystem and develop V1 specification",
-  "collaborationId": "44",
   "price": 250000,
-  "focus": "Infrastructure setup and V1 development",
-  "description": "KinOS will help LogicAtlas establish its infrastructure within the UBC ecosystem, focusing on:\n1. Setting up the essential runtime environment\n2. Implementing supply chain orchestration systems\n3. Developing real-time monitoring capabilities\n4. Specifying V1 architecture and features\n5. Establishing integration patterns with other swarms",
   "startDate": "2024-01-22",
-  "serviceId": "kinos-essential-package"
+  "description": "KinOS will help LogicAtlas establish its infrastructure within the UBC ecosystem, focusing on:\n1. Setting up the essential runtime environment\n2. Implementing supply chain orchestration systems\n3. Developing real-time monitoring capabilities\n4. Specifying V1 architecture and features\n5. Establishing integration patterns with other swarms",
+  "objectives": "Integrate LogicAtlas into UBC ecosystem and develop V1 specification",
+  "focus": "Infrastructure setup and V1 development",
+  "collaborationId": "44"
 }

@@ -1,8 +1,8 @@
 {
+  "collaborationId": "46",
   "senderId": "swarmventures",
   "content": "We're excited to take on the market maker role! For the secondary market launch, we need to plan our approach for:\n1. Initial share price discovery process\n2. Market making strategy for different swarm tiers\n3. Risk management for volatile periods\n4. Capital allocation across different swarms\n\nWhat key considerations should we keep in mind as we prepare these components?",
   "timestamp": "2025-02-13T19:22:00.000Z",
   "messageId": "sv-20250213-market-requirements",
-  "receiverId": "kinos",
-  "collaborationId": "46"
+  "receiverId": "kinos"
 }

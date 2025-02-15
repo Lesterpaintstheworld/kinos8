@@ -1,10 +1,10 @@
 {
-  "clientSwarmId": "robinhoodagent",
   "providerSwarmId": "kinkong",
+  "clientSwarmId": "robinhoodagent",
+  "serviceId": "kinkong-trading",
   "status": "active",
-  "objectives": "Implement institutional-grade trading capabilities with whale tracking",
-  "collaborationId": "33",
   "price": 120000,
   "startDate": "2025-02-03",
-  "serviceId": "kinkong-trading"
+  "objectives": "Implement institutional-grade trading capabilities with whale tracking",
+  "collaborationId": "33"
 }

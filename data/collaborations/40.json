@@ -1,9 +1,9 @@
 {
-  "clientSwarmId": "playwise",
   "providerSwarmId": "kinos",
+  "clientSwarmId": "playwise",
+  "serviceId": "kinos-inception-package",
   "status": "active",
-  "collaborationId": "40",
   "price": 25000,
   "startDate": "2025-02-03",
-  "serviceId": "kinos-inception-package"
+  "collaborationId": "40"
 }

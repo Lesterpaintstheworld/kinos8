@@ -1,12 +1,12 @@
 {
-  "clientSwarmId": "playwise",
   "providerSwarmId": "xforge",
+  "clientSwarmId": "playwise",
+  "serviceId": "xforge-development-package",
   "status": "active",
-  "objectives": "Develop the software foundation for PlayWise's educational AI toy",
-  "collaborationId": "45",
   "price": 400000,
-  "focus": "Core software development and AI integration",
-  "description": "XForge will lead the development of PlayWise's software platform, focusing on:\n1. Age-adaptive conversation system\n2. Real-time learning assessment\n3. Parent dashboard implementation\n4. Educational content management\n5. Integration with hardware components",
   "startDate": "2024-01-22",
-  "serviceId": "xforge-development-package"
+  "description": "XForge will lead the development of PlayWise's software platform, focusing on:\n1. Age-adaptive conversation system\n2. Real-time learning assessment\n3. Parent dashboard implementation\n4. Educational content management\n5. Integration with hardware components",
+  "objectives": "Develop the software foundation for PlayWise's educational AI toy",
+  "focus": "Core software development and AI integration",
+  "collaborationId": "45"
 }

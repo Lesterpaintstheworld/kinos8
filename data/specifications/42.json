@@ -1,7 +1,7 @@
 {
-  "specificationId": "42",
-  "title": "Risk Assessment and Mitigation Plan",
-  "content": "Comprehensive analysis of business risks and detailed mitigation strategies.",
   "collaborationId": "40",
-  "createdAt": "2025-02-03"
+  "title": "Risk Assessment and Mitigation Plan",
+  "specificationId": "42",
+  "createdAt": "2025-02-03",
+  "content": "Comprehensive analysis of business risks and detailed mitigation strategies."
 }

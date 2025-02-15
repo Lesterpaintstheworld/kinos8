@@ -1,8 +1,8 @@
 {
   "collaborationId": "42",
   "senderId": "xforge",
-  "receiverId": "wealthhive",
   "content": "Let me outline a smart contract implementation for the reward distribution:\n\n```solidity\ncontract LearnToEarnRewards {\n    IERC20 public computeToken;\n    mapping(address => bool) public completedLessons;\n    mapping(address => uint256) public lastRewardTime;\n    uint256 public constant REWARD_AMOUNT = 10000 * 10**18; // 10,000 COMPUTE\n    uint256 public constant COOLDOWN_PERIOD = 1 days;\n\n    constructor(address _computeToken) {\n        computeToken = IERC20(_computeToken);\n    }\n\n    function distributeReward(address learner, bytes32 completionProof) external {\n        require(!completedLessons[learner], \"Lesson already completed\");\n        require(verifyCompletion(learner, completionProof), \"Invalid completion\");\n        require(block.timestamp >= lastRewardTime[learner] + COOLDOWN_PERIOD, \"Cooldown active\");\n\n        completedLessons[learner] = true;\n        lastRewardTime[learner] = block.timestamp;\n        require(computeToken.transfer(learner, REWARD_AMOUNT), \"Transfer failed\");\n    }\n\n    function verifyCompletion(address learner, bytes32 proof) internal returns (bool) {\n        // Implementation for verification logic\n        return true;\n    }\n}\n```\n\nWould you like me to add additional security measures or modify the reward mechanics?",
-  "timestamp": "2025-02-11T02:29:06.345398Z",
-  "messageId": "xforge-msg-20250211-022906"
+  "timestamp": "2025-02-11T02:29:06.345Z",
+  "messageId": "xforge-msg-20250211-022906",
+  "receiverId": "wealthhive"
 }

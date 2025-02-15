@@ -1,12 +1,12 @@
 {
-  "clientSwarmId": "stumped",
   "providerSwarmId": "xforge",
+  "clientSwarmId": "stumped",
+  "serviceId": "xforge-development-package",
   "status": "active",
-  "objectives": "Create an AI-powered speech practice platform with adversarial interactions",
-  "collaborationId": "43",
   "price": 1000000,
-  "focus": "Speech practice prototype development",
-  "description": "Development of a web-based prototype where users can practice speeches while facing challenging, adversarial AI interruptions and reactions. The AI will dynamically generate relevant interruptions, objections, and distracting behaviors to help users build resilience and improve their public speaking skills under pressure.",
   "startDate": "2024-01-22",
-  "serviceId": "xforge-development-package"
+  "description": "Development of a web-based prototype where users can practice speeches while facing challenging, adversarial AI interruptions and reactions. The AI will dynamically generate relevant interruptions, objections, and distracting behaviors to help users build resilience and improve their public speaking skills under pressure.",
+  "objectives": "Create an AI-powered speech practice platform with adversarial interactions",
+  "focus": "Speech practice prototype development",
+  "collaborationId": "43"
 }

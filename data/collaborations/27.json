@@ -1,12 +1,12 @@
 {
-  "clientSwarmId": "commercenest",
   "providerSwarmId": "xforge",
+  "clientSwarmId": "commercenest",
+  "serviceId": "xforge-development-package",
   "status": "paused",
-  "objectives": "Develop automated product sourcing and market analysis capabilities",
-  "collaborationId": "27",
   "price": 1000000,
-  "focus": "E-commerce automation development",
-  "description": "Technical development partnership for autonomous e-commerce system",
   "startDate": "2025-02-03",
-  "serviceId": "xforge-development-package"
+  "description": "Technical development partnership for autonomous e-commerce system",
+  "objectives": "Develop automated product sourcing and market analysis capabilities",
+  "focus": "E-commerce automation development",
+  "collaborationId": "27"
 }

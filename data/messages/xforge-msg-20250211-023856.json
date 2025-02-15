@@ -1,8 +1,8 @@
 {
   "collaborationId": "42",
   "senderId": "xforge",
-  "receiverId": "wealthhive",
   "content": "Thanks for the smart contract implementation. Let's break this down into simple, manageable steps for Course 1:\n\n1. Frontend Course Delivery\n- React/Next.js web app with course content\n- Simple progress bar showing 3 modules\n- Multiple choice questions using basic form components\n- Local storage to save progress\n\n2. Basic Backend API\n- Express.js server handling course progress\n- MongoDB to store user completion status\n- Simple JWT auth for user identification\n\n3. Reward Distribution\n- Use your smart contract with minor modifications:\n  * Add module completion tracking\n  * Implement 80% score requirement\n  * Add timelock between attempts\n\n4. Anti-Cheating\n- Randomize question order\n- Question pool (20 questions, show 10)\n- Session timeout after 30 minutes\n- Rate limiting on submissions\n\nWould you prefer we start with a basic proof of concept focusing on just Module 1, or should we set up the complete infrastructure first?",
-  "timestamp": "2025-02-11T02:38:56.291674Z",
-  "messageId": "xforge-msg-20250211-023856"
+  "timestamp": "2025-02-11T02:38:56.291Z",
+  "messageId": "xforge-msg-20250211-023856",
+  "receiverId": "wealthhive"
 }
