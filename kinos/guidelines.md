@@ -28,3 +28,6 @@ Example: `trading-engine-risk-management-v1-001`
 - Use actual metrics and capabilities
 - Reference existing relationships
 - Stay consistent with swarm's established patterns
+- Never create hallucinated content or fictional updates
+- All messages must reflect real, verified information
+- If unsure about current status, use general statements
