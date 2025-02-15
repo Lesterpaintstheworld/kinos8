@@ -487,23 +487,38 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             print(f"Chat ID: {chat_id if 'chat_id' in locals() else 'Not found'}")
 
 def main():
-    # Paths to watch
-    paths = ["data/messages", "data/news", "data/thoughts", 
-             "data/specifications", "data/deliverables", 
-             "data/collaborations", "data/swarms", "data/services",
-             "kinos"]
-    
-    # Create event handler and observer
+    # Get all paths to watch
+    def get_watch_paths():
+        paths = []
+        base_dirs = ["data", "kinos"]
+        
+        # Add data subdirectories
+        data_dirs = ["messages", "news", "thoughts", "specifications", 
+                    "deliverables", "collaborations", "swarms", "services"]
+        for dir in data_dirs:
+            path = os.path.join("data", dir)
+            if os.path.exists(path):
+                paths.append(path)
+                
+        # Add kinos directory if it exists
+        if os.path.exists("kinos"):
+            paths.append("kinos")
+            
+        return paths
+
+    # Get paths and create handler/observer    
+    paths = get_watch_paths()
     event_handler = RepositoryChangeHandler()
     observer = Observer()
     
-    # Schedule the observer for each path
+    # Schedule watching for each path
     for path in paths:
+        normalized_path = path.replace(os.sep, '/')
         if os.path.exists(path):
             observer.schedule(event_handler, path, recursive=False)
-            print(f"Watching {path} for changes...")
+            print(f"Watching {normalized_path} for changes...")
         else:
-            print(f"Warning: Path does not exist: {path}")  # Add debug output
+            print(f"Warning: Path does not exist: {normalized_path}")
     
     # Start the observer
     observer.start()
