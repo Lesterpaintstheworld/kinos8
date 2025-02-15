@@ -76,8 +76,8 @@ def is_file_ready(file_path: str, timeout: int = 5, check_interval: float = 0.1)
     """
     start_time = time.time()
     
-    # Skip certain files that don't need processing
-    if any(skip in file_path for skip in ['.git', '.aider', '.tmp']):
+    # Skip only git and temp files
+    if '.git' in file_path or '.tmp' in file_path:
         return False
         
     while time.time() - start_time < timeout:
