@@ -296,8 +296,8 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         except subprocess.CalledProcessError as e:
             print(f"Error pushing to git: {e}")
             
-        # Only process CREATED JSON files (not modified) for notifications
-        if event_type == 'created' and file_path.endswith('.json'):
+        # Only process new JSON files for notifications, regardless of event type
+        if file_path.endswith('.json') and file_path not in self.processed_messages:
             # Handle messages
             if 'data/messages' in file_path:
                 try:
