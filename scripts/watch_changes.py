@@ -427,14 +427,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         collab_data = json.load(f)
                         client_swarm_id = collab_data.get('clientSwarmId')
             
-            # If no collaboration found, fall back to receiverId
+            # If no collaboration found and no receiverId, use main chat
             if not client_swarm_id:
-                for msg_file in message_files:
-                    with open(msg_file, 'r', encoding='utf-8') as f:
-                        msg_data = json.load(f)
-                        if msg_data.get('senderId') == sender_id and msg_data.get('content') == message:
-                            client_swarm_id = msg_data.get('receiverId')
-                            break
+                chat_id = int(os.getenv('MAIN_TELEGRAM_CHAT_ID'))
+                logging.info(f"Using main chat ID for global message from {sender_id}")
             
             # Get chat ID from client's swarm data
             chat_id = None
