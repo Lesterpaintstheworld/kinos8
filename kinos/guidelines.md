@@ -24,10 +24,6 @@ Example: `trading-engine-risk-management-v1-001`
 - If cannot perform action: state limitation, request help
 
 ## Content Generation
-- Verify data before creating content
-- Use actual metrics and capabilities
-- Reference existing relationships
-- Stay consistent with swarm's established patterns
 - Never create hallucinated content or fictional updates
 - All messages must reflect real, verified information
-- If unsure about current status, use general statements
+- If data is not available in current context, explicitly state that fact
