@@ -6,6 +6,7 @@ import glob
 import codecs
 import subprocess
 import logging
+from typing import Optional, Dict, Any
 from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -45,11 +46,42 @@ BASE_ID = os.getenv('AIRTABLE_BASE_ID')
 if not BASE_ID:
     raise ValueError("AIRTABLE_BASE_ID environment variable is required")
 
+def safe_read_json(file_path: str, max_retries: int = 3) -> Dict[str, Any]:
+    """Safely read and parse JSON file with retries"""
+    for attempt in range(max_retries):
+        try:
+            # Ensure file is completely written
+            time.sleep(0.1 * (attempt + 1))
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                if not content.strip():
+                    raise ValueError("Empty file")
+                return json.loads(content)
+        except (json.JSONDecodeError, ValueError) as e:
+            if attempt == max_retries - 1:
+                raise
+            continue
+    raise ValueError(f"Failed to read {file_path} after {max_retries} attempts")
+
+def is_file_ready(file_path: str, timeout: int = 5) -> bool:
+    """Check if file is completely written and accessible"""
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                json.loads(content)  # Try to parse JSON
+                return True
+        except (json.JSONDecodeError, IOError):
+            time.sleep(0.1)
+            continue
+    return False
+
 # Initialize Airtable API
 api = Api(AIRTABLE_API_KEY)
 
 # Cache for Telegram applications and event loops
-telegram_apps = {}
+telegram_apps: Dict[str, Any] = {}
 loop = None
 
 def get_telegram_app(sender_id):
@@ -145,9 +177,8 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             else:
                 return
             
-            # Read the file
-            with open(file_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
+            # Read the file with retry mechanism
+            data = safe_read_json(file_path)
             
             # Get existing records
             existing_records = table.all()
@@ -180,8 +211,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         if '.git' in file_path or file_path.endswith('.tmp'):
             return
             
-        # Add delay to ensure file writes are complete
-        await asyncio.sleep(0.5)
+        # Wait for file to be ready
+        if not is_file_ready(file_path):
+            print(f"File not ready after timeout: {file_path}")
+            return
         
         logging.info(f"Processing {event_type} event for file: {file_path}")
 
@@ -206,15 +239,14 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             # Handle messages
             if 'data/messages' in file_path:
                 try:
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        data = json.loads(f.read())
-                        if 'content' in data and 'senderId' in data and 'messageId' in data:
-                            self.processed_messages.add(file_path)
-                            current_time = time.time()
-                            if hasattr(self, 'last_message_time'):
-                                time_since_last = current_time - self.last_message_time
-                                if time_since_last < 2:
-                                    await asyncio.sleep(2 - time_since_last)
+                    data = safe_read_json(file_path)
+                    if 'content' in data and 'senderId' in data and 'messageId' in data:
+                        self.processed_messages.add(file_path)
+                        current_time = time.time()
+                        if hasattr(self, 'last_message_time'):
+                            time_since_last = current_time - self.last_message_time
+                            if time_since_last < 2:
+                                await asyncio.sleep(2 - time_since_last)
                         
                             message = f"{data['content']}"
                             await self._send_telegram_message(message, data['senderId'])
