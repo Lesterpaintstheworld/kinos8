@@ -413,67 +413,23 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
             logging.info(f"Sending message from {sender_id}")
             
-            # Get message data to find collaboration
-            message_files = glob.glob('data/messages/*.json')
-            collab_id = None
-            for msg_file in message_files:
-                with open(msg_file, 'r', encoding='utf-8') as f:
-                    msg_data = json.load(f)
-                    if msg_data.get('senderId') == sender_id and msg_data.get('content') == message:
-                        collab_id = msg_data.get('collaborationId')
-                        break
-
-            # Get client from collaboration if it exists
-            client_swarm_id = None
-            if collab_id:
-                collab_file = f'data/collaborations/{collab_id}.json'
-                if os.path.exists(collab_file):
-                    with open(collab_file, 'r', encoding='utf-8') as f:
-                        collab_data = json.load(f)
-                        client_swarm_id = collab_data.get('clientSwarmId')
-            
-            # If no collaboration found and no receiverId, use main chat
-            if not client_swarm_id:
-                chat_id = int(os.getenv('MAIN_TELEGRAM_CHAT_ID'))
-                logging.info(f"Using main chat ID for global message from {sender_id}")
-            
-            # Get chat ID from client's swarm data
-            chat_id = None
-            if client_swarm_id:
-                # First try to get from swarm file
-                swarm_file = f'data/swarms/{client_swarm_id}.json'
-                if os.path.exists(swarm_file):
-                    with open(swarm_file, 'r', encoding='utf-8') as f:
-                        swarm_data = json.load(f)
-                        chat_id = swarm_data.get('telegramChatId')
-            
-                # If not found in swarm file, try environment variable
-                if not chat_id:
-                    chat_id_key = f"{client_swarm_id.upper()}_TELEGRAM_CHAT_ID"
-                    chat_id = os.getenv(chat_id_key)
-                    if chat_id:
-                        chat_id = int(chat_id)  # Convert string to integer for Telegram
-
-            # If still no chat_id, fall back to KINOS chat
-            if not chat_id:
-                chat_id = int(os.getenv('KINOS_TELEGRAM_CHAT_ID'))
-                logging.info(f"Falling back to KINOS chat ID for message from {sender_id}")
+            # For global messages (no collaborationId), always use main chat
+            chat_id = int(os.getenv('MAIN_TELEGRAM_CHAT_ID'))
+            logging.info(f"Using main chat ID for message from {sender_id}")
             
             # Get appropriate bot token and app
             app = get_telegram_app(sender_id)
                     
             if app and chat_id:
-                print(f"Sending message as {sender_id} to client {client_swarm_id} (chat {chat_id})")
+                print(f"Sending message as {sender_id} to main chat {chat_id}")
                 await app.bot.send_message(chat_id=chat_id, text=message)
             else:
                 print(f"Could not send message - Missing {'app' if not app else 'chat_id'}")
                 print(f"Sender: {sender_id}")
-                print(f"Client: {client_swarm_id}")
                 print(f"Chat ID: {chat_id}")
         except Exception as e:
             print(f"Error sending Telegram message: {e}")
             print(f"Sender: {sender_id}")
-            print(f"Client: {client_swarm_id if 'client_swarm_id' in locals() else 'Not found'}")
             print(f"Chat ID: {chat_id if 'chat_id' in locals() else 'Not found'}")
 
 def main():
