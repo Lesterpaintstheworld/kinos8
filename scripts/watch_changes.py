@@ -486,6 +486,8 @@ def main():
         if os.path.exists(path):
             observer.schedule(event_handler, path, recursive=False)
             print(f"Watching {path} for changes...")
+        else:
+            print(f"Warning: Path does not exist: {path}")  # Add debug output
     
     # Start the observer
     observer.start()
