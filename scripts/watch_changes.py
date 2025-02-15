@@ -46,35 +46,65 @@ BASE_ID = os.getenv('AIRTABLE_BASE_ID')
 if not BASE_ID:
     raise ValueError("AIRTABLE_BASE_ID environment variable is required")
 
-def safe_read_json(file_path: str, max_retries: int = 3) -> Dict[str, Any]:
-    """Safely read and parse JSON file with retries"""
+def safe_read_json(file_path: str, max_retries: int = 3, retry_delay: float = 0.5) -> Dict[str, Any]:
+    """Safely read and parse JSON file with improved retry logic"""
+    last_error = None
+    
     for attempt in range(max_retries):
         try:
-            # Ensure file is completely written
-            time.sleep(0.1 * (attempt + 1))
             with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-                if not content.strip():
+                content = f.read().strip()
+                if not content:
                     raise ValueError("Empty file")
                 return json.loads(content)
-        except (json.JSONDecodeError, ValueError) as e:
-            if attempt == max_retries - 1:
-                raise
-            continue
-    raise ValueError(f"Failed to read {file_path} after {max_retries} attempts")
+        except (json.JSONDecodeError, IOError, ValueError) as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay * (attempt + 1))
+                continue
+            
+    raise ValueError(f"Failed to read {file_path} after {max_retries} attempts: {last_error}")
 
-def is_file_ready(file_path: str, timeout: int = 5) -> bool:
-    """Check if file is completely written and accessible"""
+def is_file_ready(file_path: str, timeout: int = 5, check_interval: float = 0.1) -> bool:
+    """
+    Check if file is completely written and accessible with improved retry logic.
+    
+    Args:
+        file_path: Path to the file to check
+        timeout: Maximum time to wait in seconds
+        check_interval: Time between checks in seconds
+    """
     start_time = time.time()
+    
+    # Skip certain files that don't need processing
+    if any(skip in file_path for skip in ['.git', '.aider', '.tmp']):
+        return False
+        
     while time.time() - start_time < timeout:
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-                json.loads(content)  # Try to parse JSON
+            # Check if file exists and is not empty
+            if not os.path.exists(file_path):
+                time.sleep(check_interval)
+                continue
+                
+            # Get file size
+            size1 = os.path.getsize(file_path)
+            time.sleep(check_interval)  # Wait briefly
+            size2 = os.path.getsize(file_path)
+            
+            # If size hasn't changed and file is not empty
+            if size1 == size2 and size1 > 0:
+                # Try to read and parse if it's a JSON file
+                if file_path.endswith('.json'):
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        json.loads(f.read())
                 return True
-        except (json.JSONDecodeError, IOError):
-            time.sleep(0.1)
+                
+        except (IOError, json.JSONDecodeError):
+            time.sleep(check_interval)
             continue
+            
+    logging.warning(f"File not ready after {timeout}s: {file_path}")
     return False
 
 # Initialize Airtable API
@@ -117,12 +147,28 @@ def get_telegram_app(sender_id):
                 
     return telegram_apps.get(sender_id)
 
+class FileLock:
+    def __init__(self):
+        self._locks = {}
+        self._lock = asyncio.Lock()
+    
+    async def acquire(self, file_path):
+        async with self._lock:
+            if file_path not in self._locks:
+                self._locks[file_path] = asyncio.Lock()
+        return await self._locks[file_path].acquire()
+    
+    async def release(self, file_path):
+        if file_path in self._locks:
+            self._locks[file_path].release()
+
 class RepositoryChangeHandler(FileSystemEventHandler):
     def __init__(self):
         super().__init__()
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
         self.processed_messages = set()  # Track processed messages
+        self.file_lock = FileLock()
 
     def on_created(self, event):
         if event.is_directory:
@@ -207,14 +253,25 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         # Convert path to use forward slashes for consistency
         file_path = file_path.replace('\\', '/')
         
-        # Skip git and temporary files
-        if '.git' in file_path or file_path.endswith('.tmp'):
+        # Skip non-relevant files early
+        if any(skip in file_path for skip in ['.git', '.aider', '.tmp']):
             return
             
-        # Wait for file to be ready
-        if not is_file_ready(file_path):
-            print(f"File not ready after timeout: {file_path}")
+        # Only process certain file types
+        if not any(file_path.startswith(f"data/{d}") for d in ['messages', 'news', 'thoughts', 'specifications', 'deliverables', 'collaborations', 'swarms', 'services']):
             return
+            
+        # Wait for file to be ready with increased timeout for larger files
+        timeout = 10 if any(x in file_path for x in ['specifications', 'deliverables', 'thoughts']) else 5
+        max_attempts = 3
+        
+        for attempt in range(max_attempts):
+            if is_file_ready(file_path, timeout=timeout):
+                break
+            if attempt == max_attempts - 1:
+                logging.error(f"File not ready after {max_attempts} attempts: {file_path}")
+                return
+            await asyncio.sleep(1)  # Wait between attempts
         
         logging.info(f"Processing {event_type} event for file: {file_path}")
 
