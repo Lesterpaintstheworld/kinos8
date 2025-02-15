@@ -410,9 +410,15 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
     async def _send_telegram_message(self, message, sender_id):
         try:
-            print(f"DEBUG: Attempting to send Telegram message")
+            print(f"DEBUG: Starting Telegram send process")
             print(f"DEBUG: Sender ID: {sender_id}")
-            print(f"DEBUG: Message length: {len(message)}")
+            print(f"DEBUG: Message: {message[:100]}...")  # First 100 chars
+            
+            # Check environment variables
+            main_chat = os.getenv('MAIN_TELEGRAM_CHAT_ID')
+            bot_token = os.getenv(f'{sender_id.upper()}_TELEGRAM_BOT_TOKEN')
+            print(f"DEBUG: Main chat ID exists: {bool(main_chat)}")
+            print(f"DEBUG: Bot token exists for {sender_id}: {bool(bot_token)}")
             
             # Rate limiting
             current_time = time.time()
@@ -459,18 +465,20 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 chat_id = int(os.getenv('MAIN_TELEGRAM_CHAT_ID'))
                 logging.info(f"Using main chat ID for message from {sender_id}")
             
-            # Get appropriate bot token and app
             print(f"DEBUG: Using chat ID: {chat_id}")
-            print(f"DEBUG: Getting Telegram app for sender: {sender_id}")
+            
+            # Get app
             app = get_telegram_app(sender_id)
-                    
+            print(f"DEBUG: Telegram app created: {bool(app)}")
+            
             if app and chat_id:
-                print(f"Sending message as {sender_id} to main chat {chat_id}")
+                print(f"DEBUG: Attempting to send message...")
                 await app.bot.send_message(chat_id=chat_id, text=message)
+                print(f"DEBUG: Message sent successfully")
             else:
-                print(f"Could not send message - Missing {'app' if not app else 'chat_id'}")
-                print(f"Sender: {sender_id}")
-                print(f"Chat ID: {chat_id}")
+                print(f"DEBUG: Failed to send - Missing {'app' if not app else 'chat_id'}")
+                print(f"DEBUG: Sender: {sender_id}")
+                print(f"DEBUG: Chat ID: {chat_id}")
         except Exception as e:
             print(f"Error sending Telegram message: {e}")
             print(f"Sender: {sender_id}")
