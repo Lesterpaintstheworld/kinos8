@@ -256,6 +256,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         # Add debug logging
         print(f"Detected {event_type} event for: {file_path}")
         
+        # Add debug logging
+        print(f"DEBUG: Processing file: {file_path}")
+        print(f"DEBUG: Event type: {event_type}")
+
         # Skip non-relevant files early
         if any(skip in file_path for skip in ['.git', '.aider', '.tmp']):
             return
@@ -300,9 +304,12 @@ class RepositoryChangeHandler(FileSystemEventHandler):
         if file_path.endswith('.json') and file_path not in self.processed_messages:
             # Handle messages
             if 'data/messages' in file_path:
+                print(f"DEBUG: Processing message file")
                 try:
                     data = safe_read_json(file_path)
+                    print(f"DEBUG: Message data loaded: {data.get('messageId')}")
                     if 'content' in data and 'senderId' in data and 'messageId' in data:
+                        print(f"DEBUG: Required fields present")
                         self.processed_messages.add(file_path)
                         current_time = time.time()
                         if hasattr(self, 'last_message_time'):
@@ -403,6 +410,10 @@ class RepositoryChangeHandler(FileSystemEventHandler):
 
     async def _send_telegram_message(self, message, sender_id):
         try:
+            print(f"DEBUG: Attempting to send Telegram message")
+            print(f"DEBUG: Sender ID: {sender_id}")
+            print(f"DEBUG: Message length: {len(message)}")
+            
             # Rate limiting
             current_time = time.time()
             if hasattr(self, '_last_message_time'):
@@ -449,6 +460,8 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 logging.info(f"Using main chat ID for message from {sender_id}")
             
             # Get appropriate bot token and app
+            print(f"DEBUG: Using chat ID: {chat_id}")
+            print(f"DEBUG: Getting Telegram app for sender: {sender_id}")
             app = get_telegram_app(sender_id)
                     
             if app and chat_id:
