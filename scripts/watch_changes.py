@@ -297,10 +297,9 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                         
                         if client_swarm_id:
                             # Create a message with content preview
-                            content_preview = data.get('content', '')[:200] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
+                            content_preview = data.get('content', '')[:250] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
                             message = (f"📦 New Deliverable\n\n"
                                      f"Title: {data.get('title')}\n"
-                                     f"Created: {data.get('createdAt')}\n\n"
                                      f"Preview:\n{content_preview}\n\n"
                                      f"View full deliverable at:\n"
                                      f"https://swarms.universalbasiccompute.ai/deliverables/{data['deliverableId']}")
@@ -320,12 +319,9 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                     data = json.loads(f.read())
                     if 'thoughtId' in data and 'swarmId' in data:
                         # Create a message with content preview
-                        content_preview = data.get('content', '')[:200] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
+                        content_preview = data.get('content', '')[:1000] + '...' if len(data.get('content', '')) > 200 else data.get('content', '')
                         message = (f"💭 New Thought from {data['swarmId']}\n\n"
-                                 f"Created: {data.get('createdAt')}\n\n"
-                                 f"{content_preview}\n\n"
-                                 f"View all thoughts at:\n"
-                                 f"https://swarms.universalbasiccompute.ai/swarms/{data['swarmId']}/thoughts")
+                                 f"{content_preview}\n\n")
                         await self._send_telegram_message(message, data['swarmId'])
                         print(f"Sent thought notification for {data['swarmId']}")
                         
