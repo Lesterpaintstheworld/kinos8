@@ -3104,3 +3104,140 @@
 2025-02-15 03:44:37,179 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250213-025772.json
 2025-02-15 03:44:40,015 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250213-025773.json
 2025-02-15 03:44:42,918 - INFO - Processing modified event for file: ./data/messages/xforge-msg-20250213-025774.json
+2025-02-15 07:45:32,587 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:45:34,201 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:45:39,598 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-15 07:45:41,050 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:45:42,596 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-15 07:46:01,832 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:03,274 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:05,207 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:06,761 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:28,081 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:29,524 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:31,012 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:32,559 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:34,105 - INFO - Processing created event for file: ./data/thoughts/th-20250214-026001.json
+2025-02-15 07:46:35,735 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:45,244 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:46:46,813 - INFO - Processing created event for file: ./data/thoughts/th-20250214-026002.json
+2025-02-15 07:46:48,347 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:47:03,489 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-15 07:47:05,019 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:47:06,553 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-15 07:47:12,579 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:47:14,060 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:47:30,454 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:47:31,941 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:47:52,199 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-15 07:47:53,755 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:47:55,244 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-15 07:48:16,162 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:48:17,727 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:48:28,804 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:48:30,318 - INFO - Processing modified event for file: ./requirements.txt
+2025-02-15 07:48:31,855 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-15 07:48:55,043 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:48:57,086 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:49:10,524 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:49:12,497 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:49:44,139 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:49:46,195 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:49:48,248 - INFO - Processing modified event for file: ./scripts/watch_changes.py
+2025-02-15 07:49:50,845 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:49:52,852 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 07:49:54,889 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 08:02:51,332 - INFO - Processing modified event for file: ./.aider.input.history
+2025-02-15 08:02:53,477 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 08:02:55,560 - INFO - Processing modified event for file: ./watch_changes.log
+2025-02-15 08:03:08,031 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 08:03:09,995 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 08:03:12,051 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 08:03:14,073 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 08:03:21,557 - INFO - Processing modified event for file: ./.aider.chat.history.md
+2025-02-15 08:03:57,291 - INFO - Processing modified event for file: ./data/thoughts/th-20250214-026001.json
+2025-02-15 08:04:00,411 - INFO - Processing modified event for file: ./data/thoughts/th-20250214-026002.json
+2025-02-15 08:34:24,992 - INFO - Processing created event for file: ./data/messages/kn-global-chat-launch-002.json
+2025-02-15 08:34:28,609 - INFO - Processing modified event for file: ./data/messages/kn-global-chat-launch-002.json
+2025-02-15 08:34:28,609 - INFO - Skipping already processed message: ./data/messages/kn-global-chat-launch-002.json
+2025-02-15 08:39:27,369 - INFO - Processing created event for file: ./data/messages/kn-global-strategy-marketplace-001.json
+2025-02-15 08:39:31,002 - INFO - Processing modified event for file: ./data/messages/kn-global-strategy-marketplace-001.json
+2025-02-15 08:39:31,002 - INFO - Skipping already processed message: ./data/messages/kn-global-strategy-marketplace-001.json
+2025-02-15 08:42:46,741 - INFO - Processing modified event for file: ./data/collaborations/33.json
+2025-02-15 08:42:49,955 - INFO - Processing modified event for file: ./data/deliverables/8.json
+2025-02-15 08:42:51,866 - INFO - Sending message from robinhoodagent
+2025-02-15 08:42:54,692 - INFO - Using main chat ID for message from robinhoodagent
+2025-02-15 08:42:56,906 - INFO - HTTP Request: POST https://api.telegram.org/bot7833240266:AAEyvvXFfci4NQbAjmeLe6grs0YI_25wjO0/sendMessage "HTTP/1.1 400 Bad Request"
+2025-02-15 08:42:57,017 - INFO - Processing modified event for file: ./data/messages/kinos-msg-20250214-025784.json
+2025-02-15 08:42:59,461 - INFO - Processing modified event for file: ./data/services/kinos-essential-package.json
+2025-02-15 08:43:01,744 - INFO - Processing modified event for file: ./data/services/kinos-inception-package.json
+2025-02-15 08:43:03,652 - INFO - Processing modified event for file: ./data/services/xforge-development-package.json
+2025-02-15 08:43:05,674 - INFO - Processing modified event for file: ./data/swarms/kinkong.json
+2025-02-15 08:43:07,873 - INFO - Processing modified event for file: ./data/swarms/kinos.json
+2025-02-15 08:43:09,880 - INFO - Processing modified event for file: ./data/swarms/robinhoodagent.json
+2025-02-15 08:43:11,908 - INFO - Processing modified event for file: ./data/swarms/swarmventures.json
+2025-02-15 08:43:13,888 - INFO - Processing modified event for file: ./data/swarms/xforge.json
+2025-02-15 08:43:15,875 - INFO - Processing modified event for file: ./data/collaborations/15.json
+2025-02-15 08:43:17,851 - INFO - Processing modified event for file: ./data/collaborations/23.json
+2025-02-15 08:43:19,797 - INFO - Processing modified event for file: ./data/collaborations/24.json
+2025-02-15 08:43:21,838 - INFO - Processing modified event for file: ./data/collaborations/25.json
+2025-02-15 08:43:23,905 - INFO - Processing modified event for file: ./data/collaborations/27.json
+2025-02-15 08:43:25,978 - INFO - Processing modified event for file: ./data/messages/02583289-f03a-46d7-adfe-336447b5e443.json
+2025-02-15 08:43:28,327 - INFO - Processing modified event for file: ./data/messages/04cf26dc-35f8-4643-9ea4-f3cb2ad5bcb4.json
+2025-02-15 08:43:30,620 - INFO - Processing modified event for file: ./data/messages/10.json
+2025-02-15 08:43:32,924 - INFO - Processing modified event for file: ./data/messages/12.json
+2025-02-15 08:43:35,280 - INFO - Processing modified event for file: ./data/messages/16.json
+2025-02-15 08:43:37,604 - INFO - Processing modified event for file: ./data/messages/17.json
+2025-02-15 08:43:40,325 - INFO - Processing modified event for file: ./data/messages/18.json
+2025-02-15 08:43:43,747 - INFO - Processing modified event for file: ./data/messages/19.json
+2025-02-15 08:43:46,371 - INFO - Processing modified event for file: ./data/messages/2-.json
+2025-02-15 08:43:48,598 - INFO - Processing modified event for file: ./data/messages/2.json
+2025-02-15 08:43:50,888 - INFO - Processing modified event for file: ./data/messages/20.json
+2025-02-15 08:43:53,266 - INFO - Processing modified event for file: ./data/messages/21.json
+2025-02-15 08:43:55,573 - INFO - Processing modified event for file: ./data/messages/22.json
+2025-02-15 08:43:57,779 - INFO - Processing modified event for file: ./data/messages/23.json
+2025-02-15 08:44:00,049 - INFO - Processing modified event for file: ./data/messages/24.json
+2025-02-15 08:44:02,373 - INFO - Processing modified event for file: ./data/messages/25.json
+2025-02-15 08:44:04,695 - INFO - Processing modified event for file: ./data/messages/4-.json
+2025-02-15 08:44:07,043 - INFO - Processing modified event for file: ./data/messages/4.json
+2025-02-15 08:44:09,532 - INFO - Processing modified event for file: ./data/messages/47.json
+2025-02-15 08:44:11,865 - INFO - Processing modified event for file: ./data/messages/48.json
+2025-02-15 08:44:14,154 - INFO - Processing modified event for file: ./data/messages/52.json
+2025-02-15 08:44:16,501 - INFO - Processing modified event for file: ./data/messages/53.json
+2025-02-15 08:44:18,752 - INFO - Processing modified event for file: ./data/messages/54.json
+2025-02-15 08:44:20,984 - INFO - Processing modified event for file: ./data/messages/55.json
+2025-02-15 08:44:23,549 - INFO - Processing modified event for file: ./data/messages/56.json
+2025-02-15 08:44:25,808 - INFO - Processing modified event for file: ./data/messages/57.json
+2025-02-15 08:44:28,097 - INFO - Processing modified event for file: ./data/messages/58.json
+2025-02-15 08:44:30,374 - INFO - Processing modified event for file: ./data/messages/59.json
+2025-02-15 08:44:32,724 - INFO - Processing modified event for file: ./data/messages/6.json
+2025-02-15 08:44:35,258 - INFO - Processing modified event for file: ./data/messages/60.json
+2025-02-15 08:44:38,166 - INFO - Processing modified event for file: ./data/messages/61.json
+2025-02-15 08:44:40,524 - INFO - Processing modified event for file: ./data/messages/62.json
+2025-02-15 08:44:42,841 - INFO - Processing modified event for file: ./data/messages/63.json
+2025-02-15 08:44:45,221 - INFO - Processing modified event for file: ./data/messages/64.json
+2025-02-15 08:44:47,507 - INFO - Processing modified event for file: ./data/messages/65.json
+2025-02-15 08:44:49,719 - INFO - Processing modified event for file: ./data/messages/66.json
+2025-02-15 08:44:51,985 - INFO - Processing modified event for file: ./data/messages/67.json
+2025-02-15 08:44:54,371 - INFO - Processing modified event for file: ./data/messages/68.json
+2025-02-15 08:44:56,657 - INFO - Processing modified event for file: ./data/messages/69.json
+2025-02-15 08:44:59,044 - INFO - Processing modified event for file: ./data/messages/69689882-f683-419d-bb00-74ef2391c89e.json
+2025-02-15 08:49:39,029 - INFO - Processing created event for file: ./data/messages/kn-global-454545.json
+2025-02-15 08:49:42,563 - INFO - Processing modified event for file: ./data/messages/kn-global-454545.json
+2025-02-15 08:49:42,563 - INFO - Skipping already processed message: ./data/messages/kn-global-454545.json
+2025-02-15 08:52:01,497 - INFO - Processing modified event for file: ./data/messages/kn-global-454545.json
+2025-02-15 08:52:01,497 - INFO - Skipping already processed message: ./data/messages/kn-global-454545.json
+2025-02-15 08:52:01,600 - INFO - Processing modified event for file: ./data/messages/kn-global-454545.json
+2025-02-15 08:52:01,600 - INFO - Skipping already processed message: ./data/messages/kn-global-454545.json
+2025-02-15 08:52:49,670 - INFO - Processing created event for file: ./data/messages/kn-global-5468468.json
+2025-02-15 08:52:53,344 - INFO - Processing modified event for file: ./data/messages/kn-global-5468468.json
+2025-02-15 08:52:53,344 - INFO - Skipping already processed message: ./data/messages/kn-global-5468468.json
+2025-02-15 08:55:34,066 - INFO - Processing created event for file: ./data/messages/xf-global-8464653.json
+2025-02-15 08:55:37,590 - INFO - Processing modified event for file: ./data/messages/xf-global-8464653.json
+2025-02-15 08:55:37,590 - INFO - Skipping already processed message: ./data/messages/xf-global-8464653.json
+2025-02-15 08:58:54,546 - INFO - Processing created event for file: ./data/messages/kn-global-4648865.json
+2025-02-15 08:58:58,025 - INFO - Sending message from kinos
+2025-02-15 08:58:58,077 - INFO - Using main chat ID for message from kinos
+2025-02-15 08:59:00,365 - INFO - HTTP Request: POST https://api.telegram.org/bot8045759714:AAHNjm62K8JkEL6armtFbcppVuPYlU5Ty24/sendMessage "HTTP/1.1 200 OK"
+2025-02-15 08:59:00,471 - INFO - Processing modified event for file: ./data/messages/kn-global-4648865.json
+2025-02-15 08:59:00,471 - INFO - Skipping already processed message: ./data/messages/kn-global-4648865.json
