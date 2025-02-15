@@ -472,15 +472,20 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             print(f"Chat ID: {chat_id if 'chat_id' in locals() else 'Not found'}")
 
 def main():
-    # Path to watch (current directory)
-    path = "."
+    # Paths to watch
+    paths = ["./data/messages", "./data/news", "./data/thoughts", 
+             "./data/specifications", "./data/deliverables", 
+             "./data/collaborations", "./data/swarms", "./data/services"]
     
     # Create event handler and observer
     event_handler = RepositoryChangeHandler()
     observer = Observer()
     
-    # Schedule the observer
-    observer.schedule(event_handler, path, recursive=True)
+    # Schedule the observer for each path
+    for path in paths:
+        if os.path.exists(path):
+            observer.schedule(event_handler, path, recursive=False)
+            print(f"Watching {path} for changes...")
     
     # Start the observer
     observer.start()
