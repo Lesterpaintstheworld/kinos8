@@ -19,6 +19,22 @@ def get_files_sorted_by_date(directory):
     # Sort by date descending and return just the paths
     return [f[0] for f in sorted(files, key=lambda x: x[1], reverse=True)]
 
+def get_files_sorted_by_date(directory):
+    """Get files from directory sorted by createdAt field in JSON"""
+    files = []
+    for file_path in glob.glob(f"{directory}/*.json"):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                created_at = data.get('createdAt', '')
+                files.append((file_path, created_at))
+        except Exception as e:
+            print(f"Error reading {file_path}: {e}")
+            continue
+    
+    # Sort by date descending and return just the paths
+    return [f[0] for f in sorted(files, key=lambda x: x[1], reverse=True)]
+
 def get_context_files():
     """Get list of files for global conversation context"""
     context_files = []
@@ -32,8 +48,9 @@ def get_context_files():
     # Get all news
     context_files.extend(glob.glob("data/news/*.json"))
     
-    # Get all collaborations
-    context_files.extend(glob.glob("data/collaborations/*.json"))
+    # Get last 10 collaborations
+    collaborations = get_files_sorted_by_date("data/collaborations")
+    context_files.extend(collaborations[:10])
     
     # Get last 5 deliverables
     deliverables = get_files_sorted_by_date("data/deliverables")
@@ -42,6 +59,10 @@ def get_context_files():
     # Get last 5 specifications
     specifications = get_files_sorted_by_date("data/specifications")
     context_files.extend(specifications[:5])
+
+    # Get last 5 missions
+    missions = get_files_sorted_by_date("data/missions")
+    context_files.extend(missions[:5])
     
     return context_files
 
