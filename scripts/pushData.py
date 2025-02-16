@@ -612,6 +612,7 @@ def main():
             push_deliverables()
             push_validations()
             push_thoughts()
+            push_missions()
         print("\nAll data has been pushed successfully!")
     except Exception as e:
         print(f"Error during push: {str(e)}")
