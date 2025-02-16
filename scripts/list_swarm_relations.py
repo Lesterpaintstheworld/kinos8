@@ -64,6 +64,21 @@ def analyze_swarm_relations():
         if swarm_id in swarm_services:
             for service_id in swarm_services[swarm_id]:
                 swarm_relations[swarm_id]['services'].append(f"services/{service_id}.json")
+                
+        # Check missions where swarm is lead or assigned
+        mission_files = list(Path('data/missions').glob('*.json'))
+        for mission_file in mission_files:
+            data = load_json_file(mission_file)
+            if data:
+                # Check if swarm is either lead or assigned
+                is_lead = data.get('leadSwarm') == swarm_id
+                is_assigned = isinstance(data.get('assignedSwarms'), list) and swarm_id in data['assignedSwarms']
+                
+                if is_lead or is_assigned:
+                    mission_id = data.get('missionId')
+                    if mission_id:
+                        relation_type = 'lead_missions' if is_lead else 'assigned_missions'
+                        swarm_relations[swarm_id][relation_type].append(f"missions/{mission_id}.json")
         
         # Check collaborations
         collab_files = list(Path('data/collaborations').glob('*.json'))
@@ -114,8 +129,10 @@ def main():
     for swarm_id, related_items in relations.items():
         print(f"\n{swarm_id}")
         for category, items in related_items.items():
-            for item in items:
-                print(f"data/{item}")
+            if items:  # Only print categories that have items
+                print(f"\n{category.replace('_', ' ').title()}:")
+                for item in items:
+                    print(f"  data/{item}")
         print()
 
 if __name__ == '__main__':
