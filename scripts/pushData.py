@@ -457,7 +457,7 @@ def push_missions():
     
     table = api.table(BASE_ID, 'Missions')
     
-    # Define standard fields for missions - remove createdAt and updatedAt
+    # Define standard fields for missions
     standard_fields = {
         'missionId',
         'title',
@@ -494,7 +494,7 @@ def push_missions():
             data.pop('createdAt', None)
             data.pop('updatedAt', None)
             
-            # Convert arrays to strings for Airtable
+            # Convert all complex fields to JSON strings
             if 'assignedSwarms' in data and isinstance(data['assignedSwarms'], list):
                 data['assignedSwarms'] = json.dumps(data['assignedSwarms'])
             if 'features' in data and isinstance(data['features'], list):
@@ -503,6 +503,10 @@ def push_missions():
                 data['dependencies'] = json.dumps(data['dependencies'])
             if 'tags' in data and isinstance(data['tags'], list):
                 data['tags'] = json.dumps(data['tags'])
+            if 'resources' in data and isinstance(data['resources'], dict):
+                data['resources'] = json.dumps(data['resources'])
+            if 'metrics' in data and isinstance(data['metrics'], dict):
+                data['metrics'] = json.dumps(data['metrics'])
             
             # Filter out non-standard fields
             filtered_data = {k: v for k, v in data.items() if k in standard_fields}
