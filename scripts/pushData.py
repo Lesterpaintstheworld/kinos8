@@ -601,6 +601,8 @@ def main():
             push_deliverables()
         elif args.table == 'Validations':
             push_validations()
+        elif args.table == 'Missions':
+            push_missions()
         elif not args.table:
             # Push all if no specific table specified
             push_swarms()
