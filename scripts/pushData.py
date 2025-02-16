@@ -468,10 +468,8 @@ def push_missions():
         'createdAt',
         'updatedAt',
         'dueDate',
-        'assignedSwarms',
         'leadSwarm',
         'dependencies',
-        'features',
         'resources',
         'metrics',
         'tags'
@@ -492,6 +490,16 @@ def push_missions():
             with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
+            # Convert arrays to strings for Airtable
+            if 'assignedSwarms' in data and isinstance(data['assignedSwarms'], list):
+                data['assignedSwarms'] = json.dumps(data['assignedSwarms'])
+            if 'features' in data and isinstance(data['features'], list):
+                data['features'] = json.dumps(data['features'])
+            if 'dependencies' in data and isinstance(data['dependencies'], list):
+                data['dependencies'] = json.dumps(data['dependencies'])
+            if 'tags' in data and isinstance(data['tags'], list):
+                data['tags'] = json.dumps(data['tags'])
+            
             # Filter out non-standard fields
             filtered_data = {k: v for k, v in data.items() if k in standard_fields}
             
@@ -511,7 +519,7 @@ def push_missions():
                 created_count += 1
                 
         except Exception as e:
-            print(f"Error processing {file_path}: {str(e)}")
+            print(f"Error processing {file_path}: {e}")
             skipped_count += 1
     
     print(f"\nCompleted Missions:")
