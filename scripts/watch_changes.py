@@ -410,6 +410,25 @@ class RepositoryChangeHandler(FileSystemEventHandler):
                 except Exception as e:
                     print(f"Error processing thought file {file_path}: {e}")
 
+                # Handle missions
+                elif 'data/missions' in file_path:
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            data = json.load(f)
+                            if 'missionId' in data and 'leadSwarm' in data:
+                                content_preview = data.get('description', '')[:200] + '...' if len(data.get('description', '')) > 200 else data.get('description', '')
+                                message = (f"🎯 New Mission\n\n"
+                                         f"Title: {data.get('title')}\n"
+                                         f"Priority: {data.get('priority')}\n"
+                                         f"Status: {data.get('status')}\n\n"
+                                         f"Description:\n{content_preview}\n\n"
+                                         f"View full mission at:\n"
+                                         f"https://swarms.universalbasiccompute.ai/missions/{data['missionId']}")
+                                await self._send_telegram_message(message, data['leadSwarm'])
+                                print(f"Sent notification for new mission to {data['leadSwarm']}")
+                    except Exception as e:
+                        print(f"Error processing mission file {file_path}: {e}")
+
     async def _send_telegram_message(self, message, sender_id):
         try:
             print(f"DEBUG: Starting Telegram send process")
@@ -494,7 +513,8 @@ def main():
         
         # Add data subdirectories
         data_dirs = ["messages", "news", "thoughts", "specifications", 
-                    "deliverables", "collaborations", "swarms", "services"]
+                    "deliverables", "collaborations", "swarms", "services",
+                    "missions"]
         for dir in data_dirs:
             path = os.path.join("data", dir)
             if os.path.exists(path):

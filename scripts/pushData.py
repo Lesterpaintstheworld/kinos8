@@ -452,6 +452,74 @@ def push_validations():
     if skipped_count > 0:
         print(f"  - Skipped: {skipped_count}")
 
+def push_missions():
+    print("\nProcessing Missions...")
+    
+    table = api.table(BASE_ID, 'Missions')
+    
+    # Define standard fields for missions
+    standard_fields = {
+        'missionId',
+        'title',
+        'description', 
+        'objective',
+        'priority',
+        'status',
+        'createdAt',
+        'updatedAt',
+        'dueDate',
+        'assignedSwarms',
+        'leadSwarm',
+        'dependencies',
+        'features',
+        'resources',
+        'metrics',
+        'tags'
+    }
+    
+    mission_files = glob.glob('data/missions/*.json')
+    print(f"Found {len(mission_files)} mission files to process")
+    
+    existing_records = table.all()
+    existing_ids = {record['fields'].get('missionId'): record['id'] 
+                   for record in existing_records 
+                   if 'missionId' in record['fields']}
+    
+    updated_count = created_count = skipped_count = 0
+    
+    for file_path in mission_files:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # Filter out non-standard fields
+            filtered_data = {k: v for k, v in data.items() if k in standard_fields}
+            
+            mission_id = filtered_data.get('missionId')
+            if not mission_id:
+                print(f"Warning: Skipping file {file_path} - missing missionId")
+                skipped_count += 1
+                continue
+            
+            if mission_id in existing_ids:
+                table.update(existing_ids[mission_id], filtered_data)
+                print(f"Updated mission: {mission_id}")
+                updated_count += 1
+            else:
+                table.create(filtered_data)
+                print(f"Created new mission: {mission_id}")
+                created_count += 1
+                
+        except Exception as e:
+            print(f"Error processing {file_path}: {str(e)}")
+            skipped_count += 1
+    
+    print(f"\nCompleted Missions:")
+    print(f"  - Created: {created_count}")
+    print(f"  - Updated: {updated_count}")
+    if skipped_count > 0:
+        print(f"  - Skipped: {skipped_count}")
+
 def push_thoughts():
     print("\nProcessing Thoughts...")
     

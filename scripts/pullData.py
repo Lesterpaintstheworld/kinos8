@@ -42,7 +42,8 @@ TABLES = {
     'Specifications': 'specificationId',
     'Deliverables': 'deliverableId',
     'Validations': 'validationId',
-    'Thoughts': 'thoughtId'
+    'Thoughts': 'thoughtId',
+    'Missions': 'missionId'
 }
 
 def fetch_and_save_table(table_name, id_field):
