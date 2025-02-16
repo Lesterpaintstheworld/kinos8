@@ -457,7 +457,7 @@ def push_missions():
     
     table = api.table(BASE_ID, 'Missions')
     
-    # Define standard fields for missions
+    # Define standard fields for missions - remove createdAt and updatedAt
     standard_fields = {
         'missionId',
         'title',
@@ -465,10 +465,10 @@ def push_missions():
         'objective',
         'priority',
         'status',
-        'createdAt',
-        'updatedAt',
         'dueDate',
         'leadSwarm',
+        'assignedSwarms',
+        'features',
         'dependencies',
         'resources',
         'metrics',
@@ -489,6 +489,10 @@ def push_missions():
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
+            
+            # Remove createdAt and updatedAt if present
+            data.pop('createdAt', None)
+            data.pop('updatedAt', None)
             
             # Convert arrays to strings for Airtable
             if 'assignedSwarms' in data and isinstance(data['assignedSwarms'], list):
