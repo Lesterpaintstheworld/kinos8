@@ -265,9 +265,9 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             return
             
         # Only process certain file types
-        if not any(d in file_path for d in ['messages', 'news', 'thoughts', 'specifications', 
-                                          'deliverables', 'collaborations', 'swarms', 'services', 
-                                          'kinos']):
+        if not any(f"data/{d}" in file_path for d in ['messages', 'news', 'thoughts', 'specifications',
+                                                       'deliverables', 'collaborations', 'swarms', 'services',
+                                                       'missions']) and 'kinos' not in file_path:
             print(f"Skipping non-data file: {file_path}")
             return
             
