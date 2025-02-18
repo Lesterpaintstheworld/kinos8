@@ -240,8 +240,22 @@ def push_collaborations():
     # Get the table
     table = api.table(BASE_ID, 'Collaborations')
     
+    # Define standard fields including telegramChatId
+    standard_fields = {
+        'collaborationId',
+        'providerSwarmId',
+        'clientSwarmId',
+        'serviceId',
+        'status',
+        'price',
+        'startDate',
+        'objectives',
+        'telegramChatId'
+    }
+    
     # Get valid fields for this table
     valid_fields = get_table_schema(table)
+    valid_fields.update(standard_fields)  # Add our standard fields to the schema
     print(f"Valid fields for Collaborations: {valid_fields}")
     
     # Get all collaboration files
