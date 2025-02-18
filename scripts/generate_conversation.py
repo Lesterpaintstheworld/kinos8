@@ -77,13 +77,25 @@ def load_messages(collab_id):
     message_files = glob.glob('data/messages/*.json')
     for file in message_files:
         try:
+            # Skip empty files
+            if os.path.getsize(file) == 0:
+                print(f"Skipping empty file: {file}")
+                continue
+                
             # Open in binary mode first
             with open(file, 'rb') as f:
                 # Decode bytes to string using UTF-8
                 content = f.read().decode('utf-8')
+                if not content.strip():
+                    print(f"Skipping empty content in file: {file}")
+                    continue
+                    
                 data = json.loads(content)
                 if data.get('collaborationId') == collab_id:
                     messages.append(data)
+        except json.JSONDecodeError:
+            print(f"Skipping invalid JSON in file: {file}")
+            continue
         except Exception as e:
             print(f"Error reading message file {file}: {str(e)}")
             continue
