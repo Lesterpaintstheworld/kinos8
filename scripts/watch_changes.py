@@ -8,8 +8,6 @@ import subprocess
 import logging
 from typing import Optional, Dict, Any
 from datetime import datetime
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 import asyncio
 from telegram.ext import ApplicationBuilder
 from dotenv import load_dotenv
@@ -512,53 +510,58 @@ class RepositoryChangeHandler(FileSystemEventHandler):
             print(f"Sender: {sender_id}")
             print(f"Chat ID: {chat_id if 'chat_id' in locals() else 'Not found'}")
 
-def main():
-    # Get all paths to watch
-    def get_watch_paths():
-        paths = []
-        base_dirs = ["data", "kinos"]
-        
-        # Add data subdirectories
-        data_dirs = ["messages", "news", "thoughts", "specifications", 
-                    "deliverables", "collaborations", "swarms", "services",
-                    "missions"]
-        for dir in data_dirs:
-            path = os.path.join("data", dir)
-            if os.path.exists(path):
-                paths.append(path)
-                
-        # Add kinos directory if it exists
-        if os.path.exists("kinos"):
-            paths.append("kinos")
-            
-        return paths
-
-    # Get paths and create handler/observer    
-    paths = get_watch_paths()
-    event_handler = RepositoryChangeHandler()
-    observer = Observer()
-    
-    # Schedule watching for each path
-    for path in paths:
-        normalized_path = path.replace(os.sep, '/')
-        if os.path.exists(path):
-            observer.schedule(event_handler, path, recursive=False)
-            print(f"Watching {normalized_path} for changes...")
-        else:
-            print(f"Warning: Path does not exist: {normalized_path}")
-    
-    # Start the observer
-    observer.start()
-    print(f"Watching repository for changes...")
-    
+def get_latest_changes():
+    """Get files changed in the latest commit"""
     try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-        print("\nStopped watching repository")
+        # Get the latest commit hash
+        result = subprocess.run(["git", "log", "-1", "--format=%H"], 
+                              capture_output=True, text=True, check=True)
+        latest_commit = result.stdout.strip()
+
+        # Get the files changed in this commit
+        result = subprocess.run(["git", "diff-tree", "--no-commit-id", "--name-only", "-r", latest_commit],
+                              capture_output=True, text=True, check=True)
+        changed_files = result.stdout.strip().split('\n')
         
-    observer.join()
+        return [f for f in changed_files if f and not any(skip in f for skip in ['.git', '.aider', '.tmp'])]
+    except subprocess.CalledProcessError as e:
+        print(f"Error getting git changes: {e}")
+        return []
+
+def main():
+    last_commit = None
+    
+    while True:
+        try:
+            # Get current commit
+            result = subprocess.run(["git", "log", "-1", "--format=%H"], 
+                                  capture_output=True, text=True, check=True)
+            current_commit = result.stdout.strip()
+            
+            # If commit changed
+            if current_commit != last_commit:
+                changed_files = get_latest_changes()
+                print(f"Processing changes from commit {current_commit[:8]}")
+                
+                for file_path in changed_files:
+                    if os.path.exists(file_path):
+                        print(f"Processing changed file: {file_path}")
+                        # Process the file using existing handlers
+                        event_handler = RepositoryChangeHandler()
+                        event_handler.loop.run_until_complete(
+                            event_handler._handle_file_event("modified", file_path)
+                        )
+                
+                last_commit = current_commit
+            
+            time.sleep(2)  # Check every 2 seconds
+            
+        except KeyboardInterrupt:
+            print("\nStopped watching repository")
+            break
+        except Exception as e:
+            print(f"Error in main loop: {e}")
+            time.sleep(2)  # Wait before retrying
 
 if __name__ == "__main__":
     main()
