@@ -179,82 +179,6 @@ class ScriptGUI:
         )
         self.watch_button.grid(row=1, column=3, padx=6, pady=3)
         
-        # Conversation Generator Frame
-        conv_frame = ttk.LabelFrame(
-            main_frame,
-            text="Conversation Generator",
-            padding="8",
-            style="Metallic.TLabelframe"
-        )
-        conv_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
-
-        # Collaboration Selector
-        collab_label = ttk.Label(
-            conv_frame,
-            text="Select Collaboration:",
-            style="Metallic.TLabel"
-        )
-        collab_label.grid(row=0, column=0, padx=4, pady=4, sticky=tk.W)
-
-        self.collab_var = tk.StringVar()
-        self.collab_selector = ttk.Combobox(
-            conv_frame,
-            textvariable=self.collab_var,
-            style="Metallic.TCombobox",
-            width=40,
-            state="readonly"
-        )
-        self.collab_selector.grid(row=0, column=1, padx=4, pady=4, sticky=tk.W)
-
-        # Prompt Text Box
-        prompt_label = ttk.Label(
-            conv_frame,
-            text="Enter Prompt:",
-            style="Metallic.TLabel"
-        )
-        prompt_label.grid(row=1, column=0, padx=4, pady=4, sticky=tk.W)
-
-        self.prompt_text = tk.Text(
-            conv_frame,
-            height=3,
-            width=60,
-            bg="#202020",
-            fg="#e0e0e0",
-            insertbackground="#ffffff",
-            relief="flat",
-            borderwidth=1,
-            font=("Consolas", 10)
-        )
-        self.prompt_text.grid(row=1, column=1, padx=4, pady=4, sticky=tk.W)
-
-        # Message Count Slider
-        slider_label = ttk.Label(
-            conv_frame,
-            text="Messages to Generate:",
-            style="Metallic.TLabel"
-        )
-        slider_label.grid(row=2, column=0, padx=4, pady=4, sticky=tk.W)
-
-        self.message_count = tk.IntVar(value=1)
-        self.message_slider = ttk.Scale(
-            conv_frame,
-            from_=1,
-            to=10,
-            orient=tk.HORIZONTAL,
-            variable=self.message_count,
-            style="Metallic.Horizontal.TScale",
-            length=200
-        )
-        self.message_slider.grid(row=2, column=1, padx=4, pady=4, sticky=tk.W)
-        
-        # Generate Button
-        generate_button = ttk.Button(
-            conv_frame,
-            text="Generate Conversation",
-            command=self.generate_conversation,
-            style="Metallic.TButton"
-        )
-        generate_button.grid(row=3, column=1, padx=4, pady=4, sticky=tk.E)
 
         # Specification Generator Frame
         spec_frame = ttk.LabelFrame(
@@ -316,6 +240,7 @@ class ScriptGUI:
 
         # Load collaborations for both selectors after they're created
         self.load_collaborations()
+
 
         # Conversation Generator Frame
         conv_frame = ttk.LabelFrame(
