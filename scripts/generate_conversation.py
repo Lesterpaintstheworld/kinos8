@@ -173,7 +173,7 @@ Collaboration Specifications:
                 continue
 
             # Create message data
-            timestamp = datetime.utcnow().isoformat() + 'Z'
+            timestamp = datetime.now(datetime.UTC).isoformat()
             
             # Alternate between senders
             if i % 2 == 0:
