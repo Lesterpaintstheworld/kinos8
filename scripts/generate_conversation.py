@@ -8,6 +8,21 @@ from datetime import datetime
 import anthropic
 from dotenv import load_dotenv
 
+def load_kinos_context():
+    """Load all files from kinos/ directory for context"""
+    context = "\nKinOS Context:\n"
+    if os.path.exists('kinos'):
+        for file in glob.glob('kinos/*.md'):
+            try:
+                with open(file, 'r', encoding='utf-8') as f:
+                    filename = os.path.basename(file)
+                    context += f"\n=== {filename} ===\n"
+                    context += f.read()
+                    context += "\n"
+            except Exception as e:
+                print(f"Error reading {file}: {str(e)}")
+    return context
+
 # Force UTF-8 encoding for stdin/stdout/stderr
 if sys.stdout.encoding != 'utf-8':
     sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
@@ -90,6 +105,8 @@ def generate_conversation(collab_id, prompt, message_count=1):
         
         # Create context for Claude
         context = f"""You are helping generate a conversation between {collab['clientSwarmId']} and {collab['providerSwarmId']}.
+
+{load_kinos_context()}
 
 Collaboration Specifications:
 """
