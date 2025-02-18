@@ -8,6 +8,14 @@ from datetime import datetime
 import anthropic
 from dotenv import load_dotenv
 
+# Load environment variables from .env file with override
+load_dotenv(override=True)
+
+# Get API key and validate
+api_key = os.getenv('ANTHROPIC_API_KEY')
+if not api_key:
+    raise ValueError("ANTHROPIC_API_KEY not found in .env file")
+
 def load_kinos_context():
     """Load all files from kinos/ directory for context"""
     context = "\nKinOS Context:\n"
@@ -96,13 +104,9 @@ def save_message(message_data):
 
 def generate_conversation(collab_id, prompt, message_count=1):
     """Generate a conversation using Claude"""
-    # Check for API key
-    api_key = os.getenv('ANTHROPIC_API_KEY')
-    if not api_key:
-        print("Error: ANTHROPIC_API_KEY not found in environment variables")
-        print("Please ensure you have a .env file with ANTHROPIC_API_KEY=your_key")
-        return
-
+    # Initialize Claude client with global api_key
+    client = anthropic.Client(api_key=api_key)
+    
     # Load collaboration data
     collab = load_collaboration(collab_id)
     if not collab:
