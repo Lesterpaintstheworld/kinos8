@@ -107,6 +107,9 @@ class ScriptGUI:
         self.watching = False
         
         self.setup_gui()
+        # Load collaborations for selector
+        self.load_collaborations()
+        
         self.setup_output_handling()
         
     def cleanup(self):
@@ -314,6 +317,83 @@ class ScriptGUI:
         # Load collaborations for both selectors after they're created
         self.load_collaborations()
 
+        # Conversation Generator Frame
+        conv_frame = ttk.LabelFrame(
+            main_frame,
+            text="Conversation Generator",
+            padding="8",
+            style="Metallic.TLabelframe"
+        )
+        conv_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N), padx=5, pady=5)
+
+        # Collaboration Selector
+        collab_label = ttk.Label(
+            conv_frame,
+            text="Select Collaboration:",
+            style="Metallic.TLabel"
+        )
+        collab_label.grid(row=0, column=0, padx=4, pady=4, sticky=tk.W)
+
+        self.collab_var = tk.StringVar()
+        self.collab_selector = ttk.Combobox(
+            conv_frame,
+            textvariable=self.collab_var,
+            style="Metallic.TCombobox",
+            width=40,
+            state="readonly"
+        )
+        self.collab_selector.grid(row=0, column=1, padx=4, pady=4, sticky=tk.W)
+
+        # Prompt Text Box
+        prompt_label = ttk.Label(
+            conv_frame,
+            text="Enter Prompt:",
+            style="Metallic.TLabel"
+        )
+        prompt_label.grid(row=1, column=0, padx=4, pady=4, sticky=tk.W)
+
+        self.prompt_text = tk.Text(
+            conv_frame,
+            height=3,
+            width=60,
+            bg="#202020",
+            fg="#e0e0e0",
+            insertbackground="#ffffff",
+            relief="flat",
+            borderwidth=1,
+            font=("Consolas", 10)
+        )
+        self.prompt_text.grid(row=1, column=1, padx=4, pady=4, sticky=tk.W)
+
+        # Message Count Slider
+        slider_label = ttk.Label(
+            conv_frame,
+            text="Messages to Generate:",
+            style="Metallic.TLabel"
+        )
+        slider_label.grid(row=2, column=0, padx=4, pady=4, sticky=tk.W)
+
+        self.message_count = tk.IntVar(value=1)
+        self.message_slider = ttk.Scale(
+            conv_frame,
+            from_=1,
+            to=10,
+            orient=tk.HORIZONTAL,
+            variable=self.message_count,
+            style="Metallic.Horizontal.TScale",
+            length=200
+        )
+        self.message_slider.grid(row=2, column=1, padx=4, pady=4, sticky=tk.W)
+        
+        # Generate Button
+        generate_button = ttk.Button(
+            conv_frame,
+            text="Generate Conversation",
+            command=self.generate_conversation,
+            style="Metallic.TButton"
+        )
+        generate_button.grid(row=3, column=1, padx=4, pady=4, sticky=tk.E)
+
         # Output area with better contrast
         output_frame = ttk.LabelFrame(
             main_frame,
@@ -417,6 +497,39 @@ class ScriptGUI:
     def clear_output(self):
         """Clear the output text area"""
         self.output_text.delete(1.0, tk.END)
+
+    def load_collaborations(self):
+        """Load available collaborations into the selector"""
+        try:
+            import glob
+            import json
+            collab_files = glob.glob('data/collaborations/*.json')
+            collabs = []
+            for file in collab_files:
+                with open(file, 'r') as f:
+                    data = json.load(f)
+                    desc = f"{data.get('collaborationId')} - {data.get('clientSwarmId')} with {data.get('providerSwarmId')}"
+                    collabs.append(desc)
+            
+            sorted_collabs = sorted(collabs)
+            self.collab_selector['values'] = sorted_collabs
+            if collabs:
+                self.collab_selector.set(sorted_collabs[0])
+        except Exception as e:
+            print(f"Error loading collaborations: {e}")
+
+    def generate_conversation(self):
+        """Generate conversation based on selected collaboration and prompt"""
+        collab_id = self.collab_var.get().split(' - ')[0]
+        prompt = self.prompt_text.get("1.0", tk.END).strip()
+        message_count = self.message_count.get()
+        
+        if not prompt:
+            self.status_var.set("Please enter a prompt")
+            return
+            
+        self.status_var.set("Generating conversation...")
+        self.run_script(f"generate_conversation.py {collab_id} \"{prompt}\" {message_count}")
 
     def save_output(self):
         """Save the output to a file"""
