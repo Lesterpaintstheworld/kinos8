@@ -42,6 +42,10 @@ if sys.stdout.encoding != 'utf-8':
 # Load environment variables
 load_dotenv()
 
+# Debug environment variable loading
+print("Environment variables loaded:")
+print(f"ANTHROPIC_API_KEY present: {bool(os.getenv('ANTHROPIC_API_KEY'))}")
+
 def load_collaboration(collab_id):
     """Load collaboration data from file"""
     collab_files = glob.glob('data/collaborations/*.json')
@@ -92,6 +96,13 @@ def save_message(message_data):
 
 def generate_conversation(collab_id, prompt, message_count=1):
     """Generate a conversation using Claude"""
+    # Check for API key
+    api_key = os.getenv('ANTHROPIC_API_KEY')
+    if not api_key:
+        print("Error: ANTHROPIC_API_KEY not found in environment variables")
+        print("Please ensure you have a .env file with ANTHROPIC_API_KEY=your_key")
+        return
+
     # Load collaboration data
     collab = load_collaboration(collab_id)
     if not collab:
@@ -99,9 +110,7 @@ def generate_conversation(collab_id, prompt, message_count=1):
         return
 
     # Initialize Claude client
-    client = anthropic.Client(
-        api_key=os.getenv('ANTHROPIC_API_KEY')
-    )
+    client = anthropic.Client(api_key=api_key)
     
     # Generate multiple messages
     for i in range(message_count):
