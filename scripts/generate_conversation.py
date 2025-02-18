@@ -46,10 +46,17 @@ def load_collaboration(collab_id):
     """Load collaboration data from file"""
     collab_files = glob.glob('data/collaborations/*.json')
     for file in collab_files:
-        with open(file, 'r') as f:
-            data = json.load(f)
-            if data.get('collaborationId') == collab_id:
-                return data
+        try:
+            # Open in binary mode first
+            with open(file, 'rb') as f:
+                # Decode bytes to string using UTF-8
+                content = f.read().decode('utf-8')
+                data = json.loads(content)
+                if data.get('collaborationId') == collab_id:
+                    return data
+        except Exception as e:
+            print(f"Error reading collaboration file {file}: {str(e)}")
+            continue
     return None
 
 def load_messages(collab_id):
@@ -57,10 +64,17 @@ def load_messages(collab_id):
     messages = []
     message_files = glob.glob('data/messages/*.json')
     for file in message_files:
-        with open(file, 'r') as f:
-            data = json.load(f)
-            if data.get('collaborationId') == collab_id:
-                messages.append(data)
+        try:
+            # Open in binary mode first
+            with open(file, 'rb') as f:
+                # Decode bytes to string using UTF-8
+                content = f.read().decode('utf-8')
+                data = json.loads(content)
+                if data.get('collaborationId') == collab_id:
+                    messages.append(data)
+        except Exception as e:
+            print(f"Error reading message file {file}: {str(e)}")
+            continue
     return sorted(messages, key=lambda x: x.get('timestamp', ''))
 
 def generate_message_id(sender_id, timestamp):
