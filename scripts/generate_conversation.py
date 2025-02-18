@@ -185,7 +185,7 @@ Collaboration Specifications:
                 continue
 
             # Create message data
-            timestamp = datetime.now(datetime.UTC).isoformat()
+            timestamp = datetime.utcnow().isoformat() + 'Z'
             
             # Alternate between senders
             if i % 2 == 0:
