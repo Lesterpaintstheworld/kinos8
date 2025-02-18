@@ -112,10 +112,17 @@ def generate_conversation(collab_id, prompt, message_count=1):
         specifications = []
         spec_files = glob.glob('data/specifications/*.json')
         for file in spec_files:
-            with open(file, 'r') as f:
-                spec_data = json.load(f)
-                if spec_data.get('collaborationId') == collab_id:
-                    specifications.append(spec_data)
+            try:
+                # Open in binary mode first
+                with open(file, 'rb') as f:
+                    # Decode bytes to string using UTF-8
+                    content = f.read().decode('utf-8')
+                    spec_data = json.loads(content)
+                    if spec_data.get('collaborationId') == collab_id:
+                        specifications.append(spec_data)
+            except Exception as e:
+                print(f"Error reading specification file {file}: {str(e)}")
+                continue
         
         # Create context for Claude
         context = f"""You are helping generate a conversation between {collab['clientSwarmId']} and {collab['providerSwarmId']}.
