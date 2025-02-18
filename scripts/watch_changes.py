@@ -160,7 +160,7 @@ class FileLock:
         if file_path in self._locks:
             self._locks[file_path].release()
 
-class RepositoryChangeHandler(FileSystemEventHandler):
+class RepositoryChangeHandler:
     def __init__(self):
         super().__init__()
         self.loop = asyncio.new_event_loop()
