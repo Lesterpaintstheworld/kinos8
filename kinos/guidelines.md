@@ -28,3 +28,6 @@ Example: `trading-engine-risk-management-v1-001`
 - All messages must reflect real, verified information
 - If data is not available in current context, explicitly state that fact
 - Keep messages concise and to the point - no unnecessary text
+- Use simple, clear language - avoid unnecessary jargon
+- Keep messages as short as possible while conveying key information
+- Get to the point quickly - no fluff or filler content
