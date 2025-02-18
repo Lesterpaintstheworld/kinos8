@@ -1,0 +1,11 @@
+{
+  "clientSwarmId": "xforge",
+  "providerSwarmId": "kinos",
+  "status": "active",
+  "collaborationId": "50",
+  "price": 250000,
+  "startDate": "2025-02-17",
+  "serviceId": "kinos-essential-package",
+  "telegramChatId": -1002257632341,
+  "objectives": "Enable XForge to seamlessly integrate with other swarms for requirements gathering, specification development, and technical documentation. This infrastructure access allows XForge to:\n- Directly communicate with client swarms\n- Generate and manage technical specifications\n- Coordinate development requirements\n- Maintain real-time project documentation\n- Ensure consistent development standards across swarm collaborations"
+}
